@@ -15,11 +15,8 @@ userRouter.post(
         "headers의 Content-Type을 application/json으로 설정해주세요"
       );
     }
-    // req (request)의 body 에서 데이터 가져오기
-    const fullName = req.body.fullName;
-    const email = req.body.email;
-    const password = req.body.password;
-    const role = req.body.role;
+
+    const { fullName, email, password, role, phoneNumber } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newUser = await userService.addUser({
@@ -27,6 +24,7 @@ userRouter.post(
       email,
       password,
       role,
+      phoneNumber,
     });
 
     // 추가된 유저의 db 데이터를 프론트에 다시 보내줌
@@ -37,16 +35,13 @@ userRouter.post(
 
 userRouter.post("/login", async function (req, res, next) {
   try {
-    // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
     if (is.emptyObject(req.body)) {
       throw new Error(
         "headers의 Content-Type을 application/json으로 설정해주세요"
       );
     }
 
-    // req (request) 에서 데이터 가져오기
-    const email = req.body.email;
-    const password = req.body.password;
+    const { email, password } = req.body;
 
     // 로그인 진행 (로그인 성공 시 jwt 토큰을 프론트에 보내 줌)
     const userToken = await userService.getUserToken({ email, password });
@@ -64,7 +59,6 @@ userRouter.get(
   "/userlist",
   loginRequired,
   asyncHandler(async function (req, res, next) {
-    console.log(req.role);
     if (req.role === 0) {
       throw new Error("관리자만 회원 리스트를 볼 수 있습니다.");
     }
@@ -84,26 +78,21 @@ userRouter.patch(
   loginRequired,
   async function (req, res, next) {
     try {
-      // content-type 을 application/json 로 프론트에서
-      // 설정 안 하고 요청하면, body가 비어 있게 됨.
       if (is.emptyObject(req.body)) {
         throw new Error(
           "headers의 Content-Type을 application/json으로 설정해주세요"
         );
       }
+      const { userId } = req.params;
 
-      // params로부터 id를 가져옴
-      const userId = req.params.userId;
-
-      // body data 로부터 업데이트할 사용자 정보를 추출함.
-      const fullName = req.body.fullName;
-      const password = req.body.password;
-      const address = req.body.address;
-      const phoneNumber = req.body.phoneNumber;
-      const role = req.body.role;
-
-      // body data로부터, 확인용으로 사용할 현재 비밀번호를 추출함.
-      const currentPassword = req.body.currentPassword;
+      const {
+        fullName,
+        password,
+        address,
+        phoneNumber,
+        role,
+        currentPassword,
+      } = req.body;
 
       // currentPassword 없을 시, 진행 불가
       if (!currentPassword) {
@@ -136,4 +125,17 @@ userRouter.patch(
   }
 );
 
+// 사용자 정보 조회 (자신의 정보를 볼 수 있다.)
+// 토큰을 가지고 있어야 함
+userRouter.get(
+  "/users",
+  loginRequired,
+  asyncHandler(async (req, res) => {
+    const userId = req.currentUserId;
+    const userInfo = await userModel.findById({ _id: userId });
+    // 유저의 주문 목록도 가져와야함
+    // todo
+    res.status(200).json(userInfo);
+  })
+);
 export { userRouter };

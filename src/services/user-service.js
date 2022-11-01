@@ -38,7 +38,7 @@ class UserService {
   // 로그인
   async getUserToken(loginInfo) {
     // 객체 destructuring
-    const { email, password } = loginInfo;
+    const { email, password, role } = loginInfo;
 
     // 우선 해당 이메일의 사용자 정보가  db에 존재하는지 확인
     const user = await this.userModel.findByEmail(email);

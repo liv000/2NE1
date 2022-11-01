@@ -32,9 +32,10 @@ const UserSchema = new Schema(
       required: false,
     },
     role: {
-      type: String,
+      // 사용자 0 , 관리자 1
+      type: Number,
       required: false,
-      default: "basic-user",
+      default: 0,
     },
   },
   {

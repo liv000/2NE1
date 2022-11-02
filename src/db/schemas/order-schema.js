@@ -27,6 +27,11 @@ const OrderSchema = new Schema(
       type: String,
       required: false,
     },
+    shipping: {
+      type: String,
+      required: true,
+      default: "pending",
+    },
     address: {
       type: new Schema(
         {
@@ -41,6 +46,7 @@ const OrderSchema = new Schema(
       required: false,
     },
   },
+
   {
     collection: "orders",
     timestamps: true,

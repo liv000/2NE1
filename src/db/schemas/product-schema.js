@@ -17,23 +17,23 @@ const ProductSchema = new Schema(
       type: String,
       required: false,
     },
-    // brandInfo: {
-    //   type: new Schema(
-    //     {
-    //       nickname: String,
-    //       title: String,
-    //       logoUrl: String,
-    //       coverUrl: String,
-    //     },
-    //     {
-    //       _id: false,
-    //     }
-    //   ),
-    //   required: false,
-    // },
-    // thumbnail: {
-    //   type: String,
-    // },
+    brandInfo: {
+      type: new Schema(
+        {
+          nickname: String,
+          title: String,
+          logoUrl: String,
+          coverUrl: String,
+        },
+        {
+          _id: false,
+        }
+      ),
+      required: false,
+    },
+    thumbnail: {
+      type: String,
+    },
   },
   {
     collection: "products",

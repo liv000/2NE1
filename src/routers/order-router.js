@@ -3,7 +3,7 @@ import is from "@sindresorhus/is";
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
 import { loginRequired } from "../middlewares";
 
-import { orderService } from "../services";
+import { orderService, shippingService } from "../services";
 const orderRouter = Router();
 const asyncHandler = require("../utils/async-handler");
 
@@ -27,9 +27,17 @@ orderRouter.post(
     const userInfo = { address, phoneNumber, userId, fullName };
 
     const newOrder = await orderService.order(products, userInfo);
-
+    // 배송 생성
+    // await shippingService.create(newOrder.id);
     res.status(201).json(newOrder);
   })
+);
+
+// 주문 취소
+orderRouter.patch(
+  "/",
+  loginRequired,
+  asyncHandler(async (req, res) => {})
 );
 
 export { orderRouter };

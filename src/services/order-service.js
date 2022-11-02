@@ -8,6 +8,8 @@ class OrderService {
   async order(productInfo, userInfo) {
     return await this.orderModel.create(productInfo, userInfo);
   }
+
+
 }
 
 const orderService = new OrderService(orderModel);

@@ -31,5 +31,4 @@ shippingRouter.patch(
   })
 );
 
-// todo 주문을 취소하면 pending상태의 배송은 캔슬되어야함
 export { shippingRouter };

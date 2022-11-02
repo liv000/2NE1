@@ -13,19 +13,34 @@ export class OrderModel {
       name: fullName,
       products: productInfo,
     });
+    // 배열을 삽입할 땐 push 오퍼레이터를 사용하는 것이 아닌지?
   }
   async updateShippingStatus(orderId, status) {
-    console.log(orderId);
-    const currStatus = await Order.findOne({ _id: orderId });
-    console.log(currStatus);
-    if (currStatus.shipping !== "pending") {
+
+    const currStatus = await this.getStatus(orderId);
+
+    if (currStatus === "canceled") {
       throw new Error(`배송 상태가 ${currStatus.shipping} 입니다.`);
+    }
+    if (currStatus === 'shipped' && status === 'canceled'){
+      throw new Error ("취소 불가 : 이미 배송이 시작되었습니다.");
     }
     // 특정 필드를 수정할 땐 set이라던데?
     return await Order.findOneAndUpdate({ _id: orderId }, { shipping: status });
   }
+
+  async getStatus(orderId){
+    const status = await Order.findOne({_id:orderId});
+    return status.shipping;
+  }
+
+  async getOrderUser(orderId){
+    const user = await Order.findOne({_id:orderId}).populate("userId");
+    return user.userId;
+  }
+
 }
-// 배열을 삽입할 땐 push 오퍼레이터를 사용하는 것이 아닌지?
+
 const orderModel = new OrderModel();
 
 export { orderModel };

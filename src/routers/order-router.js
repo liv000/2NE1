@@ -29,12 +29,13 @@ orderRouter.post(
     const newOrder = await orderService.order(products, orderInfo);
  
     res.status(201).json(newOrder);
+    res.render("주문 완료 페이지로 이동"); // todo
   })
 );
 
 // 주문 취소 (= 배송 취소)
 orderRouter.patch(
-  "/",
+  "/cancel",
   loginRequired,
   asyncHandler(async (req, res) => {
     
@@ -47,5 +48,18 @@ orderRouter.patch(
     res.status(201).json(cancelOrder);
   })
 );
+
+// 주문 수정 
+// 관리자는 사용자의 주문 내역에서 배송 상태를 수정할 수 있다.
+// 사용자는 주문 완료 후 배송이 시작되기 전까지 주문 정보를 수정할 수 있다.
+orderRouter.patch(
+  "/edit",
+  loginRequired,
+  asyncHandler(async (req, res) => {
+    
+  
+  })
+);
+
 
 export { orderRouter };

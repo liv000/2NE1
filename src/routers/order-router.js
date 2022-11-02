@@ -20,11 +20,11 @@ orderRouter.post(
       );
     }
 
-    const { products, address, phoneNumber } = req.body;
+    const { products, address, phoneNumber, fullName } = req.body;
 
-    const fullName = req.currentUserId;
+    const userId = req.currentUserId;
 
-    const userInfo = { address, phoneNumber, fullName };
+    const userInfo = { address, phoneNumber, userId, fullName };
 
     const newOrder = await orderService.order(products, userInfo);
 

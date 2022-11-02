@@ -45,6 +45,10 @@ const OrderSchema = new Schema(
       ),
       required: false,
     },
+    totalAmount : {
+      type : Number,
+      required : true
+    }
   },
 
   {

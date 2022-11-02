@@ -20,13 +20,13 @@ orderRouter.post(
       );
     }
 
-    const { products, address, phoneNumber, fullName } = req.body;
+    const { products, ...rest } = req.body;
+
     const userId = req.currentUserId;
+    rest.userId = userId;
+    const orderInfo = rest;
 
-
-    const userInfo = { address, phoneNumber, userId, fullName };
-
-    const newOrder = await orderService.order(products, userInfo);
+    const newOrder = await orderService.order(products, orderInfo);
  
     res.status(201).json(newOrder);
   })

@@ -9,7 +9,6 @@ class OrderService {
     return await this.orderModel.create(productInfo, userInfo);
   }
 
-
 }
 
 const orderService = new OrderService(orderModel);

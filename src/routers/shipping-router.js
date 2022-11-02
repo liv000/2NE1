@@ -23,7 +23,6 @@ shippingRouter.patch(
       throw new Error("배송상태는 관리자만 업데이트 가능합니다. ");
     }
 
-    // const { orderId } = req.params;
     const { orderId, status } = req.body;
     const updateShipping = await shippingService.update(orderId, status);
 

@@ -5,13 +5,16 @@ const Order = model("orders", OrderSchema);
 
 export class OrderModel {
   async create(productInfo, userInfo) {
-    const { address, phoneNumber, userId, fullName } = userInfo;
+    console.log(userInfo)
+    const { address, phoneNumber, userId, fullName,totalAmount } = userInfo;
     return await Order.create({
       userId: userId,
       address: address,
       phoneNumber: phoneNumber,
       name: fullName,
       products: productInfo,
+      totalAmount : totalAmount
+
     });
     // 배열을 삽입할 땐 push 오퍼레이터를 사용하는 것이 아닌지?
   }

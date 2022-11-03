@@ -1,0 +1,35 @@
+#ordered-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#ordered-date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:600;
+    height:10;
+}
+#ordered-date-list{
+    width: 1280px;
+    text-align: center;
+}
+#ordered-item-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align:center
+}
+#more-list-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
+    width:auto;
+    height:auto;
+    margin: auto;
+}
+#more-list-button{
+    width:1000px;
+    height:45px;
+}

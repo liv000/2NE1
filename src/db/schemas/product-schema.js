@@ -17,16 +17,30 @@ const ProductSchema = new Schema(
       type: String,
       required: false,
     },
+    
+    //추가
     topCategoryCode: {
       type: String,
+      required: true,
+    },
+    topCategoryTitle: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: true,
     },
     brandInfo: {
       type: new Schema(
         {
           nickname: String,
           title: String,
+          slogan: String,
           logoUrl: String,
           coverUrl: String,
+          modTsp: Date,
+          regTsp: Date
         },
         {
           _id: false,

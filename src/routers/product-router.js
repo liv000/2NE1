@@ -37,23 +37,4 @@ productRouter.post(
 // todo
 // 상품삭제, 상품수정
 
-////////////////////////
-/// 상품데이터 넣기
-/// 넣을 데이터 상의해야함
-productRouter.post('/add', async (req, res) => {
-  let insertData = [];
-
-  data.items.forEach((i) => {
-    let result = {};
-    result['title'] = i.title;
-    result['price'] = i.price;
-    result['topCategoryCode'] = i.topCategoryCode;
-
-    insertData.push(result);
-  });
-
-  console.log(insertData);
-
-  const add = await productService.addProduct(insertData);
-});
 export { productRouter };

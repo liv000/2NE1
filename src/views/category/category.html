@@ -14,21 +14,27 @@
     <!-- bulma css -->
     <!-- 폰트 어썸: 아이콘 -->
     <!-- 커스텀 css, js -->
-    <link rel="stylesheet" href="home.css" />
-    <script src="home.js" type="module" defer></script>
+    <link rel="stylesheet" href="category.css" />
+    <script src="category.js" type="module" defer></script>
   </head>
   <body>
     <!-- 헤더 -->
+    <nav class="navbar-store">
+      <ul class="menu-items wrapper">
+        <li><a href="#">홈</a></li>
+        <li><a href="#">고민별</a></li>
+        <li><a href="#">건강기능식품</a></li>
+        <li><a href="#">건강식품</a></li>
+        <li><a href="#">건강용품</a></li>
+      </ul>
+    </nav>
 
     <!-- 메인 -->
     <main>
       <!-- 배너 -->
-      <div class="banner">
-        <img src="" alt="배너" />
-      </div>
+      <div class="banner">배너</div>
 
-      <!-- 고민별 상품 보기 -->
-      <!-- TODO 컴포넌트 분리 -->
+      <!-- 고민별 상품 보기(임시) -->
       <section class="concern">
         <div class="wrapper">
           <div class="concern-title">
@@ -46,12 +52,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-total_off.png"
+                      src="../home/images/concern-icons/icon-total_off.png"
                       alt="전체"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-total_on.png"
+                      src="../home/images/concern-icons/icon-total_on.png"
                       alt="전체"
                     />
                   </figure>
@@ -63,12 +69,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-gyniatrics_off.png"
+                      src="../home/images/concern-icons/icon-gyniatrics_off.png"
                       alt="여성건강/PMS"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-gyniatrics_on.png"
+                      src="../home/images/concern-icons/icon-gyniatrics_on.png"
                       alt="여성건강/PMS"
                     />
                   </figure>
@@ -80,12 +86,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-joints_bone_off.png"
+                      src="../home/images/concern-icons/icon-joints_bone_off.png"
                       alt="관절/뼈"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-joints_bone_on.png"
+                      src="../home/images/concern-icons/icon-joints_bone_on.png"
                       alt="관절/뼈"
                     />
                   </figure>
@@ -97,12 +103,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-oral_cavity_off.png"
+                      src="../home/images/concern-icons/icon-oral_cavity_off.png"
                       alt="구강관리"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-oral_cavity_on.png"
+                      src="../home/images/concern-icons/icon-oral_cavity_on.png"
                       alt="구강관리"
                     />
                   </figure>
@@ -114,12 +120,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-diet_off.png"
+                      src="../home/images/concern-icons/icon-diet_off.png"
                       alt="다이어트"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-diet_on.png"
+                      src="../home/images/concern-icons/icon-diet_on.png"
                       alt="다이어트"
                     />
                   </figure>
@@ -131,12 +137,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-mental_fitness_off.png"
+                      src="../home/images/concern-icons/icon-mental_fitness_off.png"
                       alt="마음건강"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-mental_fitness_on.png"
+                      src="../home/images/concern-icons/icon-mental_fitness_on.png"
                       alt="마음건강"
                     />
                   </figure>
@@ -148,12 +154,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-skin_health_off.png"
+                      src="../home/images/concern-icons/icon-skin_health_off.png"
                       alt="피부"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-skin_health_on.png"
+                      src="../home/images/concern-icons/icon-skin_health_on.png"
                       alt="피부"
                     />
                   </figure>
@@ -165,12 +171,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-anti_oxidation_off.png"
+                      src="../home/images/concern-icons/icon-anti_oxidation_off.png"
                       alt="노화/향산화"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-anti_oxidation_on.png"
+                      src="../home/images/concern-icons/icon-anti_oxidation_on.png"
                       alt="노화/향산화"
                     />
                   </figure>
@@ -182,12 +188,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-vitality_off.png"
+                      src="../home/images/concern-icons/icon-vitality_off.png"
                       alt="피로/활력"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-vitality_on.png"
+                      src="../home/images/concern-icons/icon-vitality_on.png"
                       alt="피로/활력"
                     />
                   </figure>
@@ -199,12 +205,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-liver_health_off.png"
+                      src="../home/images/concern-icons/icon-liver_health_off.png"
                       alt="간 건강"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-liver_health_on.png"
+                      src="../home/images/concern-icons/icon-liver_health_on.png"
                       alt="간 건강"
                     />
                   </figure>
@@ -216,12 +222,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-intestinal_health_off.png"
+                      src="../home/images/concern-icons/icon-intestinal_health_off.png"
                       alt="장 건강"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-intestinal_health_on.png"
+                      src="../home/images/concern-icons/icon-intestinal_health_on.png"
                       alt="장 건강"
                     />
                   </figure>
@@ -233,12 +239,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-androgenic_health_off.png"
+                      src="../home/images/concern-icons/icon-androgenic_health_off.png"
                       alt="남성 건강"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-androgenic_health_on.png"
+                      src="../home/images/concern-icons/icon-androgenic_health_on.png"
                       alt="남성 건강"
                     />
                   </figure>
@@ -250,12 +256,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-stomache_off.png"
+                      src="../home/images/concern-icons/icon-stomache_off.png"
                       alt="위/소화"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-stomache_on.png"
+                      src="../home/images/concern-icons/icon-stomache_on.png"
                       alt="위/소화"
                     />
                   </figure>
@@ -267,12 +273,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-constipation_off.png"
+                      src="../home/images/concern-icons/icon-constipation_off.png"
                       alt="변비"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-constipation_on.png"
+                      src="../home/images/concern-icons/icon-constipation_on.png"
                       alt="변비"
                     />
                   </figure>
@@ -284,12 +290,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-ophthalmologic_off.png"
+                      src="../home/images/concern-icons/icon-ophthalmologic_off.png"
                       alt="눈건강"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-ophthalmologic_on.png"
+                      src="../home/images/concern-icons/icon-ophthalmologic_on.png"
                       alt="눈건강"
                     />
                   </figure>
@@ -301,12 +307,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-hair_scalp_off.png"
+                      src="../home/images/concern-icons/icon-hair_scalp_off.png"
                       alt="모발/두피"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-hair_scalp_on.png"
+                      src="../home/images/concern-icons/icon-hair_scalp_on.png"
                       alt="모발/두피"
                     />
                   </figure>
@@ -318,12 +324,12 @@
                   ><figure class="icon-imgs">
                     <img
                       class="default-icon"
-                      src="images/concern-icons/icon-pediatrics_off.png"
+                      src="../home/images/concern-icons/icon-pediatrics_off.png"
                       alt="유/소아"
                     />
                     <img
                       class="on"
-                      src="images/concern-icons/icon-pediatrics_on.png"
+                      src="../home/images/concern-icons/icon-pediatrics_on.png"
                       alt="유/소아"
                     />
                   </figure>
@@ -335,88 +341,80 @@
         </div>
       </section>
 
-      <!-- 추천상품 -->
-      <section class="recommend-product">
+      <!-- TODO 컴포넌트 분리 -->
+      <!-- 건강기능식품 -->
+      <section class="health-function list">
         <div class="wrapper">
-          <h2>이 상품 어때요?</h2>
+          <h2>건강기능식품</h2>
 
-          <!-- 상품  -->
-          <div class="product-container">
-            <ul class="product-items">
-              <li>
-                <a href="#">
-                  <figure class="product-img">
-                    <img src="images/product_01.png" alt="제품1" />
-                  </figure>
-                  <div class="product-information">
-                    <span>건강기능식품</span>
-                    <h3>
-                      <span>[닥터노아]</span> 마루 대나무 칫솔 스탠다드(1개입)
-                    </h3>
-                    <p class="product-price">
-                      <span class="sale-rate">23%</span>2,800원<span
-                        class="strike"
-                        >25,900원</span
-                      >
-                    </p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <figure class="product-img">
-                    <img src="images/product_02.png" alt="제품2" />
-                  </figure>
-                  <div class="product-information">
-                    <span>건강식품</span>
-                    <h3>
-                      <span>[골리]</span> 골리 애플사이다 비니거 구미(60개)
-                    </h3>
-                    <p class="product-price">
-                      <span class="sale-rate">9%</span>28,900원<span
-                        class="strike"
-                        >25,900원</span
-                      >
-                    </p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <figure class="product-img">
-                    <img src="images/product_03.png" alt="제품3" />
-                  </figure>
-                  <div class="product-information">
-                    <span>건강기능식품</span>
-                    <h3><span>[필리]</span> 콜라겐</h3>
-                    <p class="product-price">
-                      <span class="sale-rate"></span>26,800원<span
-                        class="strike"
-                      ></span>
-                    </p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <figure class="product-img">
-                    <img src="images/product_04.png" alt="제품4" />
-                  </figure>
-                  <div class="product-information">
-                    <span>건강기능식품</span>
-                    <h3><span>[필리]</span> 히알루론산 스피루리나</h3>
-                    <p class="product-price">
-                      <span class="sale-rate"></span>19,500원<span
-                        class="strike"
-                      ></span>
-                    </p>
-                  </div>
-                </a>
-              </li>
-            </ul>
+          <ul class="function-items">
+            <li>
+              <a href="#">
+                <figure class="product-img">
+                  <img src="images/product_01.png" alt="액상 칼슘 마그네슘" />
+                </figure>
+                <div class="product-information">
+                  <span>건강기능식품</span>
+                  <h3><span>[차일드라이프]</span> 액상 칼슘 마그네슘</h3>
+                  <p>
+                    <span>23%</span>19,900원<span class="strike">25,900원</span>
+                  </p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <figure class="product-img">
+                  <img src="images/product_02.png" alt="액상 비타민D3" />
+                </figure>
+                <div class="product-information">
+                  <span>건강기능식품</span>
+                  <h3><span>[차일드라이프]</span> 액상 비타민D3</h3>
+                  <p>
+                    <span>38%</span>17,900원<span class="strike">12,900원</span>
+                  </p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <figure class="product-img">
+                  <img src="images/product_03.png" alt="액상 비타민C" />
+                </figure>
+                <div class="product-information">
+                  <span>건강기능식품</span>
+                  <h3><span>[차일드라이프]</span> 액상 칼슘 마그네슘</h3>
+                  <p>
+                    <span>33%</span>7,900원<span class="strike">11,900원</span>
+                  </p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <figure class="product-img">
+                  <img src="images/product_04.png" alt="퓨어 DHA" />
+                </figure>
+                <div class="product-information">
+                  <span>건강기능식품</span>
+                  <h3><span>[차일드라이프]</span> 퓨어 DHA</h3>
+                  <p>
+                    <span>29%</span>11,200원<span class="strike">15,900원</span>
+                  </p>
+                </div>
+              </a>
+            </li>
+          </ul>
+
+          <!-- 더보기 -->
+          <div class="more">
+            <a href="#" class="btn-more"><span>💊</span>건강기능식품 더보기</a>
           </div>
         </div>
       </section>
+
+      <!-- 건강식품 -->
+      <!-- 건강용품 -->
     </main>
 
     <!-- 푸터 -->

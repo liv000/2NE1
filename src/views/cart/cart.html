@@ -81,22 +81,26 @@
           </div>
         </section>
         <section class="">
-          <a class="button is-primary is-fullwidth is-hovered mt-4" href="/store"><strong>제품 추가하기</strong></a>
+          <a
+            class="button is-primary is-fullwidth is-hovered mt-4"
+            href="/store"
+            ><strong>제품 추가하기</strong></a
+          >
         </section>
       </div>
       <aside class="aside-order">
         <section class="price">
           <div class=box product">
-            <dl>
-              <dt class="strong"><strong>제품합계금액</strong></dt>
-              <dd>0원</dd>
-              <dt>총 제품금액</dt>
-              <dd>0원</dd>
-              <dt>제품할인금액</dt>
-              <dd>0원</dd>
-            </dl>
-          </div>
-          <div class=" box delivery">
+          <dl>
+            <dt class="strong"><strong>제품합계금액</strong></dt>
+            <dd>0원</dd>
+            <dt>총 제품금액</dt>
+            <dd>0원</dd>
+            <dt>제품할인금액</dt>
+            <dd>0원</dd>
+          </dl>
+          <!-- </div> -->
+          <div class="box delivery">
             <dl>
               <dt><strong>기본 배송비</strong></dt>
               <dd>0원</dd>
@@ -121,7 +125,10 @@
             <strong>주문하기</strong>
           </a> -->
           <!-- 주문하기 모달 창 -->
-          <button class="js-modal-trigger button is-light is-fullwidth is-hovered" data-target="modal-js-example">
+          <button
+            class="js-modal-trigger button is-light is-fullwidth is-hovered"
+            data-target="modal-js-example"
+          >
             <strong>주문하기</strong>
           </button>
           <div id="modal-js-example" class="modal">
@@ -138,8 +145,15 @@
                     <dd>0원</dd>
                   </dl>
                 </div>
-                <button class="button is-primary is-fullwidth is-hovered"  onclick="location.href='/purchase'">0원 주문하기</button>
-                <button class="modal-close is-large" aria-label="close">닫기</button>
+                <button
+                  class="button is-primary is-fullwidth is-hovered"
+                  onclick="location.href='/purchase'"
+                >
+                  0원 주문하기
+                </button>
+                <button class="modal-close is-large" aria-label="close">
+                  닫기
+                </button>
               </div>
             </div>
           </div>

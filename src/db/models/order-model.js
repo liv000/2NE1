@@ -21,7 +21,7 @@ export class OrderModel {
     const currStatus = await this.getStatus(orderId);
 
     if (currStatus === 'canceled') {
-      throw new Error(`배송 상태가 ${currStatus.shipping} 입니다.`);
+      throw new Error(`배송 상태가 ${currStatus} 입니다.`);
     }
     if (currStatus === 'shipped' && status === 'canceled') {
       throw new Error('취소 불가 : 이미 배송이 시작되었습니다.');
@@ -41,7 +41,17 @@ export class OrderModel {
   }
 
   async updateOrder(orderId, newInfo) {
-    const result = await Order.findOneAndUpdate({ _id: orderId }, newInfo);
+    const currStatus = await this.getStatus(orderId);
+
+    if (currStatus === 'shipped') {
+      throw new Error('취소 불가 : 이미 배송이 시작되었습니다.');
+    }
+
+    return await Order.findOneAndUpdate({ _id: orderId }, newInfo);
+  }
+
+  async getOrderList(orderId) {
+    return await Order.findOne({ _id: orderId });
   }
 }
 

@@ -78,11 +78,12 @@ userRouter.get(
 );
 
 // 사용자 정보 수정
-// (예를 들어 /api/users/abc12345 로 요청하면 req.params.userId는 'abc12345' 문자열로 됨)
 userRouter.patch(
   '/users/:userId',
   loginRequired,
+  validCallNumberCheck,
   async function (req, res, next) {
+    console.log(req);
     try {
       if (is.emptyObject(req.body)) {
         throw new Error(
@@ -91,14 +92,7 @@ userRouter.patch(
       }
       const { userId } = req.params;
 
-      const {
-        fullName,
-        password,
-        address,
-        phoneNumber,
-        role,
-        currentPassword,
-      } = req.body;
+      const { fullName, address, phoneNumber, currentPassword } = req.body;
 
       // currentPassword 없을 시, 진행 불가
       if (!currentPassword) {
@@ -111,10 +105,8 @@ userRouter.patch(
       // 보내주었다면, 업데이트용 객체에 삽입함.
       const toUpdate = {
         ...(fullName && { fullName }),
-        ...(password && { password }),
         ...(address && { address }),
         ...(phoneNumber && { phoneNumber }),
-        ...(role && { role }),
       };
 
       // 사용자 정보를 업데이트함.

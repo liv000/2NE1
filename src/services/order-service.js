@@ -22,6 +22,10 @@ class OrderService {
     const orderUser = await this.orderModel.getOrderUser(orderId);
     return user.id === orderUser.id;
   }
+
+  async getOrderList(orderId) {
+    return await orderModel.getOrderList(orderId);
+  }
 }
 
 const orderService = new OrderService(orderModel);

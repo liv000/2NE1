@@ -22,5 +22,5 @@ class ShippingService {
 }
 
 const shippingService = new ShippingService(orderModel);
-/////sdfsdfsdf/sdfsdf
+
 export { shippingService };

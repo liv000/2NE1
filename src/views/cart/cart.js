@@ -1,51 +1,37 @@
 // cart.js
-// 모달
-document.addEventListener('DOMContentLoaded', () => {
-  // Functions to open and close a modal
-  function openModal($el) {
-    $el.classList.add('is-active');
-  }
+import { data } from '../../db/dummy.js';
 
-  function closeModal($el) {
-    $el.classList.remove('is-active');
-  }
-
-  function closeAllModals() {
-    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-      closeModal($modal);
-    });
-  }
-
-  // Add a click event on buttons to open a specific modal
-  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-    const modal = $trigger.dataset.target;
-    const $target = document.getElementById(modal);
-
-    $trigger.addEventListener('click', () => {
-      openModal($target);
-    });
+console.log('카트리스트');
+// 요소 모음
+const productList = document.querySelector('#products');
+// 데이터를 받아 요소를 만든 후, html에 삽입
+insertProductElement();
+function insertProductElement() {
+  console.log(data);
+  console.log('장바구니리스트 test');
+  data.items.map((item) => {
+    const { code, title, price, imageUrl } = item;
+    console.log(code, title, price, imageUrl);
+    productList.insertAdjacentHTML(
+      'beforeend',
+      `
+      <div class="box product-item ">
+        <div>
+          <figure>
+            <img id="productImage" src="${imageUrl}" alt="clothes-image" />
+          </figure>
+        </div>
+        <div class="description">
+          <div class="detail">
+            <h5 id="productTitle">${title}</h5>
+            <p id="productCode">${code}</p>
+          </div>
+          <div class="price">
+            <h5 id="productPrice">${price}원</h5>
+          </div>
+        </div>
+      </div>
+    `,
+    );
   });
-
-  // Add a click event on various child elements to close the parent modal
-  (
-    document.querySelectorAll(
-      '.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button',
-    ) || []
-  ).forEach(($close) => {
-    const $target = $close.closest('.modal');
-
-    $close.addEventListener('click', () => {
-      closeModal($target);
-    });
-  });
-
-  // Add a keyboard event to close all modals
-  document.addEventListener('keydown', (event) => {
-    const e = event || window.event;
-
-    if (e.keyCode === 27) {
-      // Escape key
-      closeAllModals();
-    }
-  });
-});
+}

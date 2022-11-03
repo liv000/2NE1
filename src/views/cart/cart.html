@@ -26,6 +26,7 @@
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="cart.css" />
     <script src="cart.js" type="module" defer></script>
+    <script src="modal.js" type="module" defer></script>
   </head>
   <body>
     <!-- 헤더 -->
@@ -73,49 +74,46 @@
       <div class="content">
         <section><h2 class="title is-3 mt-3">장바구니</h2></section>
         <section class="products">
-          <div class="box empty">
-            <!-- <span class="icon-cart"></span> -->
+          <div id="products"></div>
+          <!-- <div class="box empty">
             <img src="../images/icon-cart@2x.png" width="64px" height="64px" />
             <p>장바구니에 담겨있는 제품이 없어요.</p>
             <p>나에게 필요한 영양제를 추천받고 장바구니에 담아보세요!</p>
-          </div>
-        </section>
-        <section class="">
-          <a
-            class="button is-primary is-fullwidth is-hovered mt-4"
-            href="/store"
-            ><strong>제품 추가하기</strong></a
-          >
-        </section>
+          </div> -->
+          <a class="button is-primary is-fullwidth is-hovered mt-4" href="/store"
+          ><strong>제품 추가하기</strong></a
+        >
       </div>
       <aside class="aside-order">
         <section class="price">
-          <div class=box product">
-          <dl>
-            <dt class="strong"><strong>제품합계금액</strong></dt>
-            <dd>0원</dd>
-            <dt>총 제품금액</dt>
-            <dd>0원</dd>
-            <dt>제품할인금액</dt>
-            <dd>0원</dd>
-          </dl>
-          <!-- </div> -->
-          <div class="box delivery">
+          <!-- <div class="box product">
+            <dl>
+              <dt class="strong"><strong>상품수</strong></dt>
+              <dd id="product-count">0개</dd>
+              <dt ">총 상품금액</dt>
+              <dd id="product-total">0원</dd>
+              <dt>상품할인금액</dt>
+              <dd>0원</dd>
+            </dl>
+          </div> -->
+          <!-- <div class="box delivery">
             <dl>
               <dt><strong>기본 배송비</strong></dt>
-              <dd>0원</dd>
+              <dd>3,000원</dd>
             </dl>
             <div class="delivery-free">
               <p>20,000원 이상 무료배송</p>
             </div>
-          </div>
+          </div> -->
           <div class="box total">
             <dl>
-              <dt><strong>제품합계금액</strong></dt>
+              <dt class="strong"><strong>상품수</strong></dt>
+              <dd id="product-count">0개</dd>
+              <dt ><strong>총 상품금액</strong></dt>
+              <dd id="product-total">0원</dd>
+              <dt><strong>배송비</strong></dt>
               <dd>0원</dd>
-              <dt><strong>기본 배송비</strong></dt>
-              <dd>0원</dd>
-              <dt><strong>결제예정금액</strong></dt>
+              <dt class="total-price"><strong>총 결제금액</strong></dt>
               <dd>0원</dd>
             </dl>
           </div>
@@ -135,21 +133,21 @@
             <div class="modal-background"></div>
             <div class="modal-content">
               <div class="box">
-                <div class="box total">
-                  <dl>
-                    <dt><strong>제품합계금액</strong></dt>
-                    <dd>0원</dd>
-                    <dt><strong>기본 배송비</strong></dt>
-                    <dd>0원</dd>
-                    <dt><strong>총 결제금액</strong></dt>
-                    <dd>0원</dd>
-                  </dl>
-                </div>
+                <dl>
+                  <dt class="strong"><strong>상품수</strong></dt>
+                  <dd id="product-count">0개</dd>
+                  <dt ><strong>총 상품금액</strong></dt>
+                  <dd id="product-total">0원</dd>
+                  <dt><strong>배송비</strong></dt>
+                  <dd>0원</dd>
+                  <dt ><strong>총 결제금액</strong></dt>
+                  <dd class="total-price">0원</dd>
+                </dl>
                 <button
                   class="button is-primary is-fullwidth is-hovered"
                   onclick="location.href='/purchase'"
                 >
-                  0원 주문하기
+                 주문서 작성
                 </button>
                 <button class="modal-close is-large" aria-label="close">
                   닫기

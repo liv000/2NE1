@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="order_list.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet"
+    />
+    
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <!-- 제목 -->
+        <section id="ordered-title" class="section">
+            <h1 class="title is-3">주문상세정보</h1>
+        </section>
+        <!-- 주문일자 -->
+        <section id="ordered-date">
+            <div id="ordered-date-list">
+                <ul class="notification is-primary">
+                    <li class="first">
+                        <dl>
+                            <dt>주문일자 <em> | </em><strong> 2022-11-01</strong> 주문 번호<em> | </em><strong> 20221101</strong> </dt>       
+                        </dl>
+                    </li>
+                </ul>
+            </div> 
+        </section>
+        <!-- 주문상세 -->
+        <article id="ordered-item-list" class="section">
+            <!-- <table is-bordered is-striped> -->
+            <table class="table is-bordered is-striped">
+                <caption>약쟁이님의 2022-11-01 주문내역</caption>
+                <colgroup>
+                    <col width="130">
+                    <col width="870">
+                    <col width="150">
+                    <col width="130">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <strong>상품주문번호</strong>
+                        </th>
+                        <th scope="col">상품정보</th>
+                        <th scope="col">상품금액(수량)</th>
+                        <th scope="col" colspan="2" class="now_order">진행상태</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="order-group">
+                        <td>
+                            <span class="ordernum">001</span>
+                        </td>
+                        <td class="product">
+                            <div>
+                                <div class="thmb">
+                                    <div class="img_center">
+                                        <a href="/item1" target="_blank">
+                                            <img src="/item1" alt="약쟁이네영양제1">
+                                        </a>
+                                    </div>
+                                </div>
+                                <dl>
+                                    <dt>
+                                        <div class="ordered-item-info">약쟁이[루테인]</div>
+                                        <a href="/item1" target="_blank">눈에좋고맛도좋은영양제</a>
+                                    </dt>
+                                </dl>
+                            </div>
+                        </td>
+                        <td class="money">
+                            <em class="thm">46,000</em>
+                            원
+                            <br>
+                            <span>2개</span>
+                        </td>
+                        <td class="ordered-state">
+                              배송 준비중
+                            <br>
+                            <em class="ordered-confirm">(22.11.01)</em>
+                        </td>
+                    </tr>
+                    <tr class="order-group">
+                        <td>
+                            <span class="ordernum">002</span>
+                        </td>
+                        <td class="product">
+                            <div>
+                                <div class="thmb">
+                                    <div class="img_center">
+                                        <a href="/item1" target="_blank">
+                                            <img src="/item1" alt="약쟁이네영양제2">
+                                        </a>
+                                    </div>
+                                </div>
+                                <dl>
+                                    <dt>
+                                        <div class="ordered-item-info">약쟁이[간]</div>
+                                        <a href="/item1" target="_blank">이제내가술자리왕</a>
+                                    </dt>
+                                </dl>
+                            </div>
+                        </td>
+                        <td class="money">
+                            <em class="thm">46,000</em>
+                            "원"
+                            <br>
+                            <span>2개</span>
+                        </td>
+                        <td class="ordered-state">
+                             배송 준비중
+                            <br>
+                            <em class="ordered-confirm">(22.11.01)</em>
+                        </td>
+                    </tr>
+                    <tr class="order-group">
+                        <td>
+                            <span class="ordernum">003</span>
+                        </td>
+                        <td class="product">
+                            <div>
+                                <div class="thmb">
+                                    <div class="img_center">
+                                        <a href="/item1" target="_blank">
+                                            <img src="/item1" alt="약쟁이네영양제3">
+                                        </a>
+                                    </div>
+                                </div>
+                                <dl>
+                                    <dt>
+                                        <div class="ordered-item-info">약쟁이[관절]</div>
+                                        <a href="/item1" target="_blank">스맨파못지않은관절</a>
+                                    </dt>
+                                </dl>
+                            </div>
+                        </td>
+                        <td class="money">
+                            <em class="thm">46,000</em>
+                            "원"
+                            <br>
+                            <span>2개</span>
+                        </td>
+                        <td class="ordered-state">
+                             배송 준비중
+                            <br>
+                            <em class="ordered-confirm">(22.11.01)</em>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </article>
+        <article id="more-list-btn">
+            <button id="more-list-button" class="button is-rounded is-primary">더보기</button>
+        </article>
+    </main>
+    
+</body>
+</html>

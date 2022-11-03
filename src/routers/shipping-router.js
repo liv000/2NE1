@@ -26,8 +26,11 @@ shippingRouter.patch(
     const { orderId, status } = req.body;
     const updateShipping = await shippingService.update(orderId, status);
 
+    // #1 전체 배송 상태로 리다이렉트
     res.status(201).json(updateShipping);
   }),
 );
+
+// #1 전체 상품 배송 상태 (관리자 기능)
 
 export { shippingRouter };

@@ -1,18 +1,24 @@
-import { Router } from "express";
-import is from "@sindresorhus/is";
+import { Router } from 'express';
+import is from '@sindresorhus/is';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
-import { loginRequired } from "../middlewares";
-import { userService } from "../services";
-import { userModel } from "../db";
+import {
+  loginRequired,
+  validCallNumberCheck,
+  validEmailCheck,
+} from '../middlewares';
+import { userService } from '../services';
+import { userModel } from '../db';
 const userRouter = Router();
-const asyncHandler = require("../utils/async-handler");
+const asyncHandler = require('../utils/async-handler');
 
 userRouter.post(
-  "/register",
+  '/register',
+  validCallNumberCheck,
+  validEmailCheck,
   asyncHandler(async (req, res, next) => {
     if (is.emptyObject(req.body)) {
       throw new Error(
-        "headers의 Content-Type을 application/json으로 설정해주세요"
+        'headers의 Content-Type을 application/json으로 설정해주세요',
       );
     }
 
@@ -30,14 +36,14 @@ userRouter.post(
     // 추가된 유저의 db 데이터를 프론트에 다시 보내줌
     // 물론 프론트에서 안 쓸 수도 있지만, 편의상 일단 보내 줌
     res.status(201).json(newUser);
-  })
+  }),
 );
 
-userRouter.post("/login", async function (req, res, next) {
+userRouter.post('/login', async function (req, res, next) {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error(
-        "headers의 Content-Type을 application/json으로 설정해주세요"
+        'headers의 Content-Type을 application/json으로 설정해주세요',
       );
     }
 
@@ -56,11 +62,11 @@ userRouter.post("/login", async function (req, res, next) {
 // 전체 유저 목록을 가져옴 (배열 형태임) // 관리자만 접근 가능
 // 미들웨어로 loginRequired 를 썼음 (이로써, jwt 토큰이 없으면 사용 불가한 라우팅이 됨)
 userRouter.get(
-  "/userlist",
+  '/userlist',
   loginRequired,
   asyncHandler(async function (req, res, next) {
     if (req.role === 0) {
-      throw new Error("관리자만 회원 리스트를 볼 수 있습니다.");
+      throw new Error('관리자만 회원 리스트를 볼 수 있습니다.');
     }
 
     // 전체 사용자 목록을 얻음
@@ -68,19 +74,19 @@ userRouter.get(
 
     // 사용자 목록(배열)을 JSON 형태로 프론트에 보냄
     res.status(200).json(users);
-  })
+  }),
 );
 
 // 사용자 정보 수정
 // (예를 들어 /api/users/abc12345 로 요청하면 req.params.userId는 'abc12345' 문자열로 됨)
 userRouter.patch(
-  "/users/:userId",
+  '/users/:userId',
   loginRequired,
   async function (req, res, next) {
     try {
       if (is.emptyObject(req.body)) {
         throw new Error(
-          "headers의 Content-Type을 application/json으로 설정해주세요"
+          'headers의 Content-Type을 application/json으로 설정해주세요',
         );
       }
       const { userId } = req.params;
@@ -96,7 +102,7 @@ userRouter.patch(
 
       // currentPassword 없을 시, 진행 불가
       if (!currentPassword) {
-        throw new Error("정보를 변경하려면, 현재의 비밀번호가 필요합니다.");
+        throw new Error('정보를 변경하려면, 현재의 비밀번호가 필요합니다.');
       }
 
       const userInfoRequired = { userId, currentPassword };
@@ -114,7 +120,7 @@ userRouter.patch(
       // 사용자 정보를 업데이트함.
       const updatedUserInfo = await userService.setUser(
         userInfoRequired,
-        toUpdate
+        toUpdate,
       );
 
       // 업데이트 이후의 유저 데이터를 프론트에 보내 줌
@@ -122,13 +128,13 @@ userRouter.patch(
     } catch (error) {
       next(error);
     }
-  }
+  },
 );
 
 // 사용자 정보 조회 (자신의 정보를 볼 수 있다.)
 // 토큰을 가지고 있어야 함
 userRouter.get(
-  "/users",
+  '/users',
   loginRequired,
   asyncHandler(async (req, res) => {
     const userId = req.currentUserId;
@@ -136,6 +142,6 @@ userRouter.get(
     // 유저의 주문 목록도 가져와야함
     // todo
     res.status(200).json(userInfo);
-  })
+  }),
 );
 export { userRouter };

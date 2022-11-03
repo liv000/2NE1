@@ -17,6 +17,9 @@ const ProductSchema = new Schema(
       type: String,
       required: false,
     },
+    topCategoryCode: {
+      type: String,
+    },
     brandInfo: {
       type: new Schema(
         {

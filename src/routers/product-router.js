@@ -7,7 +7,6 @@ import { productService } from '../services';
 const productRouter = Router();
 const asyncHandler = require('../utils/async-handler');
 
-const { data } = require('../db/dummy');
 // 상품 등록
 productRouter.post(
   '/register',
@@ -38,19 +37,4 @@ productRouter.post(
 // todo
 // 상품삭제, 상품수정
 
-productRouter.post('/add', async (req, res) => {
-  console.log(data);
-  let insertData = [];
-
-  data.items.forEach((i) => {
-    // 반복문 순회하면서 동적인 key가진 object생성
-
-    let result = {}; // 새로운 object 선언
-    result['title'] = i.title;
-    result['price'] = i.price;
-    insertData.push(result);
-  });
-
-  console.log(insertData);
-});
 export { productRouter };

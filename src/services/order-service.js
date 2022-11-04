@@ -1,3 +1,4 @@
+import { Cursor } from 'mongoose';
 import { orderModel, userModel } from '../db';
 
 class OrderService {
@@ -6,7 +7,15 @@ class OrderService {
   }
 
   async order(productInfo, userInfo) {
+    userInfo.totalAmount = await this.getTotalAmount(productInfo);
     return await this.orderModel.create(productInfo, userInfo);
+  }
+
+  async getTotalAmount(productInfo) {
+    const totalAmount = productInfo.reduce((acc, cur) => {
+      return acc + cur.productPrice * cur.quantity;
+    }, 0);
+    return totalAmount;
   }
 
   async updateOrder(userId, orderId, newInfo) {

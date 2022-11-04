@@ -13,6 +13,7 @@ const asyncHandler = require('../utils/async-handler');
 orderRouter.post(
   '/',
   loginRequired,
+  validCallNumberCheck,
   asyncHandler(async (req, res, next) => {
     if (is.emptyObject(req.body)) {
       throw new Error(
@@ -29,7 +30,7 @@ orderRouter.post(
     const newOrder = await orderService.order(products, orderInfo);
 
     res.status(201).json(newOrder);
-    res.render('주문 완료 페이지로 이동'); // todo
+    // res.render('주문 완료 페이지로 이동'); // todo
   }),
 );
 

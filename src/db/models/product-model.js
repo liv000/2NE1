@@ -10,6 +10,12 @@ export class ProductModel {
   async insert(data) {
     return await Product.create(data);
   }
+  //추가
+  async findByCategoryCode(topCategoryCode) {
+    const product = await Product.find(topCategoryCode);
+    return product;
+  }
+
 }
 
 const productModel = new ProductModel();

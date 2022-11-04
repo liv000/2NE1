@@ -8,6 +8,10 @@ class ProductService {
   async addProduct(productInfo) {
     return await this.productModel.create(productInfo);
   }
+
+  async findByCategoryCode(topCategoryCode) {
+    return await this.Product.find(topCategoryCode);   
+  }
 }
 
 const productService = new ProductService(productModel);

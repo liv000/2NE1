@@ -17,13 +17,26 @@ export class ProductModel {
     if (topCategoryCode === undefined) {
       const product = await Product.find();
       return product;
-
     }
-    
-    const product = await Product.find({topCategoryCode});
+
+    const product = await Product.find({ topCategoryCode });
     return product;
   }
 
+  async updateStock(product) {
+    const { productId, quantity } = product;
+    const currQuantity = await this.getQuantity(productId);
+    const newQuantity = currQuantity - quantity;
+    return await Product.findOneAndUpdate(
+      { _id: productId },
+      { stock: newQuantity },
+    );
+  }
+
+  async getQuantity(productId) {
+    const product = await Product.findOne({ _id: productId });
+    return product.stock;
+  }
 }
 
 const productModel = new ProductModel();

@@ -17,8 +17,11 @@ const ProductSchema = new Schema(
       type: String,
       required: false,
     },
-    
-    //추가
+    stock: {
+      type: Number,
+      require: false,
+      default: 100,
+    },
     topCategoryCode: {
       type: String,
       required: true,
@@ -40,7 +43,7 @@ const ProductSchema = new Schema(
           logoUrl: String,
           coverUrl: String,
           modTsp: Date,
-          regTsp: Date
+          regTsp: Date,
         },
         {
           _id: false,

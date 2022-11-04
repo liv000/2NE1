@@ -52,6 +52,15 @@ export class OrderModel {
   async getOrderList(orderId) {
     return await Order.findOne({ _id: orderId });
   }
+
+  async hasOrder(userId) {
+    const getOrder = await Order.find({
+      userId: userId,
+      shipping: { $in: ['pending', 'shipping'] },
+    }).populate('userId');
+
+    return getOrder.length >= 1;
+  }
 }
 
 const orderModel = new OrderModel();

@@ -19,6 +19,10 @@ const ProductSchema = new Schema(
     },
     
     //추가
+    stock: {
+      type: Number,
+      required: true,
+    },
     topCategoryCode: {
       type: String,
       required: true,

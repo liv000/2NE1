@@ -6,21 +6,13 @@ const ProductSchema = new Schema(
       type: String,
       required: true,
     },
-    type: {
-      type: String,
-    },
     price: {
       type: Number,
       required: true,
     },
-    summery: {
-      type: String,
-      required: false,
-    },
     stock: {
       type: Number,
-      require: false,
-      default: 100,
+      require: true,
     },
     topCategoryCode: {
       type: String,

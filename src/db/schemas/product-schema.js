@@ -23,14 +23,7 @@ const ProductSchema = new Schema(
       type: Number,
       required: true,
     },
-    topCategoryCode: {
-      type: String,
-      required: true,
-    },
-    topCategoryTitle: {
-      type: String,
-      required: true,
-    },
+    
     url: {
       type: String,
       required: true,

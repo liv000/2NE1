@@ -34,6 +34,23 @@ productRouter.post(
   }),
 );
 
+//카테고리별 상품 조회 및 전체 상품 조회
+productRouter.get(
+  '/productlist', 
+  async function (req, res, next) {
+  try {
+    //카테고리를 바디에 담아서 가져옴
+    const {categoryCode} = req.body;
+
+    const newProduct = await productService.getProductList(categoryCode);
+
+    res.status(201).json(newProduct);
+  } catch (error) {
+    next(error);
+  }
+});
+
+
 // todo
 // 상품삭제, 상품수정
 

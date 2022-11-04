@@ -5,7 +5,6 @@ const Order = model('orders', OrderSchema);
 
 export class OrderModel {
   async create(productInfo, userInfo) {
-    console.log(userInfo);
     const { address, phoneNumber, userId, fullName, totalAmount } = userInfo;
     return await Order.create({
       userId: userId,

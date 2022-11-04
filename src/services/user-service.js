@@ -12,10 +12,10 @@ class UserService {
   async addUser(userInfo) {
     const { email, fullName, password, role } = userInfo;
 
-    const user = await this.userModel.findByEmail(email);
+    const isUsingEmail = await this.userModel.isUsingEmail(email);
 
     // 탈퇴한 회원의 이메일이면 가입 가능
-    if (user && user.status === 1) {
+    if (!isUsingEmail) {
       throw new Error(
         '이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.',
       );

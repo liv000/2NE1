@@ -9,8 +9,9 @@ class ProductService {
     return await this.productModel.create(productInfo);
   }
 
-  async findByCategoryCode(topCategoryCode) {
-    return await this.Product.find(topCategoryCode);   
+  //상품목록 불러오기 관련
+  async getProductList(topCategoryCode) {
+    return await this.productModel.getProductList(topCategoryCode);   
   }
 }
 

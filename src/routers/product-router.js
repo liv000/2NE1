@@ -34,35 +34,22 @@ productRouter.post(
   }),
 );
 
-//상품목록조회
-// productRouter.get(
-//   '/list',
-//   findByCategoryCode(async (req, res, next) => {
-    
-//     const { topCategoryCode } = req.body;
-
-//     const newProduct = await productService.findByCategoryCode({
-//       topCategoryCode
-//     });
-
-//     res.status(201).json(newProduct);
-//   }),
-// );
-
+//카테고리별 상품 조회 및 전체 상품 조회
 productRouter.get(
   '/productlist', 
   async function (req, res, next) {
   try {
-    // 전체 제품 목록을 얻음
-    const newProduct = await productService.findByCategoryCodes();
-    // 제품 목록(배열)을 JSON 형태로 프론트에 보냄
+    //카테고리를 바디에 담아서 가져옴
+    const {categoryCode} = req.body;
+
+    const newProduct = await productService.getProductList(categoryCode);
+
     res.status(201).json(newProduct);
   } catch (error) {
     next(error);
   }
 });
 
-//카테고리별조회
 
 // todo
 // 상품삭제, 상품수정

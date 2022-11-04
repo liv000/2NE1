@@ -10,9 +10,17 @@ export class ProductModel {
   async insert(data) {
     return await Product.create(data);
   }
+
   //추가
-  async findByCategoryCode(topCategoryCode) {
-    const product = await Product.find(topCategoryCode);
+  async getProductList(topCategoryCode) {
+    //body에 아무것도 담겨져 있지 않으면(undefind) 상품 전체목록 불러옴
+    if (topCategoryCode === undefined) {
+      const product = await Product.find();
+      return product;
+
+    }
+    
+    const product = await Product.find({topCategoryCode});
     return product;
   }
 

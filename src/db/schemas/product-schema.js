@@ -46,6 +46,12 @@ const ProductSchema = new Schema(
     thumbnail: {
       type: String,
     },
+    status: {
+      // 0 이면 삭제된 상품
+      type: Number,
+      required: true,
+      default: 1,
+    },
   },
   {
     collection: 'products',

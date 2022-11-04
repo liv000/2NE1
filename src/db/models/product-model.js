@@ -24,9 +24,15 @@ export class ProductModel {
   }
 
   async updateStock(product) {
-    const { productId, quantity } = product;
+    const { productId, quantity, productName } = product;
+    console.log(product);
     const currQuantity = await this.getQuantity(productId);
     const newQuantity = currQuantity - quantity;
+    if (newQuantity < 0) {
+      throw new Error(
+        `${productName}의 재고가 부족합니다. 현재 수량 : ${currQuantity}`,
+      );
+    }
     return await Product.findOneAndUpdate(
       { _id: productId },
       { stock: newQuantity },

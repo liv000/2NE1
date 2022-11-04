@@ -35,11 +35,14 @@
 
           <!-- 구매하기 -->
           <aside class="product-purchase">
-            <section class="purchase">
-              <p class="brand">필리</p>
-              <h1 class="product-name">비타민B</h1>
-              <p class="product-price">12,000원</p>
-              <div class="review"></div>
+            <section>
+              <p class="ctg-title">필리</p>
+              <h1 class="title">비타민B</h1>
+              <p class="price">12,000원</p>
+              <p class="review-more">
+                후기 <span class="review-count">13</span
+                ><span class="icon-more">></span>
+              </p>
 
               <!-- 제품설명 -->
               <div class="description">
@@ -59,16 +62,60 @@
                 </div>
               </div>
 
-              <!-- 구매하기 버튼 -->
-              <div class="btn-purchase">
+              <!-- 구매 버튼 -->
+              <div class="purchase">
                 <button class="btn-purchase">구매하기</button>
               </div>
             </section>
-            <section class="product-purchase-floating"></section>
+
+            <!-- 장바구니 담기 -->
+            <section class="purchase-floating">
+              <div class="purchase-wrapper">
+                <p class="close-purchase">
+                  닫기 <span class="close-icon">x</span>
+                </p>
+
+                <div class="scroll-box">
+                  <p class="product-title">비타민B</p>
+
+                  <!-- 카운트 -->
+                  <div class="cart-count">
+                    <p>수량</p>
+                    <div class="count-wrapper">
+                      <button><span class="btn-minus">-</span></button
+                      ><span class="count">1</span
+                      ><button><span class="btn-plus">+</span></button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="product-price">
+                      <p>제품 금액</p>
+                      <p class="total-price">12,000원</p>
+                    </div>
+
+                    <!-- 장바구니 담기 버튼 -->
+                    <div class="cart-add">
+                      <button class="cart-btn">장바구니 담기</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </aside>
 
           <!-- 구분선 -->
-          <hr />
+          <hr class="nav" />
+
+          <!-- 스크롤 메뉴-->
+          <nav class="tab-menu">
+            <ul class="menu-items">
+              <li><a href="#">제품설명</a></li>
+              <li><a href="#">후기</a></li>
+              <li><a href="#">문의</a></li>
+              <li><a href="#">배송반품취소</a></li>
+            </ul>
+          </nav>
 
           <!-- contents -->
           <section class="contents">
@@ -76,17 +123,8 @@
               <h2>제품설명</h2>
               <div class="content-images">
                 <img src="images/detail_01.jpg" alt="제품설명이미지" />
-                <!-- <img src="images/detail_02.jpg" alt="제품설명이미지" />
-                <img src="images/detail_03.jpg" alt="제품설명이미지" /> -->
-              </div>
-
-              <!-- 펼치기 / 접기 버튼 -->
-              <div class="btns">
-                <button class="btn fold">
-                  상세정보 펼쳐보기<span class="btn-icon"></span></button
-                ><button class="btn unfold">
-                  상세정보 접기<span class="btn-icon"></span>
-                </button>
+                <img src="images/detail_02.jpg" alt="제품설명이미지" />
+                <img src="images/detail_03.jpg" alt="제품설명이미지" />
               </div>
             </article>
 

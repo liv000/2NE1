@@ -10,6 +10,9 @@ export class ProductModel {
   async insert(data) {
     return await Product.create(data);
   }
+  async findOne(id) {
+    return await Product.findOne({ _id: id });
+  }
 
   async getProductList(topCategoryCode) {
     // todo 미들웨어에서 처리
@@ -43,12 +46,14 @@ export class ProductModel {
   }
 
   async getQuantity(productId) {
-    const product = await Product.findOne({ _id: productId });
+    const product = await this.findOne(productId);
     return product.stock;
   }
 
-  async findProductDetail(name) {
-    return await Product.findOne({ title: name });
+  async updateProduct(id, newInfo) {
+    const result = await Product.findOneAndUpdate({ _id: id }, newInfo);
+    // console.log(result.WriteResult); WriteResult어떻게 보는지..?
+    return result;
   }
 }
 

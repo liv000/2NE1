@@ -21,13 +21,14 @@ class ProductService {
       await this.productModel.updateStock(products[i]);
     }
   }
-  async getProductDetail(name, id) {
-    const productDetail = await this.productModel.findProductDetail(name);
-    console.log;
-    if (productDetail.id !== id) {
-      throw new Error('상품명과 상품아이디 다름');
-    }
+  async getProductDetail(id) {
+    const productDetail = await this.productModel.findOne(id);
     return productDetail;
+  }
+
+  async updateProduct(id, newInfo) {
+    const update = await this.productModel.updateProduct(id, newInfo);
+    return update;
   }
 }
 

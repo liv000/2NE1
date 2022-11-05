@@ -46,6 +46,10 @@ export class ProductModel {
     const product = await Product.findOne({ _id: productId });
     return product.stock;
   }
+
+  async findProductDetail(name) {
+    return await Product.findOne({ title: name });
+  }
 }
 
 const productModel = new ProductModel();

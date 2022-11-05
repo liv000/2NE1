@@ -47,12 +47,41 @@ productRouter.get(
   '/:id',
   asyncHandler(async (req, res) => {
     const id = req.params.id;
-    const { productName } = req.body;
-    const item = await productService.getProductDetail(productName, id);
+    const item = await productService.getProductDetail(id);
     res.status(201).json(item);
   }),
 );
-// todo
-// 상품삭제, 상품수정
 
+productRouter.patch(
+  '/drop/:id',
+  loginRequired,
+  asyncHandler(async (req, res) => {
+    const id = req.params.id;
+
+    if (req.role === 0) {
+      throw new Error('관리자만 상품을 삭제 할 수 있습니다.');
+    }
+
+    const drop = await productService.updateProduct(id, { status: 0 });
+    res.status(201).json(drop); // todo 상품 삭제 완료 페이지로 이동 // 아니면 프론트에서 alert
+  }),
+);
+
+productRouter.patch(
+  '/:id',
+  loginRequired,
+  asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const newInfo = req.body;
+
+    if (req.role === 0) {
+      throw new Error('관리자만 상품을 수정 할 수 있습니다.');
+    }
+
+    await productService.updateProduct(id, newInfo);
+    res.redirect(`${id}`);
+  }),
+);
+
+// todo 상품 수정
 export { productRouter };

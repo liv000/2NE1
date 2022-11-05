@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import is from '@sindresorhus/is';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
-import { loginRequired } from '../middlewares';
+import { loginRequired, categoryHandler } from '../middlewares';
 
 import { productService } from '../services';
 const productRouter = Router();
@@ -29,19 +29,22 @@ productRouter.post(
   }),
 );
 
-//카테고리별 상품 조회 및 전체 상품 조회
-productRouter.get('/productList', async function (req, res, next) {
-  try {
-    //카테고리를 바디에 담아서 가져옴
-    const { categoryCode } = req.body;
+//상품 조회 및 전체 상품 조회
+productRouter.get(
+  '/productList',
 
+  asyncHandler(async (req, res, next) => {
+    const { categoryCode } = req.body;
+    // todo 미들웨어로 변경
+    if (!categoryCode) {
+      categoryCode = 'all';
+    }
+    console.log(categoryCode);
     const newProduct = await productService.getProductList(categoryCode);
 
     res.status(201).json(newProduct);
-  } catch (error) {
-    next(error);
-  }
-});
+  }),
+);
 
 // todo
 // 상품삭제, 상품수정

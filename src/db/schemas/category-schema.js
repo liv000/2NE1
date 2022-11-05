@@ -6,13 +6,12 @@ const CategorySchema = new Schema(
       type: String,
       required: true,
     },
-    topCategoryCode: {
+    categoryCode: {
       type: String,
       required: true,
     },
-    topCategoryTitle: {
+    categoryImg: {
       type: String,
-      required: true,
     },
     status: {
       type: Number,

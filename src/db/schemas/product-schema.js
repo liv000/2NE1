@@ -16,17 +16,13 @@ const ProductSchema = new Schema(
     },
     content: {
       type: new Schema({
-        contentImg: String,
+        contentImg: [],
         description: String,
       }),
     },
     category: {
       type: Schema.Types.ObjectId,
       ref: 'categories',
-      required: true,
-    },
-    url: {
-      type: String,
       required: true,
     },
     brandInfo: {

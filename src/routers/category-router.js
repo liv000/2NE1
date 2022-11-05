@@ -10,10 +10,7 @@ const asyncHandler = require('../utils/async-handler');
 // 카테고리 등록
 categoryRouter.post('/register', loginRequired, async (req, res, next) => {
   try {
-    // req의 body 에서 데이터 가져옴
     const newCategoryInfo = req.body;
-
-    // 위 데이터를 카테고리 db에 추가
 
     const newCategory = await categoryService.addCategory(newCategoryInfo);
 
@@ -25,11 +22,11 @@ categoryRouter.post('/register', loginRequired, async (req, res, next) => {
 });
 
 // 전체 카테고리 조회
-categoryRouter.get('/categorylist', async function (req, res, next) {
+categoryRouter.get('/categoryList', async function (req, res, next) {
   try {
-    const newcategory = await categoryService.getcategoryList(categoryCode);
+    const newCategory = await categoryService.getCategoryList();
 
-    res.status(201).json(newcategory);
+    res.status(201).json(newCategory);
   } catch (error) {
     next(error);
   }

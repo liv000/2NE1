@@ -1,4 +1,4 @@
-import { categoryModel } from "../db";
+import { categoryModel } from '../db';
 
 class CategoryService {
   constructor(categoryModel) {
@@ -6,13 +6,11 @@ class CategoryService {
   }
 
   async addCategory(categoryName) {
-
     return await this.categoryModel.create(categoryName);
   }
 
-  //상품목록 불러오기 관련
   async getCategoryList() {
-    return await this.categoryModel.getCategoryList();   
+    return await this.categoryModel.getCategoryList();
   }
 }
 

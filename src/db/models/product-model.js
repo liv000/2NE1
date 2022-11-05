@@ -12,12 +12,17 @@ export class ProductModel {
   }
 
   async getProductList(topCategoryCode) {
+    // todo 미들웨어에서 처리
     if (topCategoryCode === undefined) {
       const product = await Product.find({ status: 1 });
       return product;
     }
 
-    const product = await Product.find({ topCategoryCode, status: 1 });
+    // todo 카테고리와 populate후, 카테고리 코드가 맞는것만 가져오기
+    const product = await Product.find({ status: 1 }).populate({
+      path: 'category',
+      match: { topCategoryCode: topCategoryCode },
+    });
     return product;
   }
 

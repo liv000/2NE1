@@ -1,4 +1,3 @@
-/* cart.css */
 @charset "UTF-8";
 
 main {
@@ -14,7 +13,7 @@ main {
   flex-basis: 20%;
 }
 
-.ctg-form {
+.ctg-list {
   flex-basis: 80%;
 }
 

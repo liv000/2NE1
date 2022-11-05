@@ -13,7 +13,7 @@ export class ProductModel {
 
   async getProductList(topCategoryCode) {
     // todo 미들웨어에서 처리
-    if (topCategoryCode === undefined) {
+    if (topCategoryCode === 'all') {
       const product = await Product.find({ status: 1 });
       return product;
     }
@@ -28,7 +28,7 @@ export class ProductModel {
 
   async updateStock(product) {
     const { productId, quantity, productName } = product;
-    console.log(product);
+
     const currQuantity = await this.getQuantity(productId);
     const newQuantity = currQuantity - quantity;
     if (newQuantity < 0) {

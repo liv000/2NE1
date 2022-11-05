@@ -7,7 +7,6 @@ import { productService } from '../services';
 const productRouter = Router();
 const asyncHandler = require('../utils/async-handler');
 
-// 상품 등록
 productRouter.post(
   '/register',
   loginRequired,
@@ -29,10 +28,8 @@ productRouter.post(
   }),
 );
 
-//상품 조회 및 전체 상품 조회
 productRouter.get(
   '/productList',
-
   asyncHandler(async (req, res, next) => {
     const { categoryCode } = req.body;
     // todo 미들웨어로 변경
@@ -46,6 +43,15 @@ productRouter.get(
   }),
 );
 
+productRouter.get(
+  '/:id',
+  asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const { productName } = req.body;
+    const item = await productService.getProductDetail(productName, id);
+    res.status(201).json(item);
+  }),
+);
 // todo
 // 상품삭제, 상품수정
 

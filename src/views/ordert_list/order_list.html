@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="order_list.css" />
+    <link rel="stylesheet" href="gf.css" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +15,20 @@
     <title>Document</title>
 </head>
 <body>
-    <main>
+    <main><section class="order-main">
+        <aside class="order-aside">
+            <div class="order-mypage">
+                <h1>마이페이지</h1>
+            </div>
+            <div class="order-side">
+                <a href="/장바구니">장바구니</a><br>
+                <a href="#">주문목록</a><br>
+                <a href="/회원정보">회원정보</a><br>
+                <a href="/logout">로그아웃</a>
+            </div>
+        </aside>
         <!-- 제목 -->
+        <section class="order">
         <section id="ordered-title" class="section">
             <h1 class="title is-3">주문상세정보</h1>
         </section>
@@ -26,7 +38,7 @@
                 <ul class="notification is-primary">
                     <li class="first">
                         <dl>
-                            <dt>주문일자 <em> | </em><strong> 2022-11-01</strong> 주문 번호<em> | </em><strong> 20221101</strong> </dt>       
+                            <dt>주문일자 <em> | </em><strong class="date"> 2022-11-01</strong> 주문 번호<em> | </em><strong> 20221101</strong> </dt>       
                         </dl>
                     </li>
                 </ul>
@@ -35,13 +47,13 @@
         <!-- 주문상세 -->
         <article id="ordered-item-list" class="section">
             <!-- <table is-bordered is-striped> -->
-            <table class="table is-bordered is-striped">
+            <table id="order-table" class="table is-bordered is-striped">
                 <caption>약쟁이님의 2022-11-01 주문내역</caption>
                 <colgroup>
-                    <col width="130">
+                    <col width="300">
                     <col width="870">
-                    <col width="150">
-                    <col width="130">
+                    <col width="300">
+                    <col width="300">
                 </colgroup>
                 <thead>
                     <tr>
@@ -53,7 +65,7 @@
                         <th scope="col" colspan="2" class="now_order">진행상태</th>
                     </tr>
                 </thead>
-                <tbody>
+                <!-- <tbody>
                     <tr class="order-group">
                         <td>
                             <span class="ordernum">001</span>
@@ -153,14 +165,46 @@
                             <em class="ordered-confirm">(22.11.01)</em>
                         </td>
                     </tr>
-                </tbody>
+                </tbody> -->
             </table>
-            
+            <div id="modal" class="modal">
+                <div class="modal-background" id="modalBackground"></div>
+                <div class="modal-content">
+                  <div class="box">
+                    <p class="mb-3">
+                      주문 취소 시 복구할 수 없습니다. 정말로 취소하시겠습니까?
+                    </p>
+          
+                    <div class="buttons">
+                      <button
+                        class="button mt-5"
+                        id="deleteCompleteButton"
+                        aria-label="close"
+                      >
+                        네
+                      </button>
+                      <button
+                        class="button is-primary mt-5"
+                        id="deleteCancelButton"
+                        aria-label="close"
+                      >
+                        아니오
+                      </button>
+                    </div>
+                  </div>
+                </div>
+          
+                <button
+                  class="modal-close is-large"
+                  id="modalCloseButton"
+                  aria-label="close"
+                ></button>
+              </div>
         </article>
         <article id="more-list-btn">
             <button id="more-list-button" class="button is-rounded is-primary">더보기</button>
-        </article>
-    </main>
+        </article></section>
+    </section></main>
     
 </body>
 </html>

@@ -112,18 +112,21 @@
               <dt ><strong>총 상품금액</strong></dt>
               <dd id="product-total">0원</dd>
               <dt><strong>배송비</strong></dt>
-              <dd>0원</dd>
-              <dt class="total-price"><strong>총 결제금액</strong></dt>
-              <dd>0원</dd>
+              <dd id="delivery-price">0원</dd>
+              <dt><strong>총 결제금액</strong></dt>
+              <dd id="total-price">0원</dd>
             </dl>
           </div>
         </section>
         <section class="mt-4">
-          <!-- <a class="button is-light is-fullwidth is-hovered" href="/order" >
-            <strong>주문하기</strong>
-          </a> -->
-          <!-- 주문하기 모달 창 -->
           <button
+                  class="button is-primary is-fullwidth is-hovered"
+                  onclick="location.href='/purchase'"
+                >
+                 주문서 작성
+                </button>
+          <!-- 주문하기 모달 창 임시로 주석처리-->
+          <!-- <button
             class="js-modal-trigger button is-light is-fullwidth is-hovered"
             data-target="modal-js-example"
           >
@@ -154,7 +157,7 @@
                 </button>
               </div>
             </div>
-          </div>
+          </div> -->
         </section>
       </aside>
     </div>

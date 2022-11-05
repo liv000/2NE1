@@ -1,6 +1,5 @@
 const validCallNumberCheck = (req, res, next) => {
   // - 삭제
-  // const number =
   const callNumber = req.body.phoneNumber;
 
   //유효성 검사

@@ -1,4 +1,4 @@
-//purchase.js
+//order.js
 const receiverNameInput = document.querySelector('#receiverName');
 const receiverPhoneNumberInput = document.querySelector('#receiverPhoneNumber');
 const postalCodeInput = document.querySelector('#postalCode');

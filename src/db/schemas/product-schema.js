@@ -14,13 +14,11 @@ const ProductSchema = new Schema(
       type: Number,
       require: true,
     },
-    topCategoryCode: {
-      type: String,
-      required: true,
-    },
-    topCategoryTitle: {
-      type: String,
-      required: true,
+    content: {
+      type: new Schema({
+        contentImg: String,
+        description: String,
+      }),
     },
     url: {
       type: String,

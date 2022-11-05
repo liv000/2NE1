@@ -20,6 +20,11 @@ const ProductSchema = new Schema(
         description: String,
       }),
     },
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: 'categories',
+      required: true,
+    },
     url: {
       type: String,
       required: true,

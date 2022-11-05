@@ -4,20 +4,19 @@ import { CategorySchema } from '../schemas/category-schema';
 const Category = model('categories', CategorySchema);
 
 export class CategoryModel {
-    // 카테고리 추가
-    async create(categoryName) {
+  // 카테고리 추가
+  async create(categoryName) {
+    const category = await Category.create(categoryName);
 
-        const category = await Category.create(categoryName);
+    return category;
+  }
 
-        return category;
-    }
+  // 모든 카테고리 출력
+  async getCategoryList() {
+    const categories = await Category.find();
 
-    // 모든 카테고리 출력
-    async getCategoryList() {
-        const categories = await Category.find();
-
-        return categories;
-    }
+    return categories;
+  }
 }
 
 const categoryModel = new CategoryModel();

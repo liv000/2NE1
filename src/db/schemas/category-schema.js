@@ -1,5 +1,4 @@
 import { Schema } from 'mongoose';
-import { ProductSchema } from './product-schema';
 
 const CategorySchema = new Schema(
   {
@@ -14,9 +13,6 @@ const CategorySchema = new Schema(
     topCategoryTitle: {
       type: String,
       required: true,
-    },
-    products: {
-      type: [ProductSchema],
     },
     status: {
       type: Number,

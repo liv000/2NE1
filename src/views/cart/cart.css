@@ -14,9 +14,14 @@
 }
 .products {
   height: 528px;
+  display: flex;
+  flex-direction: column;
 }
 .empty {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100%;
 }
 .empty img {

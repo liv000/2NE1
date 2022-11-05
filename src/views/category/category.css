@@ -74,27 +74,6 @@ main {
   border-radius: 8px;
 }
 
-/* navbar */
-.navbar-store {
-  background-color: #fafafa;
-  border-top: 1px solid #eaeaea;
-  height: 56px;
-  line-height: 56px;
-}
-
-.navbar-store ul {
-  display: flex;
-}
-
-.navbar-store li {
-  display: inline-block;
-  margin-left: 36px;
-}
-
-.navbar-store li:first-child {
-  margin-left: 0;
-}
-
 /* 배너 */
 .banner {
   background-color: gray;

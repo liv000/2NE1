@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Schema } from 'mongoose';
 const ProductSchema = new Schema({
   productId: { type: String, required: true },
   productName: { type: String, required: true },
@@ -15,7 +15,7 @@ const OrderSchema = new Schema(
 
     userId: {
       type: Schema.Types.ObjectId,
-      ref: "users",
+      ref: 'users',
       required: true,
     },
 
@@ -30,7 +30,7 @@ const OrderSchema = new Schema(
     shipping: {
       type: String,
       required: true,
-      default: "pending",
+      default: 'pending',
     },
     address: {
       type: new Schema(
@@ -41,20 +41,20 @@ const OrderSchema = new Schema(
         },
         {
           _id: false,
-        }
+        },
       ),
       required: false,
     },
-    totalAmount : {
-      type : Number,
-      required : true
-    }
+    totalAmount: {
+      type: Number,
+      required: true,
+    },
   },
 
   {
-    collection: "orders",
+    collection: 'orders',
     timestamps: true,
-  }
+  },
 );
 
 export { OrderSchema };

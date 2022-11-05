@@ -31,15 +31,6 @@ article {
   margin-top: 80px;
 }
 
-hr {
-  content: '';
-  display: block;
-  margin-top: 80px;
-  height: 12px;
-  background-color: #f2f2f2;
-  border: 0;
-}
-
 .wrapper {
   width: 1280px;
   margin: 0 auto;
@@ -61,15 +52,16 @@ hr {
   width: 100%;
 }
 
-/* 구매하기 */
-.product-purchase {
-  position: absolute;
-  top: 0;
-  right: 55px;
-  width: 370px;
+/* 스크롤 메뉴 */
+.nav {
+  content: '';
+  display: block;
+  margin-top: 80px;
+  height: 12px;
+  background-color: #f2f2f2;
+  border: 0;
 }
 
-/* 메뉴 */
 .tab-menu {
   margin-top: 32px;
   height: 40px;
@@ -92,19 +84,6 @@ hr {
 
 .content-images img {
   max-width: 100%;
-}
-
-/* 펼치기 / 접기 버튼 */
-.btn {
-  border: 1px solid #ff5c35;
-  border-radius: 8px;
-  color: #ff5c35;
-  width: 100%;
-  height: 56px;
-}
-
-.btn.unfold {
-  display: none;
 }
 
 /* 제품후기 */
@@ -134,16 +113,25 @@ hr {
 }
 
 /* 구매하기 */
-.product-name {
-  margin-top: 20px;
-  font-size: 24px;
-  line-height: 28px;
+.product-purchase {
+  position: absolute;
+  top: 0;
+  right: 55px;
+  width: 370px;
 }
 
-.product-price {
+.title {
+  margin-top: 20px;
+}
+
+.price {
   margin-top: 24px;
-  font-size: 20px;
   font-weight: 700;
+  font-size: 20px;
+}
+
+.review-more {
+  margin-top: 27.5px;
 }
 
 .description {
@@ -167,4 +155,76 @@ hr {
 
 .price p {
   margin-top: 8px;
+}
+
+/* 구매 버튼 */
+.purchase {
+  margin-top: 49px;
+  text-align: center;
+}
+
+/* 장바구니 담기 */
+.purchase-floating {
+  position: fixed;
+  bottom: 0;
+  width: 370px;
+}
+
+.purchase-wrapper {
+  padding: 0 21px 40px 21px;
+  border: 1px solid #eaeaea;
+  border-bottom: hidden;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.close-purchase {
+  text-align: right;
+  padding-top: 19px;
+  font-weight: 700;
+  width: 100%;
+}
+
+.scroll-box {
+  margin-top: 27px;
+  overflow-y: scroll;
+  padding-right: 15px;
+}
+
+.product-title {
+  font-weight: 700;
+}
+
+.cart-count {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.cart-count > p {
+  margin: auto 0;
+}
+
+.count-wrapper button {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #dfdfdf;
+  border-radius: 50%;
+}
+
+.count {
+  padding: 0 32px;
+  text-align: center;
+}
+
+.product-price {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 31px;
+}
+
+.cart-add {
+  padding-top: 30px;
+  text-align: center;
 }

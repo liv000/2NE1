@@ -58,10 +58,6 @@ li {
   margin-top: 16px;
 }
 
-.scroll-container::-webkit-scrollbar {
-  /* display: none; */
-}
-
 .concern-icons {
   display: flex;
   margin-top: 24px;
@@ -73,7 +69,7 @@ li {
 }
 
 /* js - icon onoff*/
-.on {
+.on-icon {
   display: none;
 }
 

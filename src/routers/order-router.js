@@ -74,6 +74,7 @@ orderRouter.patch(
 orderRouter.get(
   '/:orderId',
   asyncHandler(async (req, res) => {
+    console.log('orderId');
     const { orderId } = req.params;
     const result = await orderService.getOrderList(orderId);
     res.status(201).json(result);

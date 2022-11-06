@@ -18,3 +18,12 @@ main {
 }
 
 /* 버튼 */
+.icon-list {
+  display: flex;
+  margin-top: 24px;
+  user-select: none;
+}
+
+.icon-list li:not(:first-child) {
+  margin-left: 12px;
+}

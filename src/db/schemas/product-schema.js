@@ -6,19 +6,14 @@ const ProductSchema = new Schema(
       type: String,
       required: true,
     },
-    type: {
-      type: String,
-    },
     price: {
       type: Number,
       required: true,
     },
-    summery: {
-      type: String,
-      required: false,
+    stock: {
+      type: Number,
+      require: true,
     },
-    
-    //추가
     stock: {
       type: Number,
       required: true,
@@ -37,7 +32,7 @@ const ProductSchema = new Schema(
           logoUrl: String,
           coverUrl: String,
           modTsp: Date,
-          regTsp: Date
+          regTsp: Date,
         },
         {
           _id: false,
@@ -47,6 +42,12 @@ const ProductSchema = new Schema(
     },
     thumbnail: {
       type: String,
+    },
+    status: {
+      // 0 이면 삭제된 상품
+      type: Number,
+      required: true,
+      default: 1,
     },
   },
   {

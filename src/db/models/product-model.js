@@ -11,19 +11,36 @@ export class ProductModel {
     return await Product.create(data);
   }
 
-  //추가
   async getProductList(topCategoryCode) {
-    //body에 아무것도 담겨져 있지 않으면(undefind) 상품 전체목록 불러옴
     if (topCategoryCode === undefined) {
-      const product = await Product.find();
+      const product = await Product.find({ status: 1 });
       return product;
-
     }
-    
-    const product = await Product.find({topCategoryCode});
+
+    const product = await Product.find({ topCategoryCode, status: 1 });
     return product;
   }
 
+  async updateStock(product) {
+    const { productId, quantity, productName } = product;
+    console.log(product);
+    const currQuantity = await this.getQuantity(productId);
+    const newQuantity = currQuantity - quantity;
+    if (newQuantity < 0) {
+      throw new Error(
+        `${productName}의 재고가 부족합니다. 현재 수량 : ${currQuantity}`,
+      );
+    }
+    return await Product.findOneAndUpdate(
+      { _id: productId },
+      { stock: newQuantity },
+    );
+  }
+
+  async getQuantity(productId) {
+    const product = await Product.findOne({ _id: productId });
+    return product.stock;
+  }
 }
 
 const productModel = new ProductModel();

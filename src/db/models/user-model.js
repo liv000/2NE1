@@ -1,7 +1,7 @@
-import { model } from "mongoose";
-import { UserSchema } from "../schemas/user-schema";
+import { model } from 'mongoose';
+import { UserSchema } from '../schemas/user-schema';
 
-const User = model("users", UserSchema);
+const User = model('users', UserSchema);
 
 export class UserModel {
   async findByEmail(email) {
@@ -30,6 +30,11 @@ export class UserModel {
 
     const updatedUser = await User.findOneAndUpdate(filter, update, option);
     return updatedUser;
+  }
+
+  async isUsingEmail(email) {
+    const user = await User.find({ email, status: 1 });
+    return user.length === 0;
   }
 }
 

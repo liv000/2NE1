@@ -9,6 +9,7 @@ class ShippingService {
   }
 
   async cancelOrder(orderId, userId) {
+    // 유저체크하는거 모듈로 빼기
     const user = await userModel.findById(userId);
     const orderUser = await this.orderModel.getOrderUser(orderId);
 

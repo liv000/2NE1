@@ -26,8 +26,8 @@
     ></script>
 
     <!-- 커스텀 css, js -->
-    <link rel="stylesheet" href="purchase.css" />
-    <script src="purchase.js" type="module" defer></script>
+    <link rel="stylesheet" href="order.css" />
+    <script src="order.js" type="module" defer></script>
   </head>
   <body>
     <!-- 헤더 -->
@@ -71,7 +71,7 @@
     </nav>
 
     <!-- 주문서 작성 -->
-    <div class="wrapper">
+    <div class="wrapper is-flex">
       <div class="content">
         <section><h2 class="title is-3 mt-3">주문서 작성</h2></section>
         <section class="box delivery-info">
@@ -226,22 +226,19 @@
           <p class="strong mb-4"><strong>결제정보</strong></p>
           <div class="box total">
             <dl>
-              <dt><strong>주문상품</strong></dt>
-              <dd>/개</dd>
-              <dt><strong>제품합계금액</strong></dt>
-              <dd>0원</dd>
-              <dt><strong>기본 배송비</strong></dt>
-              <dd>0원</dd>
+              <dt class="strong"><strong>상품수</strong></dt>
+              <dd id="product-count">0개</dd>
+              <dt><strong>총 상품금액</strong></dt>
+              <dd id="product-total">0원</dd>
+              <dt><strong>배송비</strong></dt>
+              <dd id="delivery-price">0원</dd>
               <dt><strong>총 결제금액</strong></dt>
-              <dd>0원</dd>
+              <dd id="total-price">0원</dd>
             </dl>
           </div>
         </section>
         <section class="mt-4">
-          <a
-            class="button is-light is-fullwidth is-hovered"
-            href="/order-complete"
-          >
+          <a class="button is-light is-fullwidth is-hovered" id="orderButton">
             <strong>결제하기</strong>
           </a>
         </section>

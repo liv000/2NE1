@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>약쟁이</title>
+    <title>제품상세페이지</title>
     <!-- 아이콘 -->
     <link
       rel="icon"
@@ -11,19 +11,80 @@
       sizes="16x16"
       href="/elice-rabbit-favicon.png"
     />
-    <!-- bulma css -->
+    <!-- bulma css 관련 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
     <!-- 폰트 어썸: 아이콘 -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/9daa42bcef.js"
+      crossorigin="anonymous"
+    ></script>
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="detail.css" />
     <script src="detail.js" type="module" defer></script>
   </head>
   <body>
     <!-- 헤더 -->
+    <nav class="navbar global" role="navigation" aria-label="main navigation">
+      <div class="container mt-3">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <img src="/elice-rabbit.png" width="30" height="30" />
+            <span class="has-text-link">쇼핑-카트</span>
+          </a>
+
+          <a
+            role="button"
+            class="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarBasicExample"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-end breadcrumb my-auto" aria-label="breadcrumbs">
+            <ul id="navbar">
+              <li><a href="/register">회원가입</a></li>
+              <li>
+                <a href="/cart" aria-current="page">
+                  <span class="icon">
+                    <i class="fas fa-cart-shopping"></i>
+                  </span>
+                  <span>카트</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
 
     <!-- 메인 -->
-    <main class="product-information">
-      <div class="wrapper">
-        <div class="container">
+    <main>
+      <!-- 장바구니 이동 모달창 -->
+      <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <p>장바구니에 제품을 추가했어요!</p>
+          <p>지금 장바구니를 확인하세요.</p>
+          <div class="">
+            <button class="" aria-label="close">닫기</button>
+            <button class="">장바구니로 이동</button>
+          </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+
+      <div class="wrapper is-flex is-flex-wrap-nowrap">
+        <div class="left-container">
           <!-- 제품 이미지 슬라이드 -->
           <div class="auto-silder">
             <div class="slider-items">
@@ -34,24 +95,24 @@
           </div>
 
           <!-- 구매하기 -->
-          <aside class="product-purchase">
+          <aside class="product-purchase mt-6">
             <section>
               <p class="ctg-title">필리</p>
-              <h1 class="title">비타민B</h1>
-              <p class="price">12,000원</p>
-              <p class="review-more">
+              <h1 class="title mt-4">비타민B</h1>
+              <p class="price">12000</p>
+              <p class="review-more mt-5">
                 후기 <span class="review-count">13</span
                 ><span class="icon-more">></span>
               </p>
 
               <!-- 제품설명 -->
-              <div class="description">
+              <div class="description mt-5 pt-5 pb-5">
                 필리 비타민B는 7가지 주요 비타민B군의 비타민을 충분히 섭취할 수
                 있고 우수한 품질관리를 통해 만들었습니다.
               </div>
 
               <!-- 배송비 -->
-              <div class="delivery">
+              <div class="delivery mt-5 is-flex">
                 <p>배송비</p>
                 <div>
                   3,000원
@@ -63,7 +124,7 @@
               </div>
 
               <!-- 구매 버튼 -->
-              <div class="purchase">
+              <div class="purchase mt-6">
                 <button class="btn-purchase">구매하기</button>
               </div>
             </section>
@@ -82,9 +143,9 @@
                   <div class="cart-count">
                     <p>수량</p>
                     <div class="count-wrapper">
-                      <button><span class="btn-minus">-</span></button
-                      ><span class="count">1</span
-                      ><button><span class="btn-plus">+</span></button>
+                      <button class="btn-minus"><span>-</span></button
+                      ><span class="cnt-number">1</span
+                      ><button class="btn-plus"><span>+</span></button>
                     </div>
                   </div>
 
@@ -105,15 +166,17 @@
           </aside>
 
           <!-- 구분선 -->
-          <hr class="nav" />
+          <hr class="nav-seperate" />
 
           <!-- 스크롤 메뉴-->
-          <nav class="tab-menu">
-            <ul class="menu-items">
-              <li><a href="#">제품설명</a></li>
-              <li><a href="#">후기</a></li>
-              <li><a href="#">문의</a></li>
-              <li><a href="#">배송반품취소</a></li>
+          <nav class="scroll-menu">
+            <ul class="navbar is-flex">
+              <li class="is-flex-grow-1">제품설명</li>
+              <li class="is-flex-grow-1">
+                후기 <span class="review-count">13</span>
+              </li>
+              <li class="is-flex-grow-1">문의</li>
+              <li class="is-flex-grow-1">배송반품취소</li>
             </ul>
           </nav>
 
@@ -122,15 +185,24 @@
             <article class="product-content">
               <h2>제품설명</h2>
               <div class="content-images">
-                <img src="images/detail_01.jpg" alt="제품설명이미지" />
-                <img src="images/detail_02.jpg" alt="제품설명이미지" />
-                <img src="images/detail_03.jpg" alt="제품설명이미지" />
+                <img src="images/detail_01.jpg" alt="제품이미지" />
+                <img src="images/detail_02.jpg" alt="제품이미지" />
+                <img src="images/detail_03.jpg" alt="제품이미지" />
               </div>
             </article>
 
             <!-- 제품후기 -->
-            <article class="review-content">
+            <article class="review-content mt-6">
               <h2>제품후기</h2>
+              <!-- 후기 남기기 -->
+              <div>
+                <h3>제품후기 남기기</h3>
+
+                <div class="is-flex">
+                  <input type="text" />
+                  <button>등록</button>
+                </div>
+              </div>
 
               <!-- 후기목록 -->
               <div class="review-list">
@@ -173,7 +245,7 @@
             </article>
 
             <!-- 문의 -->
-            <article class="inquiry-content">
+            <article class="inquiry-content mt-6">
               <h2>문의</h2>
               <p>
                 결제, 정기구독, 포인트 사용방법 등 필리 스토어에 대해 궁금하신
@@ -182,7 +254,7 @@
             </article>
 
             <!-- 배송반품취소 -->
-            <article class="delivery-content">
+            <article class="delivery-content mt-6">
               <h2>배송 / 반품 / 취소</h2>
               <div class="">
                 <p>배송 안내</p>

@@ -1,8 +1,4 @@
 import { productModel } from '../db';
-var cheerio = require('cheerio');
-// var request = require('request');
-const axios = require('axios');
-
 class ProductService {
   constructor(productModel) {
     this.productModel = productModel;

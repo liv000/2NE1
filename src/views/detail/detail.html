@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>약쟁이</title>
+    <!-- 아이콘 -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/elice-rabbit-favicon.png"
+    />
+    <!-- bulma css -->
+    <!-- 폰트 어썸: 아이콘 -->
+    <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="detail.css" />
+    <script src="detail.js" type="module" defer></script>
+  </head>
+  <body>
+    <!-- 헤더 -->
+
+    <!-- 메인 -->
+    <main class="product-information">
+      <div class="wrapper">
+        <div class="container">
+          <!-- 제품 이미지 슬라이드 -->
+          <div class="auto-silder">
+            <div class="slider-items">
+              <div class="slider-item">
+                <img src="images/product_02.jpg" alt="비타민B" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 구매하기 -->
+          <aside class="product-purchase">
+            <section>
+              <p class="ctg-title">필리</p>
+              <h1 class="title">비타민B</h1>
+              <p class="price">12,000원</p>
+              <p class="review-more">
+                후기 <span class="review-count">13</span
+                ><span class="icon-more">></span>
+              </p>
+
+              <!-- 제품설명 -->
+              <div class="description">
+                필리 비타민B는 7가지 주요 비타민B군의 비타민을 충분히 섭취할 수
+                있고 우수한 품질관리를 통해 만들었습니다.
+              </div>
+
+              <!-- 배송비 -->
+              <div class="delivery">
+                <p>배송비</p>
+                <div>
+                  3,000원
+                  <p>
+                    30,000원 이상 구매 혹은
+                    <span>정기구독으로 10,000원 이상 구매 시 무료배송!</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- 구매 버튼 -->
+              <div class="purchase">
+                <button class="btn-purchase">구매하기</button>
+              </div>
+            </section>
+
+            <!-- 장바구니 담기 -->
+            <section class="purchase-floating">
+              <div class="purchase-wrapper">
+                <p class="close-purchase">
+                  닫기 <span class="close-icon">x</span>
+                </p>
+
+                <div class="scroll-box">
+                  <p class="product-title">비타민B</p>
+
+                  <!-- 카운트 -->
+                  <div class="cart-count">
+                    <p>수량</p>
+                    <div class="count-wrapper">
+                      <button><span class="btn-minus">-</span></button
+                      ><span class="count">1</span
+                      ><button><span class="btn-plus">+</span></button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="product-price">
+                      <p>제품 금액</p>
+                      <p class="total-price">12,000원</p>
+                    </div>
+
+                    <!-- 장바구니 담기 버튼 -->
+                    <div class="cart-add">
+                      <button class="cart-btn">장바구니 담기</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </aside>
+
+          <!-- 구분선 -->
+          <hr class="nav" />
+
+          <!-- 스크롤 메뉴-->
+          <nav class="tab-menu">
+            <ul class="menu-items">
+              <li><a href="#">제품설명</a></li>
+              <li><a href="#">후기</a></li>
+              <li><a href="#">문의</a></li>
+              <li><a href="#">배송반품취소</a></li>
+            </ul>
+          </nav>
+
+          <!-- contents -->
+          <section class="contents">
+            <article class="product-content">
+              <h2>제품설명</h2>
+              <div class="content-images">
+                <img src="images/detail_01.jpg" alt="제품설명이미지" />
+                <img src="images/detail_02.jpg" alt="제품설명이미지" />
+                <img src="images/detail_03.jpg" alt="제품설명이미지" />
+              </div>
+            </article>
+
+            <!-- 제품후기 -->
+            <article class="review-content">
+              <h2>제품후기</h2>
+
+              <!-- 후기목록 -->
+              <div class="review-list">
+                <div class="customer-review">
+                  <h4 class="author">백**</h4>
+                  <div class="customer-rating">
+                    <span class="date">2022.10.19</span>
+                  </div>
+                  <div class="img">
+                    <p class="text">
+                      목넘김도 괜찮아요. 인제 먹은지 얼마안되서 좀더 먹어봐야
+                      할것같은데....
+                    </p>
+                  </div>
+                </div>
+                <div class="customer-review">
+                  <h4 class="author">박**</h4>
+                  <div class="customer-rating">
+                    <span class="date">2022.08.30</span>
+                  </div>
+                  <div class="img">
+                    <p class="text">
+                      먹기편하고 좋아요~ 복용한지 벌써 80일이 넘었네요.ㅎㅎㅎ
+                    </p>
+                  </div>
+                </div>
+                <div class="customer-review">
+                  <h4 class="author">오**</h4>
+                  <div class="customer-rating">
+                    <span class="date">2022.08.09</span>
+                  </div>
+                  <div class="img">
+                    <p class="text">
+                      오래동안 먹고 있는데 효과 만쩜인거 같아요!!! 피곤한게 덜
+                      해졌어요
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- 문의 -->
+            <article class="inquiry-content">
+              <h2>문의</h2>
+              <p>
+                결제, 정기구독, 포인트 사용방법 등 필리 스토어에 대해 궁금하신
+                내용은 전화 또는 카카오톡으로 문의하실 수 있습니다.
+              </p>
+            </article>
+
+            <!-- 배송반품취소 -->
+            <article class="delivery-content">
+              <h2>배송 / 반품 / 취소</h2>
+              <div class="">
+                <p>배송 안내</p>
+                <p>
+                  배송은 평일 결제 시 오후 12시에 출고가 마감됩니다. 오후 12시
+                  이후 결제 건은 익일 출고가 진행됩니다. (주말 결제 시 다음
+                  영업일 출고)
+                </p>
+                <ul>
+                  <li>
+                    배송이 시작된 후에는 배송지 변경 및 취소가 불가능합니다.
+                  </li>
+                  <li>배송기간은 출고일로부터 평균 3~5일 정도 소요됩니다.</li>
+                  <li>
+                    도서·산간 지역 배송 시 추가 배송비가 없으나, 배송 기일이
+                    추가적으로 소요될 수 있는 점 양해하여 주시기 바랍니다.
+                  </li>
+                  <li>
+                    배송 과정 중 기상 악화 혹은 도로교통 상황에 따라 부득이하게
+                    지연 배송이 발생될 수 있습니다.
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 푸터 -->
+  </body>
+</html>

@@ -1,0 +1,26 @@
+.admin-memberList-section{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding:auto;
+    margin:10px 100px;
+}
+.member-title-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+
+.memberList-section{
+    display: flex;
+    flex-direction: row;
+    height:50px;
+    background-color: #F7ECDE;
+
+}
+#admin-memberList{
+    background-color: #54BAB9;
+    text-align: center;
+}

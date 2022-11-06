@@ -11,12 +11,28 @@ export class CategoryModel {
   }
 
   async getCategoryList() {
-    const categories = await Category.find();
+    const categories = await Category.find({ status: 1 });
     return categories;
   }
 
   async hasCategory(categoryName, categoryCode) {
-    return await Category.find({ $or: [{ categoryName }, { categoryCode }] });
+    const a = await Category.find({
+      $and: [
+        {
+          $or: [{ categoryName }, { categoryCode }],
+        },
+        { status: 1 },
+      ],
+    });
+    console.log(a);
+    return a;
+  }
+  async updateCategory(newInfo) {
+    const { categoryCode } = newInfo;
+    return await Category.findOneAndUpdate({ categoryCode }, newInfo);
+  }
+  async getCategory(categoryCode) {
+    return await Category.find({ categoryCode, status: 1 });
   }
 }
 

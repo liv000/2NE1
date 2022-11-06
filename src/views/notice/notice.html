@@ -1,0 +1,99 @@
+<!-- 불마 클래스 싹 지워야 할듯,, 나 머리 꺠져~! -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stlyesheet" href="notice.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>약쟁이</title>
+</head>
+<body>
+
+    <main id="notice-main" role="main" >
+        <section style="display: flex">
+            <h2 id="notice_h2_text">고객센터</h2>
+            <!-- 좌측바 -->
+            <aside id="left_side_var_notice" class="menu">
+                <ul class="menu-list">  
+                    <ul>
+                        <li><a href="/cs-center">고객센터</a></li>  
+                        <li><a href="/notice">공지사항</a></li>
+                        <li><a href="/QNA">QNA</a></li>
+                    </ul>
+                </ul>
+            </aside>
+            <!-- 본문페이지 -->
+            <section id="notice-content">
+                <div id="notice_table_layout" class="content">
+                    <table id="notice_table" class="table is-striped is-bordered">
+                        <h1>약쟁이의 공지사항</h1>
+                        <colgroup>
+                            <col width="130">
+                            <col width="210">
+                            <col width="150">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                            <th scope="col"><abbr title="notice_sort">분류</abbr></th>
+                            <th scope="col">제목</th>
+                            <th scope="col"><abbr title="notice_date">작성일</abbr></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="notice_group">
+                                <th>공지</th>
+                                <td><a href="/notice2" title="두 번째 공지사항입니다">두 번째 공지사항입니다.</a> <strong>(New)</strong>
+                                </td>
+                                <td>2022-11-01</td>
+                            </tr>
+                            <tr>
+                                <th>소식</th>
+                                <td><a href="/sosic2" title="두 번째 소식입니다">두 번째 소식입니다.</a></td>
+                                <td>2022-11-01</td>
+                            </tr>
+                            <tr>
+                                <th>카드뉴스</th>
+                                <td><a href="/cardnews" title="카드뉴스입니다">카드뉴스입니다.</a></td>
+                                <td>2022-11-01</td>
+                            </tr>
+                            <tr class="is-selected">
+                                <th>공지</th>
+                                <td><a href="notice1" title="첫 번째 공지사항입니다">첫 번째 공지사항입니다.</a></td>
+                                <td>2022-11-01</td>
+                            </tr>
+                            <tr>
+                                <th>소식</th>
+                                <td><a href="/sosic1" title="첫 번째 소식입니다">첫 번째 소식입니다.</a></td>
+                                <td>2022-11-01</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- 페이지 -->
+            <article id="notice_pagination" class="pagination" role="navigation" aria-label="pagination">
+                <a class="pagination-previous is-disabled" title="This is the first page">Previous</a>
+                <a class="pagination-next">Next page</a>
+                <ul class="pagination-list">
+                    <li>
+                        <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
+                    </li>
+                    <!-- <li>
+                        <a class="pagination-link" aria-label="Goto page 2">2</a>
+                    </li>
+                    <li>
+                        <a class="pagination-link" aria-label="Goto page 3">3</a>
+                    </li> -->
+                </ul>
+            </article>
+            </section>
+        </section>
+       
+        
+        
+        
+    </main>
+</body>
+</html>

@@ -1,0 +1,86 @@
+/* #ordered-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#ordered-date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:600;
+    height:10;
+}
+#ordered-date-list{
+    width: 1280px;
+    text-align: center;
+}
+#ordered-item-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align:center
+}
+#more-list-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
+    width:auto;
+    height:auto;
+    margin: auto;
+}
+#more-list-button{
+    width:1000px;
+    height:45px;
+} */
+.order-main{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+.order-aside{
+    /* display: flex;
+    flex-direction: column; */
+    margin: 0px 30px;
+    padding: 5px;
+    font-size: large;
+    width:200px;
+    background-color: #F7ECDE;
+    
+}
+.order-mypage{
+    padding: 10px;
+    font-size:30px;
+    font-weight: bold;
+}
+.order-side{
+    text-align: center;
+    font-size:20px;
+}
+.order{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+#ordered-title{
+
+
+}
+#ordered-date{
+
+}
+#ordered-date-list{
+
+}
+#ordered-item-list{
+    width:1000px;
+}
+table{
+    width:800px;
+    text-align: center;
+}
+
+#more-list-button{
+    width:800px;
+    height:45px;
+}

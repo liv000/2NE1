@@ -1,19 +1,139 @@
-.div-container {
+/* 태그 기본값 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  margin-left: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.wrapper {
+  width: 1280px;
+  margin: 0 auto;
+  padding: 0 55px;
+}
+
+/* 배너 */
+.banner {
+  height: 500px;
+  background-color: lightgray;
+}
+
+/* 고민별 상품 보기 */
+/* TODO 컴포넌트 분리 */
+.concern {
+  margin-top: 56px;
+}
+
+.concern-title {
+  position: relative;
+}
+
+.more-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.scroll-container {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+.concern-icons {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  margin-top: 24px;
+  user-select: none;
 }
 
-.landing {
-  cursor: pointer;
-  border: 1px solid red;
-  padding: 10px;
+.concern-icons li:not(:first-child) {
+  margin-left: 12px;
 }
 
-.greeting {
-  cursor: pointer;
-  border: 1px solid blue;
-  padding: 10px;
-  margin-left: 3rem;
+/* js - icon onoff*/
+.on-icon {
+  display: none;
+}
+
+.icon-imgs {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  border-radius: 24px;
+  background-color: #f2f2f2;
+}
+
+.icon-imgs img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon-imgs + p {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* 추천 상품 */
+.recommend-product {
+  margin-top: 56px;
+}
+
+.product-container {
+  overflow: hidden;
+  margin-top: 16px;
+}
+
+.product-items {
+  display: flex;
+  margin-top: 24px;
+}
+
+.product-items li {
+  max-width: 270px;
+  vertical-align: top;
+}
+
+.product-items li:not(:first-child) {
+  margin-left: 30px;
+}
+
+.product-img {
+  width: 100%;
+  background-color: #eaeaea;
+  border-radius: 100%;
+}
+
+.product-img img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-information {
+  margin-top: 16px;
+}
+
+.product-information p {
+  margin-top: 8px;
 }

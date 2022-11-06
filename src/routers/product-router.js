@@ -28,7 +28,7 @@ productRouter.post(
   }),
 );
 
-productRouter.get(
+productRouter.post(
   '/productList',
   asyncHandler(async (req, res, next) => {
     const { categoryCode } = req.body;

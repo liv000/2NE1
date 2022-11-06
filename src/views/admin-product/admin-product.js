@@ -1,53 +1,57 @@
+import * as Api from '../api.js';
 const tbody = document.querySelector('.table > tbody');
-let number = 0;
-let category = '';
-let productName = '';
-let title = ''; // 제조사
-let price = 0;
-let stock = 0;
-let createdAt = '';
 
-function productListTemplate(
-  number,
-  productName,
-  category,
-  title,
-  price,
-  createdAt,
-) {
-  return `
+// 제품
+const products = await Api.get('/api/product/productList', '');
+products.forEach((product) => {
+  // const { idx, title, categoryImg, createdAt } = product;
+  console.log(product);
+  // TODO 등록일 수정
+
+  // 목록 조회
+  // tbody.innerHTML += drawAdminProductList(
+  //   idx,
+  //   productName,
+  //   category,
+  //   title,
+  //   price,
+  //   createdAt,
+  // );
+});
+
+function drawAdminProductList() {
+  const productListTemplate = `
   <tr>
-    <td>${number}</td>
+    <td>${idx}</td>
     <td>${category}</td>
     <td><a href="/${'tempUrl'}"><span>[${title}]<span> ${productName}</a></td>
     <td>${price}</td>
     <td>${stock}</td>
     <td>${createdAt}</td>
-    <td><button>수정</button></td>
+    <td><button class="btn-edit">수정</button></td>
   </tr>`;
+
+  return productListTemplate;
 }
 
-// TODO 리팩토링, 비동기 공부
-// 제품 목록 렌더링
-fetch('./add.json')
-  .then((response) => response.json())
-  .then((list) => {
-    list.forEach((element) => {
-      number = element.index;
-      category = element.category;
-      productName = element.productName;
-      title = element.title;
-      price = element.price;
-      stock = element.stock;
-      createdAt = element.createdAt;
+// TODO 메인 & 카테고리 아이콘, 페이지 컴포넌트화 하기
+// TODO 파일 분리하기
+function drawProductList() {
+  const productListTemplate = `
+  <li>
+    <a href="${0}">
+      <figure class="product-img">
+        <img src="${0}" alt="${0}" />
+      </figure>
+      <div class="product-information">
+        <span>${0}</span>
+        <h3>
+          <span>[${0}]</span> ${0}
+        </h3>
+        <p class="product-price">${0}원</p>
+      </div>
+    </a>
+  </li>`;
 
-      tbody.innerHTML += productListTemplate(
-        number,
-        productName,
-        category,
-        title,
-        price,
-        createdAt,
-      );
-    });
-  });
+  return productListTemplate;
+}

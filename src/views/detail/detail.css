@@ -1,59 +1,39 @@
-/* 태그 기본값 설정 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@charset "UTF-8";
 
-html,
 body {
-  height: 100%;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
-ul {
-  margin-left: 0;
-}
-
-li {
-  list-style: none;
+  position: relative;
 }
 
 main {
   margin-top: 40px;
 }
 
-article {
-  margin-top: 80px;
-}
-
 .wrapper {
+  position: relative;
   width: 1280px;
   margin: 0 auto;
   padding: 0 55px;
 }
 
-/* main */
-.product-information .wrapper {
-  display: flex;
-  position: relative;
-}
-
-.container {
+.left-container {
   width: 770px;
 }
 
-/* 제품 이미지 슬라이드 */
+/* 헤더 */
+.global {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99991;
+}
+
+/* 제품 이미지*/
 .slider-item img {
   width: 100%;
 }
 
 /* 스크롤 메뉴 */
-.nav {
+.nav-seperate {
   content: '';
   display: block;
   margin-top: 80px;
@@ -62,54 +42,9 @@ article {
   border: 0;
 }
 
-.tab-menu {
-  margin-top: 32px;
-  height: 40px;
-}
-
-.menu-items {
-  display: flex;
-  justify-content: space-around;
-}
-
-.menu-items li {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-/* 제품설명 */
-.content-images {
-  width: 100%;
-}
-
-.content-images img {
-  max-width: 100%;
-}
-
-/* 제품후기 */
-.rating {
-  border: 1px solid #eaeaea;
-}
-
-.customer-review {
-  padding-bottom: 24px;
-}
-
-.customer-review:not(:first-child) {
-  padding-top: 24px;
-  border-top: 1px solid #eaeaea;
-}
-
-.img > p {
-  margin-top: 16px;
-}
-
-.review-list {
-  margin-top: 40px;
-}
-
-.customer-rating {
-  margin-top: 16px;
+.navbar {
+  cursor: pointer;
+  text-align: center;
 }
 
 /* 구매하기 */
@@ -120,56 +55,45 @@ article {
   width: 370px;
 }
 
-.title {
-  margin-top: 20px;
+.purchase {
+  text-align: center;
 }
 
-.price {
-  margin-top: 24px;
-  font-weight: 700;
-  font-size: 20px;
-}
-
-.review-more {
-  margin-top: 27.5px;
+.btn-purchase {
+  margin: 0 auto;
 }
 
 .description {
-  margin-top: 28px;
-  padding: 24px 0;
   border: solid #e2e2e2;
   border-width: 1px 0;
   font-size: 16px;
   line-height: 26px;
 }
 
-.delivery {
-  margin-top: 24px;
-  display: flex;
-  flex-wrap: nowrap;
-}
-
 .delivery p {
-  flex-basis: 34%;
-}
-
-.price p {
-  margin-top: 8px;
-}
-
-/* 구매 버튼 */
-.purchase {
-  margin-top: 49px;
-  text-align: center;
+  flex-basis: 30%;
 }
 
 /* 장바구니 담기 */
 .purchase-floating {
+  display: none;
   position: fixed;
   bottom: 0;
   width: 370px;
 }
 
+/* js - menu fix  */
+.fixed {
+  position: fixed;
+  top: 0;
+}
+
+/* js - onoff */
+.purchase-floating.on {
+  display: block;
+}
+
+/*  */
 .purchase-wrapper {
   padding: 0 21px 40px 21px;
   border: 1px solid #eaeaea;
@@ -183,6 +107,7 @@ article {
   padding-top: 19px;
   font-weight: 700;
   width: 100%;
+  cursor: pointer;
 }
 
 .scroll-box {
@@ -211,9 +136,10 @@ article {
   height: 28px;
   border: 1px solid #dfdfdf;
   border-radius: 50%;
+  cursor: pointer;
 }
 
-.count {
+.cnt-number {
   padding: 0 32px;
   text-align: center;
 }

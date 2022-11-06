@@ -20,14 +20,43 @@ categoryRouter.post(
   }),
 );
 // 전체 카테고리 조회
-categoryRouter.get('/list', async function (req, res, next) {
-  try {
-    const newCategory = await categoryService.getCategoryList();
+categoryRouter.get(
+  '/list',
+  asyncHandler(async (req, res, next) => {
+    try {
+      const newCategory = await categoryService.getCategoryList();
 
-    res.status(201).json(newCategory);
-  } catch (error) {
-    next(error);
-  }
-});
+      res.status(201).json(newCategory);
+    } catch (error) {
+      next(error);
+    }
+  }),
+);
 
+categoryRouter.patch(
+  '/edit',
+  loginRequired,
+  asyncHandler(async (req, res) => {
+    if (req.role === 0) {
+      throw new Error('카테고리 수정은 관리자만 가능합니다. ');
+    }
+    const newInfo = req.body;
+    const updateCategory = await categoryService.updateCategory(newInfo);
+    res.status(201).json(updateCategory);
+  }),
+);
+
+categoryRouter.patch(
+  '/drop',
+  loginRequired,
+  asyncHandler(async (req, res) => {
+    if (req.role === 0) {
+      throw new Error('카테고리 삭제는 관리자만 가능합니다. ');
+    }
+    const { categoryCode } = req.body;
+
+    const drop = await categoryService.dropCategory(categoryCode);
+    res.status(201).json(drop);
+  }),
+);
 export { categoryRouter };

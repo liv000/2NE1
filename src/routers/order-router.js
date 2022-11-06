@@ -31,7 +31,8 @@ orderRouter.post(
     const newOrder = await orderService.order(products, orderInfo);
 
     res.status(201).json(newOrder);
-    // res.render('주문 완료 페이지로 이동'); // todo
+
+    // res.render('order/orderComplete'); // todo 주문 완료 페이지로 이동
   }),
 );
 

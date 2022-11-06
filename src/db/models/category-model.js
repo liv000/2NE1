@@ -16,7 +16,7 @@ export class CategoryModel {
   }
 
   async hasCategory(categoryName, categoryCode) {
-    const a = await Category.find({
+    return await Category.find({
       $and: [
         {
           $or: [{ categoryName }, { categoryCode }],
@@ -24,8 +24,6 @@ export class CategoryModel {
         { status: 1 },
       ],
     });
-    console.log(a);
-    return a;
   }
   async updateCategory(newInfo) {
     const { categoryCode } = newInfo;

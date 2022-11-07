@@ -7,12 +7,14 @@ class UserService {
   constructor(userModel) {
     this.userModel = userModel;
   }
-
+  async isUsingEmail(email) {
+    return await this.userModel.isUsingEmail(email);
+  }
   // 회원가입
   async addUser(userInfo) {
     const { email, fullName, password, role } = userInfo;
 
-    const isUsingEmail = await this.userModel.isUsingEmail(email);
+    const isUsingEmail = await this.isUsingEmail(email);
 
     // 탈퇴한 회원의 이메일이면 가입 가능
     if (!isUsingEmail) {

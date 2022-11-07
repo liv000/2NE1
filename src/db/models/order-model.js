@@ -23,6 +23,7 @@ export class OrderModel {
     if (currStatus === ship.CANCELED) {
       throw new Error(`배송 상태가 ${currStatus} 입니다.`);
     }
+
     if (currStatus === 'shipped' && status === 'canceled') {
       throw new Error('취소 불가 : 이미 배송이 시작되었습니다.');
     }

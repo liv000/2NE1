@@ -50,12 +50,6 @@ userRouter.post(
 
 userRouter.post('/login', async function (req, res, next) {
   try {
-    if (is.emptyObject(req.body)) {
-      throw new Error(
-        'headers의 Content-Type을 application/json으로 설정해주세요',
-      );
-    }
-
     const { email, password } = req.body;
 
     // 로그인 진행 (로그인 성공 시 jwt 토큰을 프론트에 보내 줌)

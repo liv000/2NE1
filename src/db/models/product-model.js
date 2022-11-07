@@ -14,18 +14,15 @@ export class ProductModel {
     return await Product.findOne({ _id: id });
   }
 
-  async getProductList(categoryCode) {
+  async getProductList(categoryId) {
     // todo 미들웨어에서 처리
-    if (categoryCode === 'all') {
+    if (categoryId === 'all') {
       const product = await Product.find({ status: 1 });
       return product;
     }
 
     // todo 카테고리와 populate후, 카테고리 코드가 맞는것만 가져오기
-    const product = await Product.find({ status: 1 }).populate({
-      path: 'category',
-      match: { categoryCode },
-    });
+    const product = await Product.find({ status: 1, category: categoryId });
     return product;
   }
 

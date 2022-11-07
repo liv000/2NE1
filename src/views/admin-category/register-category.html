@@ -82,25 +82,49 @@
         </aside>
 
         <!-- 카테고리 추가 form -->
-        <section class="ctg-form">
+        <section class="category-form">
           <div class="container">
             <h2 class="title">카테고리 등록</h2>
 
             <!-- form -->
             <form>
               <div class="field">
-                <label class="label">카테고리</label>
+                <label class="label">이름</label>
                 <div class="control">
                   <input
                     class="input"
                     type="text"
-                    placeholder="Text input"
+                    placeholder="카테고리 이름을 입력하세요."
                     id="category-name"
                   />
                 </div>
               </div>
 
-              <div class="field is-fullwidth">
+              <div class="field">
+                <label class="label">코드</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="카테고리 코드를 입력하세요.(4자리 숫자)"
+                    id="category-code"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">카테고리 이미지</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="이미지 URL를 입력하세요."
+                    id="category-url"
+                  />
+                </div>
+              </div>
+
+              <!-- <div class="field is-fullwidth">
                 <label class="label">카테고리 이미지</label>
                 <div class="file has-name">
                   <label class="file-label">
@@ -120,7 +144,7 @@
                     <span class="file-name"> 이미지 파일(png, jpg, jpeg) </span>
                   </label>
                 </div>
-              </div>
+              </div> -->
 
               <div class="field is-grouped is-justify-content-center mt-8">
                 <div class="control">

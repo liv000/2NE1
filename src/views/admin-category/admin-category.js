@@ -1,16 +1,16 @@
 import * as Api from '../api.js';
 const iconList = document.querySelector('.icon-list');
 const tbody = document.querySelector('.table > tbody');
+let idx = 1;
 
 // 카테고리
 const categories = await Api.get('/api/category/list', '');
 categories.forEach((category) => {
-  const { idx, categoryName, categoryImg, createdAt } = category;
-  // TODO 등록일 수정
-  console.log(category); // merge 전에 지울것
+  const { categoryName, categoryImg } = category;
+  let createdAt = category.createdAt.slice(0, 10);
 
   // 목록 조회
-  tbody.innerHTML += drawCtgList(0, categoryName, createdAt);
+  tbody.innerHTML += drawCtgList(idx++, categoryName, createdAt);
 
   // 미리보기
   iconList.innerHTML += drawCtgIcon(categoryName, categoryImg);
@@ -20,12 +20,12 @@ categories.forEach((category) => {
 function drawCtgList(idx, categoryName, createdAt) {
   const ctgListTemplate = `
   <tr>
+    <td><input type="checkbox"></td>
     <td>${idx}</td>
     <td>${categoryName}</td>
     <td>${createdAt}</td>
     <td><button class="btn-edit">수정</button></td>
   </tr>`;
-
   return ctgListTemplate;
 }
 

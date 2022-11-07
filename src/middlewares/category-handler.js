@@ -1,14 +1,11 @@
 const categoryHandler = (req, res, next) => {
-  const { categoryCode } = req.body;
+  let { categoryId } = req.body;
 
-  if (!categoryCode) {
-    categoryCode = 'all';
-    req.categoryCode = categoryCode;
-    next();
-    return;
+  if (!categoryId) {
+    categoryId = 'all';
   }
+  req.categoryId = categoryId;
   next();
 };
 
 export { categoryHandler };
-// todo 수정

@@ -1,7 +1,11 @@
 import { Router } from 'express';
-import is from '@sindresorhus/is';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
-import { loginRequired, categoryHandler } from '../middlewares';
+import {
+  loginRequired,
+  categoryHandler,
+  authAdmin,
+  categoryProducts,
+} from '../middlewares';
 
 import { categoryService } from '../services';
 const categoryRouter = Router();
@@ -23,40 +27,32 @@ categoryRouter.post(
 categoryRouter.get(
   '/list',
   asyncHandler(async (req, res, next) => {
-    try {
-      const newCategory = await categoryService.getCategoryList();
-
-      res.status(201).json(newCategory);
-    } catch (error) {
-      next(error);
-    }
+    const newCategory = await categoryService.getCategoryList();
+    res.status(201).json(newCategory);
   }),
 );
 
 categoryRouter.patch(
   '/admin/edit',
   loginRequired,
+  authAdmin,
   asyncHandler(async (req, res) => {
-    if (req.role === 0) {
-      throw new Error('카테고리 수정은 관리자만 가능합니다. ');
-    }
     const newInfo = req.body;
     const updateCategory = await categoryService.updateCategory(newInfo);
-    res.status(201).json(updateCategory);
+    res.status(201).json({ '수정 완료': updateCategory });
   }),
 );
 
 categoryRouter.patch(
   '/admin/drop',
   loginRequired,
+  authAdmin,
+  categoryProducts,
   asyncHandler(async (req, res) => {
-    if (req.role === 0) {
-      throw new Error('카테고리 삭제는 관리자만 가능합니다. ');
-    }
     const { categoryId } = req.body;
 
     const drop = await categoryService.dropCategory(categoryId);
-    res.status(201).json(drop);
+    res.status(201).json({ '삭제 완료': drop });
   }),
 );
 export { categoryRouter };

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="gf.css" />
+    <link rel="stylesheet" href="order_list.css" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet"
     />
-    
-    <title>Document</title>
+    <script type="module" src="order_list.js" defer></script>
+    <title>약쟁이 주문목록</title>
 </head>
 <body>
     <main><section class="order-main">
@@ -49,20 +49,13 @@
             <!-- <table is-bordered is-striped> -->
             <table id="order-table" class="table is-bordered is-striped">
                 <caption>약쟁이님의 2022-11-01 주문내역</caption>
-                <colgroup>
-                    <col width="300">
-                    <col width="870">
-                    <col width="300">
-                    <col width="300">
-                </colgroup>
                 <thead>
                     <tr>
-                        <th scope="col">
-                            <strong>상품주문번호</strong>
-                        </th>
-                        <th scope="col">상품정보</th>
-                        <th scope="col">상품금액(수량)</th>
-                        <th scope="col" colspan="2" class="now_order">진행상태</th>
+                        <th>상품주문번호</th>
+                        <th>상품정보</th>
+                        <th>상품금액(수량)</th>
+                        <th>진행상태</th>
+                        <th>주문 취소</th>
                     </tr>
                 </thead>
                 <!-- <tbody>

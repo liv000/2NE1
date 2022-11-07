@@ -6,3 +6,4 @@ export * from './login-required';
 export * from './validEmailCheck';
 export * from './validPhoneNumber';
 export * from './mail';
+export * from './isUsingEmail';

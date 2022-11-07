@@ -1,5 +1,6 @@
 import { model } from 'mongoose';
 import { OrderSchema } from '../schemas/order-schema';
+const ship = require('../../utils/shippingStatus');
 
 const Order = model('orders', OrderSchema);
 
@@ -19,7 +20,7 @@ export class OrderModel {
   async updateShippingStatus(orderId, status) {
     const currStatus = await this.getStatus(orderId);
 
-    if (currStatus === 'canceled') {
+    if (currStatus === ship.CANCELED) {
       throw new Error(`배송 상태가 ${currStatus} 입니다.`);
     }
     if (currStatus === 'shipped' && status === 'canceled') {

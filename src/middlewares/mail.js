@@ -31,6 +31,7 @@ const mail = asyncHandler(async (req, res, next) => {
   });
 
   req.authNum = authNum;
+  
   next();
 });
 

@@ -10,3 +10,4 @@ export * from './isUsingEmail';
 export * from './contentType';
 export * from './authAdmin';
 export * from './category-handler';
+export * from './categoryProducts';

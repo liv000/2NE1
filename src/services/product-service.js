@@ -26,6 +26,10 @@ class ProductService {
     const update = await this.productModel.updateProduct(id, newInfo);
     return update;
   }
+
+  async findByCategoryId(categoryId) {
+    return await this.productModel.getProductList(categoryId);
+  }
 }
 
 const productService = new ProductService(productModel);

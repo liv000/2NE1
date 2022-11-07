@@ -1,25 +1,68 @@
 import * as Api from '../api.js';
-
-// const inputCtgName = document.getElementById('category-name');
-// const ctgImgFile = document.getElementsByName('category-img-file')[0];
-// const submit = document.getElementById('btn-submit');
-// const ctgName = inputCtgName.value;
-// const ctgImg = ctgImgFile.value;
+// DOM Elements
+const inputCategoryName = document.getElementById('category-name');
+const inputCategoryCode = document.getElementById('category-code');
+const inputCategoryImg = document.getElementById('category-url');
+const submit = document.getElementById('btn-submit');
+let data = {};
 
 // 카테고리 등록
-let data = {
-  categoryName: '에너지 충전',
-  categortCode: 'vdflkvs',
+// TODO 카테고리 등록하면 목록페이지로 이동하게 만들기
 
-  categoryImg: 'https://pilly.kr/images/store/concern/icon-diet_on@2x.png',
-};
+submit.addEventListener('click', onRegisterCategory);
 
-const registerCtg = await Api.post('/api/category/register', data);
+async function onRegisterCategory(e) {
+  e.preventDefault();
+  // Input Values
+  const categoryName = inputCategoryName.value;
+  const categoryCode = inputCategoryCode.value;
+  const categoryImg = inputCategoryImg.value;
+  let numberRegExp = /^[0-9]+/g;
+  // let urlRegExp;
 
-// 클릭 이벤트 등록
-// submit.addEventListener('click', onRegisterCtg);
+  // 유효성 검사1. 빈 양식 제출 방지
+  const name = isEmptyInputValue(categoryName, inputCategoryName);
+  if (!name) {
+    alert('카테고리 이름을 입력해주세요.');
+    return;
+  }
 
-// async function onRegisterCtg(e) {
-//   e.preventDefault();
-//   console.log('test');
-// }
+  const code = isEmptyInputValue(categoryCode, inputCategoryCode);
+  if (!code) {
+    alert('카테고리 코드를 입력해주세요.');
+    return;
+  }
+
+  const url = isEmptyInputValue(categoryImg, inputCategoryImg);
+  if (!url) {
+    alert('이미지 URL을 입력해주세요.');
+    return;
+  }
+
+  // 유효성 검사2. code 양식
+  if (!numberRegExp.test(code) && categoryCode.length !== 4) {
+    alert('4자리 숫자 코드로 입력해주세요.');
+    return false;
+  }
+
+  // TODO 유효성 검사3. url 양식
+
+  // 데이터 저장
+  data = { categoryName, categoryCode, categoryImg };
+
+  // POST 요청
+  const postCategory = await Api.post('/api/category/register', data);
+
+  // 카테고리 목록 리다이렉트
+  window.location.href = '/admin-category';
+}
+
+function isEmptyInputValue(inputValue, inputTag) {
+  if (!inputValue) {
+    inputTag.focus();
+
+    return false;
+  }
+
+  return true;
+}

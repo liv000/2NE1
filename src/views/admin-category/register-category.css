@@ -13,8 +13,6 @@ main {
   flex-basis: 20%;
 }
 
-.ctg-form {
+.category-form {
   flex-basis: 80%;
 }
-
-/* 버튼 */

@@ -7,3 +7,5 @@ export * from './validEmailCheck';
 export * from './validPhoneNumber';
 export * from './mail';
 export * from './isUsingEmail';
+export * from './contentType';
+export * from './authAdmin';

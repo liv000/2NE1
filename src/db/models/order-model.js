@@ -63,6 +63,10 @@ export class OrderModel {
 
     return getOrder.length >= 1;
   }
+
+  async getAllOrderList() {
+    return Order.find({});
+  }
 }
 
 const orderModel = new OrderModel();

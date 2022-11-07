@@ -39,6 +39,10 @@ class OrderService {
   async hasOrder(userId) {
     return await orderModel.hasOrder(userId);
   }
+
+  async getAllOrderList() {
+    return await orderModel.getAllOrderList();
+  }
 }
 
 const orderService = new OrderService(orderModel);

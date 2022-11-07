@@ -15,7 +15,6 @@ export class ProductModel {
   }
 
   async getProductList(categoryId) {
-    // todo 미들웨어에서 처리
     if (categoryId === 'all') {
       const product = await Product.find({ status: 1 });
       return product;

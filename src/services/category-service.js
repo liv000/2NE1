@@ -35,9 +35,7 @@ class CategoryService {
     }
     const category = await this.categoryModel.getCategory(categoryCode);
 
-    if (!category) {
-      throw new Error('변경할 카테고리를 찾지 못했습니다.');
-    } else if (category.length !== 1) {
+    if (!category || category.length > 1) {
       throw new Error(
         '카테고리 개수 오류 한개의 카테고리만 변경할 수 있습니다',
       );

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import is from '@sindresorhus/is';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
-import { loginRequired, validCallNumberCheck } from '../middlewares';
+import { loginRequired, validCallNumberCheck, authAdmin } from '../middlewares';
 import { userModel } from '../db';
 import { orderService, shippingService, productService } from '../services';
 const orderRouter = Router();
@@ -80,4 +80,15 @@ orderRouter.get(
     res.status(201).json(result);
   }),
 );
+
+orderRouter.get(
+  '/admin/list',
+  loginRequired,
+  authAdmin,
+  asyncHandler(async (req, res, next) => {
+    const getAllOrder = await orderService.getAllOrderList();
+    res.status(201).json(getAllOrder);
+  }),
+);
+
 export { orderRouter };

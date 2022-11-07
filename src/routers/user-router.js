@@ -5,6 +5,7 @@ import {
   loginRequired,
   validCallNumberCheck,
   validEmailCheck,
+  isUsingEmail,
   mail,
 } from '../middlewares';
 import { userService } from '../services';
@@ -14,9 +15,18 @@ const userRouter = Router();
 const asyncHandler = require('../utils/async-handler');
 
 userRouter.post(
+  '/sendEmail',
+  validEmailCheck,
+  isUsingEmail,
+  mail,
+  asyncHandler(async (req, res) => {
+    res.status(201).json(req.authNum);
+  }),
+);
+
+userRouter.post(
   '/register',
   validEmailCheck,
-  mail,
   asyncHandler(async (req, res, next) => {
     if (is.emptyObject(req.body)) {
       throw new Error(
@@ -25,7 +35,7 @@ userRouter.post(
     }
 
     const { fullName, email, password, role } = req.body;
-    console.log(req.authNum);
+
     // 위 데이터를 유저 db에 추가하기
     const newUser = await userService.addUser({
       fullName,

@@ -9,7 +9,7 @@ const asyncHandler = require('../utils/async-handler');
 
 // 카테고리 등록
 categoryRouter.post(
-  '/register',
+  '/admin/register',
   loginRequired,
   asyncHandler(async (req, res, next) => {
     const newCategoryInfo = req.body;
@@ -34,7 +34,7 @@ categoryRouter.get(
 );
 
 categoryRouter.patch(
-  '/edit',
+  '/admin/edit',
   loginRequired,
   asyncHandler(async (req, res) => {
     if (req.role === 0) {
@@ -47,15 +47,15 @@ categoryRouter.patch(
 );
 
 categoryRouter.patch(
-  '/drop',
+  '/admin/drop',
   loginRequired,
   asyncHandler(async (req, res) => {
     if (req.role === 0) {
       throw new Error('카테고리 삭제는 관리자만 가능합니다. ');
     }
-    const { categoryCode } = req.body;
+    const { categoryId } = req.body;
 
-    const drop = await categoryService.dropCategory(categoryCode);
+    const drop = await categoryService.dropCategory(categoryId);
     res.status(201).json(drop);
   }),
 );

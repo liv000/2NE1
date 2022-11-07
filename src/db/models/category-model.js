@@ -16,8 +16,9 @@ export class CategoryModel {
   }
 
   async updateCategory(newInfo) {
-    const { categoryCode } = newInfo;
-    return await Category.findOneAndUpdate({ categoryCode }, newInfo);
+    const { categoryId, ...rest } = newInfo;
+
+    return await Category.findOneAndUpdate({ _id: categoryId }, rest);
   }
   async getCategory(categoryCode) {
     return await Category.find({ categoryCode, status: 1 });

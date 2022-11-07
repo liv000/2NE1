@@ -18,7 +18,7 @@ main {
 }
 
 /* 버튼 */
-.icon-list {
+/* .icon-list {
   display: flex;
   margin-top: 24px;
   user-select: none;
@@ -26,4 +26,6 @@ main {
 
 .icon-list li:not(:first-child) {
   margin-left: 12px;
-}
+} */
+
+/* TODO 카테고리 수정할때 code는 disabled */

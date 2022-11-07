@@ -26,13 +26,10 @@ productRouter.post(
 
 productRouter.post(
   '/list',
+  categoryHandler,
   asyncHandler(async (req, res, next) => {
-    let { categoryId } = req.body;
-    // todo 미들웨어로 변경
-    if (categoryId === undefined) {
-      categoryId = 'all';
-    }
-    console.log(categoryId);
+    let { categoryId } = req;
+
     const newProduct = await productService.getProductList(categoryId);
 
     res.status(201).json(newProduct);

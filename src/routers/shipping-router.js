@@ -7,7 +7,7 @@ const asyncHandler = require('../utils/async-handler');
 
 // 배송 status : pending, shipping, shipped, canceled 중 하나만 와야한다.
 shippingRouter.patch(
-  '/edit',
+  '/admin/edit',
   contentType,
   loginRequired,
   authAdmin,
@@ -24,4 +24,3 @@ shippingRouter.patch(
 // #1 전체 상품 배송 상태 (관리자 기능)
 
 export { shippingRouter };
-

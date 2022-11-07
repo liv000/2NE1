@@ -1,57 +1,62 @@
 import * as Api from '../api.js';
+
+// DOM Elements
 const tbody = document.querySelector('.table > tbody');
 
-// 제품
-const products = await Api.get('/api/product/productList', '');
-products.forEach((product) => {
-  // const { idx, title, categoryImg, createdAt } = product;
-  console.log(product);
-  // TODO 등록일 수정
+// Global Variable
+let idx = 1;
+let categoryIdToEdit;
+let categoryId = '';
 
-  // 목록 조회
-  // tbody.innerHTML += drawAdminProductList(
-  //   idx,
-  //   productName,
-  //   category,
-  //   title,
-  //   price,
-  //   createdAt,
-  // );
+// 1. 제품 목록 데이터 요청하고 불러오기
+const products = await Api.post('/api/product/list');
+
+// 2. 카테고리 목록 데이터 요청하고 불러오기
+const categories = await Api.get('/api/category/list', '');
+categories.forEach((category) => {
+  // Variables
+  console.log(category);
 });
 
-function drawAdminProductList() {
+products.forEach((product) => {
+  // Variables
+  const { _id, price, stock, category } = product;
+  const productTitle = product.title;
+  const brandTitle = product.brandInfo.title;
+  const updatedAt = product.createdAt.slice(0, 10);
+
+  // 불러온 데이터 렌더링
+  tbody.innerHTML += drawAdminProductList(
+    idx++,
+    brandTitle,
+    productTitle,
+    price,
+    stock,
+    updatedAt,
+    _id,
+  );
+});
+
+function drawAdminProductList(
+  idx,
+  brandTitle,
+  productTitle,
+  price,
+  stock,
+  updatedAt,
+  _id,
+) {
   const productListTemplate = `
   <tr>
+    <td><input type="checkbox"></td>
     <td>${idx}</td>
-    <td>${category}</td>
-    <td><a href="/${'tempUrl'}"><span>[${title}]<span> ${productName}</a></td>
-    <td>${price}</td>
-    <td>${stock}</td>
-    <td>${createdAt}</td>
-    <td><button class="btn-edit">수정</button></td>
+    <td>${0}</td>
+    <td><a href="/detail?id=${_id}"><span>[${brandTitle}]<span> ${productTitle}</a></td>
+    <td>${price.toLocaleString()}원</td>
+    <td>${stock}개</td>
+    <td>${updatedAt}</td>
+    <td><button id="edit-${_id}" class="btn-edit">수정</button></td>
   </tr>`;
-
-  return productListTemplate;
-}
-
-// TODO 메인 & 카테고리 아이콘, 페이지 컴포넌트화 하기
-// TODO 파일 분리하기
-function drawProductList() {
-  const productListTemplate = `
-  <li>
-    <a href="${0}">
-      <figure class="product-img">
-        <img src="${0}" alt="${0}" />
-      </figure>
-      <div class="product-information">
-        <span>${0}</span>
-        <h3>
-          <span>[${0}]</span> ${0}
-        </h3>
-        <p class="product-price">${0}원</p>
-      </div>
-    </a>
-  </li>`;
 
   return productListTemplate;
 }

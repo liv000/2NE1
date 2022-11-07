@@ -46,7 +46,7 @@ class CategoryService {
 
   async dropCategory(categoryId) {
     const newInfo = { categoryId, status: 0 };
-    await this.updateCategory(newInfo);
+    return await this.updateCategory(newInfo);
   }
 }
 

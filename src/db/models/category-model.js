@@ -15,22 +15,24 @@ export class CategoryModel {
     return categories;
   }
 
-  async hasCategory(categoryName, categoryCode) {
-    return await Category.find({
-      $and: [
-        {
-          $or: [{ categoryName }, { categoryCode }],
-        },
-        { status: 1 },
-      ],
-    });
-  }
   async updateCategory(newInfo) {
     const { categoryCode } = newInfo;
     return await Category.findOneAndUpdate({ categoryCode }, newInfo);
   }
   async getCategory(categoryCode) {
     return await Category.find({ categoryCode, status: 1 });
+  }
+
+  async hasCategory(categoryName, categoryCode, categoryId) {
+    return await Category.find({
+      $and: [
+        {
+          $or: [{ categoryName }, { categoryCode }],
+        },
+        { status: 1 },
+        { _id: { $ne: categoryId } },
+      ],
+    });
   }
 }
 

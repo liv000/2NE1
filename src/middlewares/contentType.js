@@ -1,6 +1,5 @@
 import is from '@sindresorhus/is';
 const contentType = (req, res, next) => {
-  console.log(req.body);
   if (is.emptyObject(req.body)) {
     res.status(412).json({
       result: 'Content-Type',

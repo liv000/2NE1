@@ -23,8 +23,16 @@ class CategoryService {
   }
 
   async updateCategory(newInfo) {
-    const { categoryCode } = newInfo;
+    const { categoryName, categoryCode, categoryId } = newInfo;
+    const hasCategory = await this.categoryModel.hasCategory(
+      categoryName,
+      categoryCode,
+      categoryId,
+    );
 
+    if (hasCategory.length >= 1) {
+      throw new Error('이미 존재하는 카테고리 입니다. ');
+    }
     const category = await this.categoryModel.getCategory(categoryCode);
 
     if (!category) {

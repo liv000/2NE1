@@ -21,7 +21,6 @@ export class ProductModel {
       return product;
     }
 
-    // todo 카테고리와 populate후, 카테고리 코드가 맞는것만 가져오기
     const product = await Product.find({ status: 1, category: categoryId });
     return product;
   }

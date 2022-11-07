@@ -29,15 +29,15 @@ productRouter.post(
 );
 
 productRouter.post(
-  '/productList',
+  '/list',
   asyncHandler(async (req, res, next) => {
-    const { categoryCode } = req.body;
+    let { categoryId } = req.body;
     // todo 미들웨어로 변경
-    if (!categoryCode) {
-      categoryCode = 'all';
+    if (categoryId === undefined) {
+      categoryId = 'all';
     }
-    console.log(categoryCode);
-    const newProduct = await productService.getProductList(categoryCode);
+    console.log(categoryId);
+    const newProduct = await productService.getProductList(categoryId);
 
     res.status(201).json(newProduct);
   }),

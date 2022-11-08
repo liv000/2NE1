@@ -114,6 +114,7 @@ async function doCheckout() {
   if (res.status === 201) {
     console.log(res);
     alert('주문에 성공하였습니다!');
+    location.href = 'complete';
   } else {
     alert('주문에 실패하였습니다...');
   }

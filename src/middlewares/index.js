@@ -12,3 +12,4 @@ export * from './authAdmin';
 export * from './category-handler';
 export * from './categoryProducts';
 export * from './authComments';
+export * from './authUpdateComments';

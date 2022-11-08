@@ -19,7 +19,7 @@ export class CategoryModel {
         .sort({ createdAt: 1 }),
     ]);
     const totalPage = Math.ceil(total / perPage);
-    // const categories = await Category.find({ status: 1 });
+
     return { totalPage, page, perPage, categories };
   }
 

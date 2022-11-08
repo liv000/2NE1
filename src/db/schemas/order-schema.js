@@ -16,12 +16,12 @@ const OrderSchema = new Schema(
     userId: {
       type: Schema.Types.ObjectId,
       ref: 'users',
-      required: true,
+      // required: true,
     },
 
     name: {
       type: String,
-      require: true,
+      // require: true,
     },
     phoneNumber: {
       type: String,
@@ -47,7 +47,7 @@ const OrderSchema = new Schema(
     },
     totalAmount: {
       type: Number,
-      required: true,
+      // required: true,
     },
     status: {
       // 0이면 취소한 주문 (관리자만 수행)

@@ -1,7 +1,12 @@
 import { Router } from 'express';
-import is from '@sindresorhus/is';
+
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
-import { loginRequired, validCallNumberCheck, authAdmin } from '../middlewares';
+import {
+  loginRequired,
+  validCallNumberCheck,
+  authAdmin,
+  contentType,
+} from '../middlewares';
 import { userModel } from '../db';
 import { orderService, shippingService, productService } from '../services';
 const orderRouter = Router();
@@ -11,24 +16,25 @@ const asyncHandler = require('../utils/async-handler');
 // 바디에 상품 아이디와 상품 개수
 // 잔여 상품 카운트 할 지 ?
 orderRouter.post(
-  '/',
+  '/orderInfo',
   loginRequired,
   validCallNumberCheck,
+  async (req, res, next) => {
+    const orderInfo = req.body;
+    const startOrder = await orderService.setOrderInfo(orderInfo);
+    res.status(201).json(startOrder);
+  },
+);
+
+orderRouter.post(
+  '/',
+  loginRequired,
+  contentType,
   asyncHandler(async (req, res, next) => {
-    if (is.emptyObject(req.body)) {
-      throw new Error(
-        'headers의 Content-Type을 application/json으로 설정해주세요',
-      );
-    }
-
-    const { products, ...rest } = req.body;
-
-    const userId = req.currentUserId;
-    rest.userId = userId;
-    const orderInfo = rest;
+    const { products, orderId } = req.body;
 
     await productService.setStock(products);
-    const newOrder = await orderService.order(products, orderInfo);
+    const newOrder = await orderService.order(products, orderId);
 
     res.status(201).json(newOrder);
 

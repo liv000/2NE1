@@ -18,8 +18,8 @@ class CategoryService {
     return await this.categoryModel.create(category);
   }
 
-  async getCategoryList() {
-    return await this.categoryModel.getCategoryList();
+  async getCategoryList(page, perPage) {
+    return await this.categoryModel.getCategoryList(page, perPage);
   }
 
   async updateCategory(newInfo) {

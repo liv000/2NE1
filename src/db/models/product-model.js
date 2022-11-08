@@ -16,7 +16,7 @@ export class ProductModel {
 
   async getProductList(categoryId) {
     if (categoryId === 'all') {
-      const product = await Product.find({ status: 1 });
+      const product = await Product.find({ status: 1 }).populate('category');
       return product;
     }
 
@@ -49,6 +49,20 @@ export class ProductModel {
     const result = await Product.findOneAndUpdate({ _id: id }, newInfo);
     // console.log(result.WriteResult); WriteResult어떻게 보는지..?
     return result;
+  }
+
+  async setComments(id, author, content) {
+    return await Product.updateOne(
+      { _id: id },
+      {
+        $push: {
+          comments: {
+            content,
+            author,
+          },
+        },
+      },
+    );
   }
 }
 

@@ -7,7 +7,7 @@ import {
   authAdmin,
 } from '../middlewares';
 
-import { productService } from '../services';
+import { productService, userService } from '../services';
 
 const productRouter = Router();
 const asyncHandler = require('../utils/async-handler');
@@ -31,7 +31,6 @@ productRouter.post(
   categoryHandler,
   asyncHandler(async (req, res, next) => {
     let { categoryId } = req;
-
     const newProduct = await productService.getProductList(categoryId);
 
     res.status(201).json(newProduct);
@@ -69,6 +68,20 @@ productRouter.patch(
 
     await productService.updateProduct(id, newInfo);
     res.redirect(`${id}`);
+  }),
+);
+
+productRouter.post(
+  '/:id/comments',
+  loginRequired,
+  asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const user = req.currentUserId;
+    const { content } = req.body;
+    const author = await userService.getUser(user);
+
+    const newComment = await productService.setComments(id, author, content);
+    res.status(201).json({ '댓글 등록 성공': newComment });
   }),
 );
 

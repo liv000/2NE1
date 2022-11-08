@@ -1,4 +1,4 @@
-import { productModel } from '../db';
+import { productModel, userModel } from '../db';
 class ProductService {
   constructor(productModel) {
     this.productModel = productModel;
@@ -22,6 +22,11 @@ class ProductService {
     return productDetail;
   }
 
+  async getComments(id) {
+    const product = await this.getProductDetail(id);
+
+    return await userModel.getAuthor(product);
+  }
   async updateProduct(id, newInfo) {
     const update = await this.productModel.updateProduct(id, newInfo);
     return update;

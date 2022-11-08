@@ -49,9 +49,7 @@ export class ProductModel {
   }
 
   async updateProduct(id, newInfo) {
-    const result = await Product.findOneAndUpdate({ _id: id }, newInfo);
-    // console.log(result.WriteResult); WriteResult어떻게 보는지..?
-    return result;
+    return await Product.findOneAndUpdate({ _id: id }, newInfo);
   }
 
   async setComments(id, author, content) {
@@ -66,6 +64,19 @@ export class ProductModel {
         },
       },
     );
+  }
+
+  async isAuthor(userId, commentId, productId) {
+    console.log(userId, commentId, productId);
+    const comments = await Product.findOne(
+      { _id: productId },
+      { comments: true },
+    );
+
+    const allComments = comments.comments;
+    console.log(allComments);
+    const author = await Product.findOne({ status: 1, comments: commentId });
+    console.log(author);
   }
 }
 

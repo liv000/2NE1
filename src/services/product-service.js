@@ -39,6 +39,12 @@ class ProductService {
   async setComments(id, author, content) {
     return await this.productModel.setComments(id, author, content);
   }
+
+  async updateComment(productId, userId, commentId, newComment) {}
+
+  async isAuthor(userId, commentId, productId) {
+    return await this.productModel.isAuthor(userId, commentId, productId);
+  }
 }
 
 const productService = new ProductService(productModel);

@@ -10,13 +10,38 @@ export class CategoryModel {
     return category;
   }
 
-  async getCategoryList() {
-    const categories = await Category.find();
-    return categories;
+  async getCategoryList(page, perPage) {
+    const [total, categories] = await Promise.all([
+      Category.countDocuments({}),
+      Category.find({ stats: 1 })
+        .skip(perPage * (page - 1))
+        .limit(perPage)
+        .sort({ createdAt: 1 }),
+    ]);
+    const totalPage = Math.ceil(total / perPage);
+    // const categories = await Category.find({ status: 1 });
+    return { totalPage, page, perPage, categories };
   }
 
-  async hasCategory(categoryName, categoryCode) {
-    return await Category.find({ $or: [{ categoryName }, { categoryCode }] });
+  async updateCategory(newInfo) {
+    const { categoryId, ...rest } = newInfo;
+
+    return await Category.findOneAndUpdate({ _id: categoryId }, rest);
+  }
+  async getCategory(categoryCode) {
+    return await Category.find({ categoryCode, status: 1 });
+  }
+
+  async hasCategory(categoryName, categoryCode, categoryId) {
+    return await Category.find({
+      $and: [
+        {
+          $or: [{ categoryName }, { categoryCode }],
+        },
+        { status: 1 },
+        { _id: { $ne: categoryId } },
+      ],
+    });
   }
 }
 

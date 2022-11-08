@@ -11,21 +11,19 @@ export class ProductModel {
     return await Product.create(data);
   }
   async findOne(id) {
-    return await Product.findOne({ _id: id });
+    return await Product.findOne({ _id: id }).populate('category');
   }
 
-  async getProductList(topCategoryCode) {
-    // todo 미들웨어에서 처리
-    if (topCategoryCode === 'all') {
-      const product = await Product.find({ status: 1 });
+  async getProductList(categoryId) {
+    if (categoryId === 'all') {
+      const product = await Product.find({ status: 1 }).populate('category');
       return product;
     }
 
-    // todo 카테고리와 populate후, 카테고리 코드가 맞는것만 가져오기
-    const product = await Product.find({ status: 1 }).populate({
-      path: 'category',
-      match: { topCategoryCode: topCategoryCode },
-    });
+    const product = await Product.find({
+      status: 1,
+      category: categoryId,
+    }).populate('category');
     return product;
   }
 
@@ -54,6 +52,20 @@ export class ProductModel {
     const result = await Product.findOneAndUpdate({ _id: id }, newInfo);
     // console.log(result.WriteResult); WriteResult어떻게 보는지..?
     return result;
+  }
+
+  async setComments(id, author, content) {
+    return await Product.updateOne(
+      { _id: id },
+      {
+        $push: {
+          comments: {
+            content,
+            author,
+          },
+        },
+      },
+    );
   }
 }
 

@@ -1,7 +1,11 @@
 import { Router } from 'express';
-import is from '@sindresorhus/is';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
-import { loginRequired, categoryHandler } from '../middlewares';
+import {
+  loginRequired,
+  categoryHandler,
+  authAdmin,
+  categoryProducts,
+} from '../middlewares';
 
 import { categoryService } from '../services';
 const categoryRouter = Router();
@@ -9,7 +13,7 @@ const asyncHandler = require('../utils/async-handler');
 
 // 카테고리 등록
 categoryRouter.post(
-  '/register',
+  '/admin/register',
   loginRequired,
   asyncHandler(async (req, res, next) => {
     const newCategoryInfo = req.body;
@@ -20,14 +24,38 @@ categoryRouter.post(
   }),
 );
 // 전체 카테고리 조회
-categoryRouter.get('/list', async function (req, res, next) {
-  try {
-    const newCategory = await categoryService.getCategoryList();
+categoryRouter.get(
+  '/list',
+  asyncHandler(async (req, res, next) => {
+    const page = Number(req.query.page || 1);
+    const perPage = Number(req.query.perPage || 5);
 
+    const newCategory = await categoryService.getCategoryList(page, perPage);
     res.status(201).json(newCategory);
-  } catch (error) {
-    next(error);
-  }
-});
+  }),
+);
 
+categoryRouter.patch(
+  '/admin/edit',
+  loginRequired,
+  authAdmin,
+  asyncHandler(async (req, res) => {
+    const newInfo = req.body;
+    const updateCategory = await categoryService.updateCategory(newInfo);
+    res.status(201).json({ '수정 완료': updateCategory });
+  }),
+);
+
+categoryRouter.patch(
+  '/admin/drop',
+  loginRequired,
+  authAdmin,
+  categoryProducts,
+  asyncHandler(async (req, res) => {
+    const { categoryId } = req.body;
+
+    const drop = await categoryService.dropCategory(categoryId);
+    res.status(201).json({ '삭제 완료': drop });
+  }),
+);
 export { categoryRouter };

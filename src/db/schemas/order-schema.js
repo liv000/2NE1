@@ -49,6 +49,12 @@ const OrderSchema = new Schema(
       type: Number,
       required: true,
     },
+    status: {
+      // 0이면 취소한 주문 (관리자만 수행)
+      type: Number,
+      required: true,
+      default: 1,
+    },
   },
 
   {

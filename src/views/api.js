@@ -6,7 +6,7 @@ async function get(endpoint, params = '') {
   const res = await fetch(apiUrl, {
     // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
     headers: {
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxZjQ1ZDc4YTcwNWI2NjQ4ZTE1ZDgiLCJyb2xlIjoxLCJpYXQiOjE2NjczNjM5ODd9.3N8s9wjh-QpD9BK2kDeV0g2QVgO5vXovvjtx_a7VSqg",
+      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYzYmRiMmY1NGQ4YTg2MDZiNmVkYjAiLCJyb2xlIjoxLCJpYXQiOjE2Njc0ODEwMTR9.1o5xjkV9rAyWMc9SNJxRzF5wWIH_bMIUWKYfSfidYpg",
     },
   });
 

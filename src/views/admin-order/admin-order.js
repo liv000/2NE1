@@ -18,7 +18,8 @@ function drawAllEvents() {
 }
 let orderId;
 async function drawOrderList(){
-    const orders = await Api.get('/api/order/admin/list', '');
+    const orders = await Api.get('/api/order/admin/list/');
+    console.log("dd");
     orders.items.map((order) => {
         
         const { orderId, userId, title, totalAmount, currStatus } = order;
@@ -89,7 +90,7 @@ async function deleteOrderData(e) {
         alert("주문 정보가 삭제되었습니다.");
 
         // 삭제한 아이템 화면에서 지우기
-        const deletedItem = document.querySelector(`#order-${orderId}`);
+        const deletedItem = document.querySelector(`#${orderId}`);
         deletedItem.remove();
 
         // 전역변수 초기화

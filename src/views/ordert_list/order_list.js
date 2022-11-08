@@ -1,5 +1,5 @@
 import * as Api from '/api.js';
-import {data} from "/dummy.js";
+// import {data} from "/dummy.js";
 
 console.log("dd");
 const orderTable = document.querySelector("#order-table");

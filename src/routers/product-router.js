@@ -30,7 +30,7 @@ productRouter.post(
   '/list',
   categoryHandler,
   asyncHandler(async (req, res, next) => {
-    let { categoryId } = req;
+    let { categoryId } = req.body;
     const newProduct = await productService.getProductList(categoryId);
 
     res.status(201).json(newProduct);
@@ -71,6 +71,7 @@ productRouter.patch(
   }),
 );
 
+// todo 댓글 작성 : 구매한 사람만 작성할 수 있다.
 productRouter.post(
   '/:id/comments',
   loginRequired,
@@ -84,5 +85,10 @@ productRouter.post(
     res.status(201).json({ '댓글 등록 성공': newComment });
   }),
 );
+
+// productRouter.get('/:id/comments', asyncHandler(async(req,res,next)=>{
+// const { id} = req.params;
+// const
+// }));
 
 export { productRouter };

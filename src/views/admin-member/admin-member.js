@@ -10,16 +10,15 @@ const deleteCompleteButton = document.querySelector("#deleteCompleteButton");
 const deleteCancelButton = document.querySelector("#deleteCancelButton");
 
 // checkAdmin();
-
+drawUsers()
 addAllEvents();
 
 // 요소 삽입 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-drawUsers()
+
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
     modalBackground.addEventListener("click", closeModal);
     modalCloseButton.addEventListener("click", closeModal);
-    document.addEventListener("keydown", keyDownCloseModal);
     deleteCompleteButton.addEventListener("click", deleteUserData);
     deleteCancelButton.addEventListener("click", cancelDelete);
 }
@@ -28,9 +27,7 @@ function addAllEvents() {
 let userIdToDelete;
 async function drawUsers() {
     const users = await Api.get("/api/userlist");
-
-  // 총 요약에 활용
-
+    console.log(users);
     for (const user of users) {
         const { _id, email, fullName, password, createdAt } = user;
         const date = createdAt.split("T")[0];

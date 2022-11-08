@@ -1,8 +1,13 @@
-import * as Api from '/api.js';
+import * as Api from '../api.js';
 // import {data} from "/dummy.js";
 
-console.log("dd");
+
 const orderTable = document.querySelector("#order-table");
+const modal = document.querySelector("#modal");
+const modalBackground = document.querySelector("#modalBackground");
+const modalCloseButton = document.querySelector("#modalCloseButton");
+const deleteCompleteButton = document.querySelector("#deleteCompleteButton");
+const deleteCancelButton = document.querySelector("#deleteCancelButton");
 
 orderList();
 addAllEvents();
@@ -15,7 +20,9 @@ function addAllEvents() {
 }
 let orderIdToDelete;
 async function orderList() {
-    data.items.map((order) => {
+    const orders = await Api.get('/api/order/6363c71fd4e0079222dab56c');
+    console.log(orders);
+    orders.map((order) => {
         const { _id, code, title, price, shipping }= order;
         orderTable.insertAdjacentHTML(
             'beforeend',

@@ -30,6 +30,10 @@ class ProductService {
   async findByCategoryId(categoryId) {
     return await this.productModel.getProductList(categoryId);
   }
+
+  async setComments(id, author, content) {
+    return await this.productModel.setComments(id, author, content);
+  }
 }
 
 const productService = new ProductService(productModel);

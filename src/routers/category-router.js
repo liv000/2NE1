@@ -27,7 +27,10 @@ categoryRouter.post(
 categoryRouter.get(
   '/list',
   asyncHandler(async (req, res, next) => {
-    const newCategory = await categoryService.getCategoryList();
+    const page = Number(req.query.page || 1);
+    const perPage = Number(req.query.perPage || 5);
+
+    const newCategory = await categoryService.getCategoryList(page, perPage);
     res.status(201).json(newCategory);
   }),
 );

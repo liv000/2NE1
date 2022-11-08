@@ -10,9 +10,17 @@ export class CategoryModel {
     return category;
   }
 
-  async getCategoryList() {
-    const categories = await Category.find({ status: 1 });
-    return categories;
+  async getCategoryList(page, perPage) {
+    const [total, categories] = await Promise.all([
+      Category.countDocuments({}),
+      Category.find({ stats: 1 })
+        .skip(perPage * (page - 1))
+        .limit(perPage)
+        .sort({ createdAt: 1 }),
+    ]);
+    const totalPage = Math.ceil(total / perPage);
+    // const categories = await Category.find({ status: 1 });
+    return { totalPage, page, perPage, categories };
   }
 
   async updateCategory(newInfo) {

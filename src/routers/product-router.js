@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { UserSchema } from '../db/schemas/user-schema';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
 import {
   loginRequired,
@@ -87,9 +88,13 @@ productRouter.post(
   }),
 );
 
-// productRouter.get('/:id/comments', asyncHandler(async(req,res,next)=>{
-// const { id} = req.params;
-// const
-// }));
+productRouter.get(
+  '/:id/comments',
+  asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const comment = await productService.getComments(id);
+    return res.status(202).json(comment);
+  }),
+);
 
 export { productRouter };

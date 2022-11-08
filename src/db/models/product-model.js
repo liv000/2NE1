@@ -20,7 +20,10 @@ export class ProductModel {
       return product;
     }
 
-    const product = await Product.find({ status: 1, category: categoryId });
+    const product = await Product.find({
+      status: 1,
+      category: categoryId,
+    }).populate('category');
     return product;
   }
 

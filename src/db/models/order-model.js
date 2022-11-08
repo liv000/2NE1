@@ -67,6 +67,16 @@ export class OrderModel {
   async getAllOrderList() {
     return Order.find({});
   }
+
+  async getOrderByUserId(userId, productId) {
+    const orderLogList = await Order.find({ userId });
+
+    const isOrdered = orderLogList.find(
+      (orderLog) => orderLog.products[0].productId === productId,
+    );
+
+    return isOrdered;
+  }
 }
 
 const orderModel = new OrderModel();

@@ -6,6 +6,7 @@ import {
   categoryHandler,
   contentType,
   authAdmin,
+  authComments,
 } from '../middlewares';
 
 import { productService, userService } from '../services';
@@ -73,10 +74,10 @@ productRouter.patch(
   }),
 );
 
-// todo 댓글 작성 : 구매한 사람만 작성할 수 있다.
 productRouter.post(
   '/:id/comments',
   loginRequired,
+  authComments,
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
     const user = req.currentUserId;

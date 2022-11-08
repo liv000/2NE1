@@ -36,6 +36,10 @@ export class UserModel {
     const user = await User.find({ email, status: 1 });
     return user.length === 0;
   }
+
+  async getAuthor(comments) {
+    return await User.populate(comments, { path: 'author' });
+  }
 }
 
 const userModel = new UserModel();

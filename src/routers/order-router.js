@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import is from '@sindresorhus/is';
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
-import { loginRequired, validCallNumberCheck } from '../middlewares';
+import { loginRequired, validCallNumberCheck, authAdmin } from '../middlewares';
 import { userModel } from '../db';
 import { orderService, shippingService, productService } from '../services';
 const orderRouter = Router();
@@ -31,7 +31,8 @@ orderRouter.post(
     const newOrder = await orderService.order(products, orderInfo);
 
     res.status(201).json(newOrder);
-    // res.render('주문 완료 페이지로 이동'); // todo
+
+    // res.render('order/orderComplete'); // todo 주문 완료 페이지로 이동
   }),
 );
 
@@ -74,10 +75,20 @@ orderRouter.patch(
 orderRouter.get(
   '/:orderId',
   asyncHandler(async (req, res) => {
-    console.log('orderId');
     const { orderId } = req.params;
     const result = await orderService.getOrderList(orderId);
     res.status(201).json(result);
   }),
 );
+
+orderRouter.get(
+  '/admin/list',
+  loginRequired,
+  authAdmin,
+  asyncHandler(async (req, res, next) => {
+    const getAllOrder = await orderService.getAllOrderList();
+    res.status(201).json(getAllOrder);
+  }),
+);
+
 export { orderRouter };

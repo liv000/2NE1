@@ -18,5 +18,3 @@ const CartSchema = new Schema(
     timestamps: true,
   }
 );
-
-export { CartSchema };

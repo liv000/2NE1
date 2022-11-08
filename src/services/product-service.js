@@ -1,8 +1,4 @@
-import { productModel } from '../db';
-var cheerio = require('cheerio');
-// var request = require('request');
-const axios = require('axios');
-
+import { productModel, userModel } from '../db';
 class ProductService {
   constructor(productModel) {
     this.productModel = productModel;
@@ -12,8 +8,8 @@ class ProductService {
     return await this.productModel.create(productInfo);
   }
 
-  async getProductList(topCategoryCode) {
-    return await this.productModel.getProductList(topCategoryCode);
+  async getProductList(categoryId) {
+    return await this.productModel.getProductList(categoryId);
   }
 
   async setStock(products) {
@@ -26,9 +22,22 @@ class ProductService {
     return productDetail;
   }
 
+  async getComments(id) {
+    const product = await this.getProductDetail(id);
+
+    return await userModel.getAuthor(product);
+  }
   async updateProduct(id, newInfo) {
     const update = await this.productModel.updateProduct(id, newInfo);
     return update;
+  }
+
+  async findByCategoryId(categoryId) {
+    return await this.productModel.getProductList(categoryId);
+  }
+
+  async setComments(id, author, content) {
+    return await this.productModel.setComments(id, author, content);
   }
 }
 

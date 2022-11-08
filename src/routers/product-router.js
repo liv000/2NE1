@@ -30,7 +30,8 @@ productRouter.post(
   '/list',
   categoryHandler,
   asyncHandler(async (req, res, next) => {
-    let { categoryId } = req.body;
+    let { categoryId } = req;
+
     const newProduct = await productService.getProductList(categoryId);
 
     res.status(201).json(newProduct);

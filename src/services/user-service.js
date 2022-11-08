@@ -83,6 +83,10 @@ class UserService {
     return users;
   }
 
+  async getUser(id) {
+    return await this.userModel.findById(id);
+  }
+
   // 유저정보 수정, 현재 비밀번호가 있어야 수정 가능함.
   async setUser(userInfoRequired, toUpdate) {
     // 객체 destructuring

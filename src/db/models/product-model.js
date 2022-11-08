@@ -11,7 +11,7 @@ export class ProductModel {
     return await Product.create(data);
   }
   async findOne(id) {
-    return await Product.findOne({ _id: id });
+    return await Product.findOne({ _id: id }).populate('category');
   }
 
   async getProductList(categoryId) {

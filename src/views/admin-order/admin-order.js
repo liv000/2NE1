@@ -1,4 +1,5 @@
 import * as Api from "../api.js";
+// import { createNavbar } from "../header-footer/navbar.js";
 
 const admin_orderlist_table = document.querySelector("#admin-orderlist-table");
 const modal = document.querySelector("#modal");
@@ -7,6 +8,7 @@ const modalCloseButton = document.querySelector("#modalCloseButton");
 const deleteCompleteButton = document.querySelector("#deleteCompleteButton");
 const deleteCancelButton = document.querySelector("#deleteCancelButton");
 
+// createNavbar();
 drawOrderList()
 drawAllEvents()
 function drawAllEvents() {

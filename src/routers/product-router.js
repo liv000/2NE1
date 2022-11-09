@@ -99,22 +99,4 @@ productRouter.get(
   }),
 );
 
-productRouter.patch(
-  '/:id/comments/:commentId',
-  loginRequired,
-  authComments,
-  authUpdateComments,
-  asyncHandler(async (req, res, next) => {
-    console.log(req);
-    const { comment } = req.body;
-    const { commentId, productId } = req;
-    // console.log(productId, comment, commentId);
-    const updateComment = await productService.updateComment(
-      productId,
-      commentId,
-      comment,
-    );
-    return res.status(202).json(updateComment);
-  }),
-);
 export { productRouter };

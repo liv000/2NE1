@@ -32,7 +32,7 @@
     <!-- 메인 -->
     <main>
       <!-- 배너 -->
-      <div class="cover"></div>
+      <div class="banner"></div>
 
       <!-- 고민별 상품 보기 -->
       <!-- TODO 컴포넌트 분리 -->
@@ -40,9 +40,6 @@
         <div class="wrapper">
           <div class="concern-title">
             <h2 class="title">고민별 상품 보기</h2>
-            <a href="#" class="more-link"
-              >더보기<span><img src="" alt="" /></span
-            ></a>
           </div>
 
           <!-- 아이콘 리스트 -->
@@ -65,12 +62,39 @@
         </div>
       </section>
 
-      <!-- 추천상품 -->
-      <section class="recommend-product">
+      <!-- TODO 컴포넌트 분리 -->
+      <!-- 신상품 -->
+      <section class="mt-6 horizontal">
         <div class="wrapper">
-          <h2 class="title">이 상품 어때요?</h2>
+          <h2 class="title">신상품</h2>
+          <!-- 상품 -->
+          <div class="product-container">
+            <ul class="product-items is-flex"></ul>
+          </div>
 
-          <!-- 상품  -->
+          <!-- 더보기 -->
+          <div class="more">
+            <a href="#" class="btn-more"><span>💊</span>신상품 더보기</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 베스트 -->
+      <section class="best mt-6">
+        <div class="wrapper">
+          <h2 class="title">베스트</h2>
+          <!-- 상품 -->
+          <div class="product-container">
+            <ul class="product-items is-flex"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 할인 -->
+      <section class="sale mt-6">
+        <div class="wrapper">
+          <h2 class="title">할인</h2>
+          <!-- 상품 -->
           <div class="product-container">
             <ul class="product-items is-flex"></ul>
           </div>

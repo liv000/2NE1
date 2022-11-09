@@ -35,13 +35,13 @@ button {
 }
 
 /* 커버 */
-.cover {
-  height: 604px;
+.banner {
+  height: 320px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
   background-color: #fafafa;
-  background-image: url(https://img.pilly.kr/store/mainhome/cover.jpg);
+  background-image: url(https://img.pilly.kr/banner/202210/20221028/0809353b-56a6-11ed-b2aa-0217ec59abe6.jpg?v=v202111172159);
 }
 
 /* 고민별 상품 보기 */
@@ -88,9 +88,11 @@ button {
   font-weight: 500;
 }
 
-/* 추천 상품 */
-.recommend-product {
+/*  */
+.horizontal {
   margin-top: 56px;
+  padding-top: 56px;
+  border-top: 12px solid #f2f2f2;
 }
 
 .product-container {
@@ -129,4 +131,22 @@ button {
 
 .product-information p {
   margin-top: 8px;
+}
+
+/* 더보기 버튼 */
+.more {
+  margin-top: 56px;
+  text-align: center;
+}
+
+.btn-more {
+  display: inline-block;
+  width: 370px;
+  height: 56px;
+  line-height: 56px;
+  background-color: #ffffff;
+  font-weight: 700;
+  text-align: center;
+  border: 1px solid #666666;
+  border-radius: 8px;
 }

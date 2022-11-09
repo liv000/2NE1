@@ -5,23 +5,16 @@ const ship = require('../../utils/shippingStatus');
 const Order = model('orders', OrderSchema);
 
 export class OrderModel {
-  async setOrderInfo(orderInfo) {
-    return await Order.create(orderInfo);
-  }
-  async create(productInfo, orderId, totalAmount) {
-    // const { address, phoneNumber, userId, fullName, totalAmount } = userInfo;
-    // return await Order.create({
-    //   userId: userId,
-    //   address: address,
-    //   phoneNumber: phoneNumber,
-    //   name: fullName,
-    //   products: productInfo,
-    //   totalAmount: totalAmount,
-    // });
-    return await Order.findOneAndUpdate(
-      { _id: orderId },
-      { products: productInfo, totalAmount: totalAmount },
-    );
+  async create(productInfo, userInfo) {
+    const { address, phoneNumber, userId, fullName, totalAmount } = userInfo;
+    return await Order.create({
+      userId: userId,
+      address: address,
+      phoneNumber: phoneNumber,
+      name: fullName,
+      products: productInfo,
+      totalAmount: totalAmount,
+    });
   }
   async updateShippingStatus(orderId, status) {
     const currStatus = await this.getStatus(orderId);

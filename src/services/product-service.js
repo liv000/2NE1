@@ -25,7 +25,7 @@ class ProductService {
   async getComments(id) {
     const product = await this.getProductDetail(id);
 
-    return await userModel.getAuthor(product);
+    return await userModel.getAuthor(product.comments);
   }
   async updateProduct(id, newInfo) {
     const update = await this.productModel.updateProduct(id, newInfo);
@@ -38,12 +38,6 @@ class ProductService {
 
   async setComments(id, author, content) {
     return await this.productModel.setComments(id, author, content);
-  }
-
-  async updateComment(productId, userId, commentId, newComment) {}
-
-  async isAuthor(userId, commentId, productId) {
-    return await this.productModel.isAuthor(userId, commentId, productId);
   }
 }
 

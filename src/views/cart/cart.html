@@ -26,7 +26,6 @@
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="cart.css" />
     <script src="cart.js" type="module" defer></script>
-    <script src="modal.js" type="module" defer></script>
   </head>
   <body>
     <!-- 헤더 -->
@@ -86,25 +85,7 @@
       </div>
       <aside class="aside-order">
         <section class="price">
-          <!-- <div class="box product">
-            <dl>
-              <dt class="strong"><strong>상품수</strong></dt>
-              <dd id="product-count">0개</dd>
-              <dt ">총 상품금액</dt>
-              <dd id="product-total">0원</dd>
-              <dt>상품할인금액</dt>
-              <dd>0원</dd>
-            </dl>
-          </div> -->
-          <!-- <div class="box delivery">
-            <dl>
-              <dt><strong>기본 배송비</strong></dt>
-              <dd>3,000원</dd>
-            </dl>
-            <div class="delivery-free">
-              <p>20,000원 이상 무료배송</p>
-            </div>
-          </div> -->
+          
           <div class="box total">
             <dl>
               <dt class="strong"><strong>상품수</strong></dt>
@@ -121,43 +102,10 @@
         <section class="mt-4">
           <button
                   class="button is-primary is-fullwidth is-hovered"
-                  onclick="location.href='/order'"
-                >
+                  onclick="location.href='/order'">
                  주문서 작성
                 </button>
-          <!-- 주문하기 모달 창 임시로 주석처리-->
-          <!-- <button
-            class="js-modal-trigger button is-light is-fullwidth is-hovered"
-            data-target="modal-js-example"
-          >
-            <strong>주문하기</strong>
-          </button>
-          <div id="modal-js-example" class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-              <div class="box">
-                <dl>
-                  <dt class="strong"><strong>상품수</strong></dt>
-                  <dd id="product-count">0개</dd>
-                  <dt ><strong>총 상품금액</strong></dt>
-                  <dd id="product-total">0원</dd>
-                  <dt><strong>배송비</strong></dt>
-                  <dd>0원</dd>
-                  <dt ><strong>총 결제금액</strong></dt>
-                  <dd class="total-price">0원</dd>
-                </dl>
-                <button
-                  class="button is-primary is-fullwidth is-hovered"
-                  onclick="location.href='/purchase'"
-                >
-                 주문서 작성
-                </button>
-                <button class="modal-close is-large" aria-label="close">
-                  닫기
-                </button>
-              </div>
-            </div>
-          </div> -->
+                <div id="products-test"></div>
         </section>
       </aside>
     </div>

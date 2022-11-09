@@ -16,6 +16,7 @@ orderRouter.post(
   '/',
   loginRequired,
   contentType,
+  validCallNumberCheck,
   asyncHandler(async (req, res, next) => {
     const { products, ...rest } = req.body;
 

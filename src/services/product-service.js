@@ -9,8 +9,8 @@ class ProductService {
     return await this.productModel.create(productInfo);
   }
 
-  async getProductList(categoryId) {
-    return await this.productModel.getProductList(categoryId);
+  async getProductList(categoryId, page, perPage) {
+    return await this.productModel.getProductList(categoryId, page, perPage);
   }
 
   async setStock(products) {

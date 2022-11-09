@@ -1,11 +1,12 @@
 import * as Api from '../api.js';
 import { randomId } from '../useful-functions.js';
 
-//
+// DOM Elements
 const categoryIcons = document.querySelector('.category-icons');
 const productItems = document.querySelector('.product-items');
 
-//
+// Global Variables
+let _id;
 
 // 1. 카테고리 아이콘
 const category = await Api.get('/api/category/list');
@@ -22,24 +23,30 @@ categories.forEach((category) => {
 
 // 2. 제품 목록
 async function addProductItemsToContainer() {
-  const products = await Api.post('/api/product/list');
+  const productList = await Api.post('/api/product/list?page=1&perPage=4');
+  const products = productList.product;
+  let getrandomId = '';
 
-  // products.forEach((product) => {
-  //   const { _id, price, title, thumbnail } = product;
-  //   const brandTitle = product.brandInfo.title;
-  //   const random = randomId();
-  //   console.log(random);
+  products.forEach((product) => {
+    const { price, title, thumbnail } = product;
+    const brandTitle = product.brandInfo.title;
+    const random = randomId();
+    _id = product._id;
+    console.log(random);
 
-  //   productItems.insertAdjacentHTML(
-  //     'beforeend',
-  //     drawProducts(random, price, thumbnail, title, brandTitle),
-  //   );
+    productItems.insertAdjacentHTML(
+      'beforeend',
+      drawProducts(random, price, thumbnail, title, brandTitle),
+    );
+  });
 
-  //   const productItem = document.querySelector(`#${random}`);
-  //   productItem.addEventListener('click', () => {
-  //     window.location.href = `/detail?product=${_id}`;
-  //   });
-  // });
+  productItems.addEventListener('click', (e) => {
+    console.log(e.target);
+    if (e.target.tagName === 'LI') {
+      getrandomId = e.target.id;
+    }
+    window.location.href = `/detail?product=${_id}`;
+  });
 }
 
 addProductItemsToContainer();

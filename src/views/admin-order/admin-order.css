@@ -35,3 +35,7 @@ section{
 .modal .buttons {
     justify-content: center;
 }
+#pagination{
+    margin: 50px 500px;
+    width: 50%;
+}

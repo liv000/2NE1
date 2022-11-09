@@ -1,15 +1,25 @@
+
 drawHeaderFooter();
 
 function drawHeaderFooter() {
     drawNavbar();
     drawFooter();
 }
-const body = document.querySelector("body");
-
-const headerNav = body.insertAdjacentHTML(
+const header = document.querySelector("header");
+async function drawNavbar(){
+    document.header.prepend(header_section);
+    
+    if(isLogin){
+        document.header.prepend(userHeader);
+    } else if(isAdmin){
+        document.header.prepend(AdminHeader);
+    }else{
+        documnet.header.prepend(nonUser);
+    }
+}
+const header_section = header.insertAdjacentHTML(
         "beforeend",
         `    
-        <header>
         <nav id="header-logo">
         <a href="https://bulma.io">
             <img src="drug.png" width="100" height="28">
@@ -98,19 +108,9 @@ const headerNav = body.insertAdjacentHTML(
                 </a>
             </div>
         </nav>
-    </header> `
+    `
 );
-async function drawNavbar(){
-    document.body.prepend(headerNav);
-    
-    if(isLogin){
-        document.header.prepend(userHeader);
-    } else if(isAdmin){
-        document.header.prepend(AdminHeader);
-    }else{
-        documnet.header.prepend(nonUser);
-    }
-}
+
 
 const linkTag = {
     login: '<li><a href="/login" class="button" style="color: #54BAB9">Login</a></li>',
@@ -129,13 +129,15 @@ const AdminHeader = () => {
 const nonUser = () => {
     return linkTag.register + linkTag.login;
 }
+const footer = document.querySelector("footer");
+async function drawFooter() {
+    document.footer.append(footer_section);
+}
 
-
-
-const footerNav = body.insertAdjacentHTML(
+const footer_section = footer.insertAdjacentHTML(
         "beforeend",
         `
-        <footer id="footer" class="store">
+        <div id="footer" class="store">
             <div id="footer-text" class="wrapper">
                 <div id="footer-section1">
                     일단 테스트 
@@ -183,11 +185,9 @@ const footerNav = body.insertAdjacentHTML(
                 </div>
             <p class="copyright">ⓒ Carewith Inc. All Right Reversed.</p>
         </div>
-    </footer> 
+    </div> 
         `
 );
-async function drawFooter() {
-    document.body.append(footerNav);
-}
+
 
 export default drawHeaderFooter;

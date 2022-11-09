@@ -10,14 +10,15 @@
     <script type="module" src="admin-member.js" defer></script>
 </head>
 <body>
+<header></header>
     <main role="main">
         <section class="admin-memberList-section">
             <div class="member-title-section">
                 <h1 class="subtitle is-4">회원관리</h1>
             </div>
             <div class="memberList-section">
-                <table id="admin-memberList">
-                    <thead>
+                <table id="admin-memberList" class="table has-shadow">
+                    <thead id="memberListHead">
                         <tr id="admin-memberList">
                             <td width="300">가입날짜</td>
                             <td width="300">이메일</td>
@@ -46,6 +47,19 @@
             </div>
             <button class="modal-close is-large" id="modalCloseButton" aria-label="close"></button>
         </div>
+        <section id="pagination_section">
+            <div id="pagination" class="pagination is-centered" role="navigation" aria-label="pagination">
+                <a class="pagination-previous">Previous</a>
+                <a class="pagination-next">Next page</a>
+                <ul class="pagination-list">
+                    <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 2">2</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 3">3</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 4">4</a></li>
+                </ul>
+            </div>
+        </section>
     </main>
+<footer></footer>
 </body>
 </html>

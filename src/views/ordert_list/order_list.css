@@ -27,16 +27,7 @@
     flex-direction: column;
     text-align: center;
 }
-#ordered-title{
 
-
-}
-#ordered-date{
-
-}
-#ordered-date-list{
-
-}
 #ordered-item-list{
     width:1000px;
 }
@@ -51,4 +42,8 @@ thead{
 #more-list-button{
     width:800px;
     height:45px;
+}
+#pagination{
+    margin: 50px 500px;
+    width: 50%;
 }

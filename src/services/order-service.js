@@ -46,6 +46,10 @@ class OrderService {
   async getOrderByUserId(userId, productId) {
     return await orderModel.getOrderByUserId(userId, productId);
   }
+
+  async getOrderListByUser(userId, page, perPage) {
+    return await orderModel.getOrderListByUser(userId, page, perPage);
+  }
 }
 
 const orderService = new OrderService(orderModel);

@@ -75,13 +75,25 @@ export class OrderModel {
   }
 
   async getOrderByUserId(userId, productId) {
-    const orderLogList = await Order.find({ userId });
+    const { order } = this.getOrderByUser(userId, 0, 0);
 
-    const isOrdered = orderLogList.find(
+    const isOrdered = order.find(
       (orderLog) => orderLog.products[0].productId === productId,
     );
 
     return isOrdered;
+  }
+
+  async getOrderListByUser(userId, page, perPage) {
+    const [total, order] = await Promise.all([
+      Order.countDocuments({}),
+      Order.find({ userId })
+        .skip(perPage * (page - 1))
+        .limit(perPage)
+        .sort({ createdAt: 1 }),
+    ]);
+    const totalPage = Math.ceil(total / perPage);
+    return { totalPage, page, perPage, order };
   }
 }
 

@@ -75,7 +75,7 @@ export class OrderModel {
   }
 
   async getOrderByUserId(userId, productId) {
-    const { order } = this.getOrderByUser(userId, 0, 0);
+    const { order } = await this.getOrderListByUser(userId, 0, 0);
 
     const isOrdered = order.find(
       (orderLog) => orderLog.products[0].productId === productId,
@@ -93,6 +93,7 @@ export class OrderModel {
         .sort({ createdAt: 1 }),
     ]);
     const totalPage = Math.ceil(total / perPage);
+    console.log(order);
     return { totalPage, page, perPage, order };
   }
 }

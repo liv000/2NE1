@@ -1,11 +1,12 @@
-
+const header = document.querySelector("header");
+const footer = document.querySelector("footer");
 drawHeaderFooter();
 
 function drawHeaderFooter() {
     drawNavbar();
     drawFooter();
 }
-const header = document.querySelector("header");
+
 async function drawNavbar(){
     document.header.prepend(header_section);
     
@@ -129,7 +130,7 @@ const AdminHeader = () => {
 const nonUser = () => {
     return linkTag.register + linkTag.login;
 }
-const footer = document.querySelector("footer");
+
 async function drawFooter() {
     document.footer.append(footer_section);
 }

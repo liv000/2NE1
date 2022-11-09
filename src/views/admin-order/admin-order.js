@@ -1,5 +1,5 @@
 import * as Api from "../api.js";
-import drawHeaderFooter from "/navbar.js";
+import drawHeaderFooter from "../navbar.js";
 
 const admin_orderlist_table = document.querySelector('#admin-orderlist-table');
 const modal = document.querySelector('#modal');
@@ -130,4 +130,7 @@ function closeModal() {
 //     const data = await res.json();
 //     drawOrderList( data.orderList);
 // };
-const AOL = await Api.post('/api/order/admin/list?page=1&perPage=4');
+// const AOL = await Api.post('/api/order/admin/list?page=1&perPage=4');
+async function pagenation () {
+    await Api.post('/api/order/admin/list?page=1&perPage=4');
+}

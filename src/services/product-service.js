@@ -1,4 +1,5 @@
 import { productModel, userModel } from '../db';
+import { setStock } from './components/setStock';
 class ProductService {
   constructor(productModel) {
     this.productModel = productModel;
@@ -14,7 +15,7 @@ class ProductService {
 
   async setStock(products) {
     for (let i = 0; i < products.length; i++) {
-      await this.productModel.updateStock(products[i]);
+      await setStock(products[i]);
     }
   }
   async getProductDetail(id) {

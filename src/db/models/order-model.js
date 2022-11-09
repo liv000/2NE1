@@ -26,7 +26,6 @@ export class OrderModel {
     if (currStatus === 'shipped' && status === 'canceled') {
       throw new Error('취소 불가 : 이미 배송이 시작되었습니다.');
     }
-    // 특정 필드를 수정할 땐 set이라던데?
     return await Order.findOneAndUpdate({ _id: orderId }, { shipping: status });
   }
 

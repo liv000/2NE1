@@ -5,13 +5,9 @@ class OrderService {
     this.orderModel = orderModel;
   }
 
-  async setOrderInfo(orderInfo) {
-    return await this.orderModel.setOrderInfo(orderInfo);
-  }
-
-  async order(productInfo, orderId) {
-    const totalAmount = await this.getTotalAmount(productInfo);
-    return await this.orderModel.create(productInfo, orderId, totalAmount);
+  async order(productInfo, userInfo) {
+    userInfo.totalAmount = await this.getTotalAmount(productInfo);
+    return await this.orderModel.create(productInfo, userInfo);
   }
 
   async getTotalAmount(productInfo) {

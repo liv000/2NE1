@@ -14,29 +14,33 @@ export class ProductModel {
     return await Product.findOne({ _id: id }).populate('category');
   }
 
-  async getProductList(categoryId) {
+  async getProductList(categoryId, page, perPage) {
     if (categoryId === 'all') {
-      const product = await Product.find({ status: 1 }).populate('category');
-      return product;
+      const [total, product] = await Promise.all([
+        Product.countDocuments({}),
+        Product.find({ status: 1 })
+          .skip(perPage * (page - 1))
+          .limit(perPage)
+          .sort({ createdAt: 1 })
+          .populate('category'),
+      ]);
+      const totalPage = Math.ceil(total / perPage);
+      return { totalPage, page, perPage, product };
     }
 
-    const product = await Product.find({
-      status: 1,
-      category: categoryId,
-    }).populate('category');
-    return product;
+    const [total, product] = await Promise.all([
+      Product.countDocuments({}),
+      Product.find({ status: 1, category: categoryId })
+        .skip(perPage * (page - 1))
+        .limit(perPage)
+        .sort({ createdAt: 1 })
+        .populate('category'),
+    ]);
+    const totalPage = Math.ceil(total / perPage);
+    return { totalPage, page, perPage, product };
   }
 
   async updateStock(productId, newQuantity) {
-    // const { productId, quantity, productName } = product;
-
-    // const currQuantity = await this.getQuantity(productId);
-    // const newQuantity = currQuantity - quantity;
-    // if (newQuantity < 0) {
-    //   throw new Error(
-    //     `${productName}의 재고가 부족합니다. 현재 수량 : ${currQuantity}`,
-    //   );
-    // }
     return await Product.findOneAndUpdate(
       { _id: productId },
       { stock: newQuantity },

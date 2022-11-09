@@ -33,7 +33,9 @@
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "nodemon": "^2.0.15",
-    "prettier": "2.7.1"
+    "prettier": "2.7.1",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.6.0"
   },
   "eslintConfig": {
     "extends": [

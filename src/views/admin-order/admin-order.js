@@ -1,5 +1,7 @@
 import * as Api from "../api.js";
 // import { createNavbar } from "../header-footer/navbar.js";
+import drawHeaderFooter from "/navbar.js";
+drawHeaderFooter();
 
 const admin_orderlist_table = document.querySelector("#admin-orderlist-table");
 const modal = document.querySelector("#modal");

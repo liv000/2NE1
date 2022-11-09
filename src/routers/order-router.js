@@ -88,4 +88,20 @@ orderRouter.get(
   }),
 );
 
+orderRouter.get(
+  '/',
+  loginRequired,
+  asyncHandler(async (req, res, next) => {
+    const { currentUserId } = req;
+    const page = Number(req.query.page || 1);
+    const perPage = Number(req.query.perPage || 5);
+    const orderList = await orderService.getOrderListByUser(
+      currentUserId,
+      page,
+      perPage,
+    );
+    res.status(201).json(orderList);
+  }),
+);
+
 export { orderRouter };

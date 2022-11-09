@@ -81,7 +81,9 @@ orderRouter.get(
   loginRequired,
   authAdmin,
   asyncHandler(async (req, res, next) => {
-    const getAllOrder = await orderService.getAllOrderList();
+    const page = Number(req.query.page || 1);
+    const perPage = Number(req.query.perPage || 5);
+    const getAllOrder = await orderService.getAllOrderList(page, perPage);
     res.status(201).json(getAllOrder);
   }),
 );

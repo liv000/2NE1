@@ -5,40 +5,53 @@ const tbody = document.querySelector('.table > tbody');
 
 // Global Variable
 let idx = 1;
-let categoryIdToEdit;
-let categoryId = '';
+let productId = '';
+let productTitle = '';
 
-// 1. 제품 목록 데이터 요청하고 불러오기
+// 1. 제품 목록 데이터 요청
 const products = await Api.post('/api/product/list');
 
-// 2. 카테고리 목록 데이터 요청하고 불러오기
-const categories = await Api.get('/api/category/list', '');
-categories.forEach((category) => {
-  // Variables
-  console.log(category);
-});
+// TODO 수정, 삭제, 페이지네이션, 필터
+async function addAdminProductList() {
+  products.forEach((product) => {
+    if (product.category === null) return;
 
-products.forEach((product) => {
-  // Variables
-  const { _id, price, stock, category } = product;
-  const productTitle = product.title;
-  const brandTitle = product.brandInfo.title;
-  const updatedAt = product.createdAt.slice(0, 10);
+    // Variables
+    const { _id, price, stock } = product;
+    const { categoryName } = product.category;
+    productTitle = product.title;
+    const brandTitle = product.brandInfo.title;
+    const updatedAt = product.createdAt.slice(0, 10);
 
-  // 불러온 데이터 렌더링
-  tbody.innerHTML += drawAdminProductList(
-    idx++,
-    brandTitle,
-    productTitle,
-    price,
-    stock,
-    updatedAt,
-    _id,
-  );
-});
+    //
+    tbody.insertAdjacentHTML(
+      'beforeend',
+      drawAdminProductList(
+        idx++,
+        categoryName,
+        brandTitle,
+        productTitle,
+        price,
+        stock,
+        updatedAt,
+        _id,
+      ),
+    );
+  });
+
+  //
+  tbody.addEventListener('click', (e) => {
+    if (e.target.tagName !== 'A') return;
+    productId = e.target.id.slice(7);
+    window.location.href = `/detail?product=${productId}`;
+  });
+}
+
+addAdminProductList();
 
 function drawAdminProductList(
   idx,
+  categoryName,
   brandTitle,
   productTitle,
   price,
@@ -50,8 +63,8 @@ function drawAdminProductList(
   <tr>
     <td><input type="checkbox"></td>
     <td>${idx}</td>
-    <td>${0}</td>
-    <td><a href="/detail?id=${_id}"><span>[${brandTitle}]<span> ${productTitle}</a></td>
+    <td>${categoryName}</td>
+    <td><a id="detail-${_id}">[${brandTitle}] ${productTitle}</a></td>
     <td>${price.toLocaleString()}원</td>
     <td>${stock}개</td>
     <td>${updatedAt}</td>

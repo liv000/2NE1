@@ -6,22 +6,26 @@ const tbody = document.querySelector('.table > tbody');
 // Global Variable
 let idx = 1;
 let productId = '';
-let productTitle = '';
 
 // 1. 제품 목록 데이터 요청
-const products = await Api.post('/api/product/list');
+const productList = await Api.post('/api/product/list?page=1&perPage=10');
+const products = productList.product;
 
 // TODO 수정, 삭제, 페이지네이션, 필터
 async function addAdminProductList() {
   products.forEach((product) => {
-    if (product.category === null) return;
-
     // Variables
     const { _id, price, stock } = product;
-    const { categoryName } = product.category;
-    productTitle = product.title;
     const brandTitle = product.brandInfo.title;
     const updatedAt = product.createdAt.slice(0, 10);
+    const productTitle = product.title;
+    let categoryName = '';
+
+    if (product.category) {
+      categoryName = product.category.categoryName;
+    } else {
+      categoryName = '';
+    }
 
     //
     tbody.insertAdjacentHTML(

@@ -1,5 +1,5 @@
 import * as Api from '../api.js';
-// import {data} from "/dummy.js";
+// import {data} from "../dummy.js";
 
 
 const orderTable = document.querySelector("#order-table");
@@ -9,7 +9,7 @@ const modalCloseButton = document.querySelector("#modalCloseButton");
 const deleteCompleteButton = document.querySelector("#deleteCompleteButton");
 const deleteCancelButton = document.querySelector("#deleteCancelButton");
 
-orderList();
+draworderList();
 addAllEvents();
 
 function addAllEvents() {
@@ -19,7 +19,7 @@ function addAllEvents() {
     deleteCancelButton.addEventListener("click", cancelDelete);
 }
 let orderIdToDelete;
-async function orderList() {
+async function draworderList() {
     const orders = await Api.get('/api/order');
     console.log(orders);
     orders.map((order) => {

@@ -20,7 +20,7 @@ function addAllEvents() {
 }
 let orderIdToDelete;
 async function orderList() {
-    const orders = await Api.get('/api/order/6363c71fd4e0079222dab56c');
+    const orders = await Api.get('/api/order');
     console.log(orders);
     orders.map((order) => {
         const { _id, code, title, price, shipping }= order;

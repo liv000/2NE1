@@ -1,3 +1,5 @@
+
+
 .admin-memberList-section{
     display:flex;
     flex-direction: column;
@@ -9,18 +11,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 150px;
 }
 
 
-.memberList-section{
-    display: flex;
-    flex-direction: row;
-    height:50px;
-    background-color: #F7ECDE;
-
+thead{
+    height:25px;
+    /* background-color: #54BAB9;
+    color: #F7ECDE; */
+}
+.userList{
+    padding: auto;
 }
 #admin-memberList{
-    background-color: #54BAB9;
+    /* background-color: #54BAB9; */
     text-align: center;
+}
+/* #pagination_section{
+    display: flex;
+    flex-direction:row;
+} */
+#pagination{
+    margin: 50px 500px;
+    width: 50%;
 }

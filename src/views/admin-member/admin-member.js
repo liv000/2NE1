@@ -26,7 +26,7 @@ function addAllEvents() {
 // 페이지 로드 시 실행, 삭제할 회원 id를 전역변수로 관리함
 let userIdToDelete;
 async function drawUsers() {
-    const users = await Api.get("/api/userlist");
+    const users = await Api.get("/api/admin/userList");
     console.log(users);
     for (const user of users) {
         const { _id, email, fullName, password, createdAt } = user;
@@ -35,7 +35,7 @@ async function drawUsers() {
         admin_memberList.insertAdjacentHTML(
             "beforeend",
             `
-                <tr id="user-${_id}">
+                <tr class="userList" id="user-${_id}">
                     <td>${date}</td>
                     <td>${email}</td>
                     <td>${fullName}</td>

@@ -7,38 +7,26 @@ import {
   authAdmin,
   contentType,
 } from '../middlewares';
-import { userModel } from '../db';
+
 import { orderService, shippingService, productService } from '../services';
 const orderRouter = Router();
 const asyncHandler = require('../utils/async-handler');
-
-// 주문하기
-// 바디에 상품 아이디와 상품 개수
-// 잔여 상품 카운트 할 지 ?
-orderRouter.post(
-  '/orderInfo',
-  loginRequired,
-  validCallNumberCheck,
-  async (req, res, next) => {
-    const orderInfo = req.body;
-    const startOrder = await orderService.setOrderInfo(orderInfo);
-    res.status(201).json(startOrder);
-  },
-);
 
 orderRouter.post(
   '/',
   loginRequired,
   contentType,
   asyncHandler(async (req, res, next) => {
-    const { products, orderId } = req.body;
+    const { products, ...rest } = req.body;
+
+    const userId = req.currentUserId;
+    rest.userId = userId;
+    const orderInfo = rest;
 
     await productService.setStock(products);
-    const newOrder = await orderService.order(products, orderId);
+    const newOrder = await orderService.order(products, orderInfo);
 
     res.status(201).json(newOrder);
-
-    // res.render('order/orderComplete'); // todo 주문 완료 페이지로 이동
   }),
 );
 

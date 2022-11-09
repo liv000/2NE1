@@ -85,31 +85,24 @@
 
       <div class="wrapper is-flex is-flex-wrap-nowrap">
         <div class="left-container">
-          <!-- 제품 이미지 슬라이드 -->
-          <div class="auto-silder">
-            <div class="slider-items">
-              <div class="slider-item">
-                <img src="images/product_02.jpg" alt="비타민B" />
-              </div>
-            </div>
+          <!-- 제품 이미지 -->
+          <div class="is-flex">
+            <img src="" alt="제품이미지" class="product-image" />
           </div>
 
           <!-- 구매하기 -->
           <aside class="product-purchase mt-6">
             <section>
-              <p class="ctg-title">필리</p>
-              <h1 class="title mt-4">비타민B</h1>
-              <p class="price">12000</p>
+              <p class="brand-title"></p>
+              <h1 class="product-title mt-4"></h1>
+              <p class="product-price"></p>
               <p class="review-more mt-5">
                 후기 <span class="review-count">13</span
                 ><span class="icon-more">></span>
               </p>
 
               <!-- 제품설명 -->
-              <div class="description mt-5 pt-5 pb-5">
-                필리 비타민B는 7가지 주요 비타민B군의 비타민을 충분히 섭취할 수
-                있고 우수한 품질관리를 통해 만들었습니다.
-              </div>
+              <div class="product-description mt-5 pt-5 pb-5"></div>
 
               <!-- 배송비 -->
               <div class="delivery mt-5 is-flex">
@@ -137,22 +130,24 @@
                 </p>
 
                 <div class="scroll-box">
-                  <p class="product-title">비타민B</p>
+                  <p class="cart-title"></p>
 
                   <!-- 카운트 -->
-                  <div class="cart-count">
+                  <!-- <div class="cart-count">
                     <p>수량</p>
                     <div class="count-wrapper">
                       <button class="btn-minus"><span>-</span></button
                       ><span class="cnt-number">1</span
                       ><button class="btn-plus"><span>+</span></button>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div>
-                    <div class="product-price">
+                    <div
+                      class="is-flex is-justify-content-space-between cart-total"
+                    >
                       <p>제품 금액</p>
-                      <p class="total-price">12,000원</p>
+                      <p class="cart-price"></p>
                     </div>
 
                     <!-- 장바구니 담기 버튼 -->
@@ -184,62 +179,27 @@
           <section class="contents">
             <article class="product-content">
               <h2>제품설명</h2>
-              <div class="content-images">
-                <img src="images/detail_01.jpg" alt="제품이미지" />
-                <img src="images/detail_02.jpg" alt="제품이미지" />
-                <img src="images/detail_03.jpg" alt="제품이미지" />
+              <div>
+                <img src="" alt="제품상세이미지" class="product-detail-image" />
               </div>
             </article>
 
             <!-- 제품후기 -->
             <article class="review-content mt-6">
               <h2>제품후기</h2>
-              <!-- 후기 남기기 -->
               <div>
                 <h3>제품후기 남기기</h3>
-
                 <div class="is-flex">
-                  <input type="text" />
-                  <button>등록</button>
+                  <input type="text" id="product-review" />
+                  <button class="review-btn">등록</button>
                 </div>
               </div>
 
               <!-- 후기목록 -->
               <div class="review-list">
-                <div class="customer-review">
-                  <h4 class="author">백**</h4>
-                  <div class="customer-rating">
-                    <span class="date">2022.10.19</span>
-                  </div>
-                  <div class="img">
-                    <p class="text">
-                      목넘김도 괜찮아요. 인제 먹은지 얼마안되서 좀더 먹어봐야
-                      할것같은데....
-                    </p>
-                  </div>
-                </div>
-                <div class="customer-review">
-                  <h4 class="author">박**</h4>
-                  <div class="customer-rating">
-                    <span class="date">2022.08.30</span>
-                  </div>
-                  <div class="img">
-                    <p class="text">
-                      먹기편하고 좋아요~ 복용한지 벌써 80일이 넘었네요.ㅎㅎㅎ
-                    </p>
-                  </div>
-                </div>
-                <div class="customer-review">
-                  <h4 class="author">오**</h4>
-                  <div class="customer-rating">
-                    <span class="date">2022.08.09</span>
-                  </div>
-                  <div class="img">
-                    <p class="text">
-                      오래동안 먹고 있는데 효과 만쩜인거 같아요!!! 피곤한게 덜
-                      해졌어요
-                    </p>
-                  </div>
+                <div>
+                  <h4 class="customer-name"></h4>
+                  <p class="review-content"></p>
                 </div>
               </div>
             </article>

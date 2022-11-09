@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 body {
   position: relative;
 }
@@ -28,8 +27,8 @@ main {
 }
 
 /* 제품 이미지*/
-.slider-item img {
-  width: 100%;
+.product-image {
+  margin: auto;
 }
 
 /* 스크롤 메뉴 */
@@ -63,7 +62,7 @@ main {
   margin: 0 auto;
 }
 
-.description {
+.product-description {
   border: solid #e2e2e2;
   border-width: 1px 0;
   font-size: 16px;
@@ -144,9 +143,7 @@ main {
   text-align: center;
 }
 
-.product-price {
-  display: flex;
-  justify-content: space-between;
+.cart-total {
   padding-top: 31px;
 }
 

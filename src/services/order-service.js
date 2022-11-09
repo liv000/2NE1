@@ -39,8 +39,8 @@ class OrderService {
     return await orderModel.hasOrder(userId);
   }
 
-  async getAllOrderList() {
-    return await orderModel.getAllOrderList();
+  async getAllOrderList(page, perPage) {
+    return await orderModel.getAllOrderList(page, perPage);
   }
 
   async getOrderByUserId(userId, productId) {

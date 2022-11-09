@@ -62,8 +62,16 @@ export class OrderModel {
     return getOrder.length >= 1;
   }
 
-  async getAllOrderList() {
-    return Order.find({});
+  async getAllOrderList(page, perPage) {
+    const [total, order] = await Promise.all([
+      Order.countDocuments({}),
+      Order.find({ status: 1 })
+        .skip(perPage * (page - 1))
+        .limit(perPage)
+        .sort({ createdAt: 1 }),
+    ]);
+    const totalPage = Math.ceil(total / perPage);
+    return { totalPage, page, perPage, order };
   }
 
   async getOrderByUserId(userId, productId) {

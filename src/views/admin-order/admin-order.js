@@ -90,7 +90,6 @@ async function drawOrderList() {
             const order_cancel_btn = document.getElementById(`deleteBtn${_id}`);
             order_cancel_btn.disabled = true;
             selectBtnBox.disabled = true;
-            
         }
         deleteBtn.addEventListener('click', () => {
             userId = _id;

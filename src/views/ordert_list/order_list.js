@@ -60,6 +60,7 @@ async function draworderList() {
             </tbody>
             `
         );
+        
         const deleteBtn = document.querySelector(`#deleteBtn${_id}`);
         deleteBtn.addEventListener("click", () => {
             orderIdToDelete = _id;

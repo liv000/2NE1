@@ -58,7 +58,9 @@ table{
 thead{
     text-align: center;
 }
-
+tbody tr a{
+    font-size: 5px;
+}
 #more-list-button{
     width:1000px;
     height:45px;

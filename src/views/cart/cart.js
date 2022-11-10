@@ -1,8 +1,7 @@
 // cart.js
 import * as Api from '../api.js';
 import { addCommas, convertToNumber } from '../useful-functions.js';
-import { data } from './dummy.js';
-console.log('카트리스트');
+console.log('카트');
 // 요소 모음
 const productTest = document.querySelector('#products-test');
 const productList = document.querySelector('#products');
@@ -11,6 +10,7 @@ const productTotal = document.querySelector('#product-total');
 const totalPrice = document.querySelector('#total-price');
 const deliveryPrice = document.querySelector('#delivery-price');
 
+const cartList = JSON.parse(localStorage.getItem('products'));
 insertTest();
 insertProductElement();
 drawOrderCard();
@@ -47,8 +47,10 @@ function insertProductElement() {
 
 //결제정보 카드에 상품 수와 가격 삽입
 async function drawOrderCard() {
-  let price = 20000;
-  productCount.innerHTML = `${data.total}개`;
+  console.log(cartList);
+  cartList.map((item) => {});
+  let price = Number(item.productPrice);
+  productCount.innerHTML += Number(item.quantity);
   productTotal.innerHTML = `${addCommas(price)}원`;
   deliveryPrice.innerHTML = `3,000원`;
   totalPrice.innerHTML = `${addCommas(price + 3000)}원`;
@@ -78,8 +80,7 @@ async function getData() {
 //여기서부터 detail.js에 들어갈 아이
 async function insertTest() {
   console.log('장바구니상품 test');
-  const cartList = localStorage.getItem('products');
-  console.log(cartList);
+  // console.log(cartList);
   const test = await getData();
   console.log('테스트', test.product);
   test?.product.map((item) => {

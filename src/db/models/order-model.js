@@ -1,7 +1,6 @@
 import { model } from 'mongoose';
 import { OrderSchema } from '../schemas/order-schema';
-const ship = require('../../utils/shippingStatus');
-
+const constants = require('../../constraint/shippingStatus');
 const Order = model('orders', OrderSchema);
 
 export class OrderModel {
@@ -15,19 +14,16 @@ export class OrderModel {
       products: productInfo,
       totalAmount: totalAmount,
     });
-    // 배열을 삽입할 땐 push 오퍼레이터를 사용하는 것이 아닌지?
   }
   async updateShippingStatus(orderId, status) {
     const currStatus = await this.getStatus(orderId);
-
-    if (currStatus === ship.CANCELED) {
-      throw new Error(`배송 상태가 ${currStatus} 입니다.`);
+    if (currStatus === constants.CANCELED) {
+      throw new Error(`이미 취소된 배송 입니다.`);
     }
 
-    if (currStatus === 'shipped' && status === 'canceled') {
+    if (currStatus === constants.SHIPPING && status === constants.CANCELED) {
       throw new Error('취소 불가 : 이미 배송이 시작되었습니다.');
     }
-    // 특정 필드를 수정할 땐 set이라던데?
     return await Order.findOneAndUpdate({ _id: orderId }, { shipping: status });
   }
 
@@ -44,7 +40,7 @@ export class OrderModel {
   async updateOrder(orderId, newInfo) {
     const currStatus = await this.getStatus(orderId);
 
-    if (currStatus === 'shipped') {
+    if (currStatus === constants.SHIPPING) {
       throw new Error('취소 불가 : 이미 배송이 시작되었습니다.');
     }
 
@@ -58,14 +54,45 @@ export class OrderModel {
   async hasOrder(userId) {
     const getOrder = await Order.find({
       userId: userId,
-      shipping: { $in: ['pending', 'shipping'] },
+      shipping: { $in: [constants.SHIPPING, constants.PENDING] },
     }).populate('userId');
 
     return getOrder.length >= 1;
   }
 
-  async getAllOrderList() {
-    return Order.find({});
+  async getAllOrderList(page, perPage) {
+    const [total, order] = await Promise.all([
+      Order.countDocuments({}),
+      Order.find({ status: 1 })
+        .skip(perPage * (page - 1))
+        .limit(perPage)
+        .sort({ createdAt: 1 }),
+    ]);
+    const totalPage = Math.ceil(total / perPage);
+    return { totalPage, page, perPage, order };
+  }
+
+  async getOrderByUserId(userId, productId) {
+    const { order } = await this.getOrderListByUser(userId, 0, 0);
+
+    const isOrdered = order.find(
+      (orderLog) => orderLog.products[0].productId === productId,
+    );
+
+    return isOrdered;
+  }
+
+  async getOrderListByUser(userId, page, perPage) {
+    const [total, order] = await Promise.all([
+      Order.countDocuments({}),
+      Order.find({ userId })
+        .skip(perPage * (page - 1))
+        .limit(perPage)
+        .sort({ createdAt: 1 }),
+    ]);
+    const totalPage = Math.ceil(total / perPage);
+    console.log(order);
+    return { totalPage, page, perPage, order };
   }
 }
 

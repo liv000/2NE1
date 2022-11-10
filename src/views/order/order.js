@@ -1,6 +1,6 @@
 //order.js
+import * as Api from '/api.js';
 import { addCommas, convertToNumber } from '../useful-functions.js';
-import { data } from '../dummy.js';
 const receiverNameInput = document.querySelector('#receiverName');
 const receiverPhoneNumberInput = document.querySelector('#receiverPhoneNumber');
 const postalCodeInput = document.querySelector('#postalCode');
@@ -55,8 +55,8 @@ function searchAddress() {
 
 async function doCheckout() {
   // 각 입력값 가져옴
-  const receiverName = receiverNameInput.value;
-  const receiverPhoneNumber = receiverPhoneNumberInput.value;
+  const fullName = receiverNameInput.value;
+  // const phoneNumber = receiverPhoneNumberInput.value;
   const postalCode = postalCodeInput.value;
   const address1 = address1Input.value;
   const address2 = address2Input.value;
@@ -66,57 +66,48 @@ async function doCheckout() {
   if (!receiverName || !receiverPhoneNumber || !postalCode || !address2) {
     return alert('배송지 정보를 모두 입력해 주세요.');
   }
-
+  const cartList = JSON.parse(localStorage.getItem('products'));
+  console.log(cartList);
   // 객체 만듦
-  const data2 = {
-    receiverName,
-    receiverPhoneNumber,
-    postalCode,
-    address1,
-    address2,
-    request,
-  };
-
-  // JSON 만듦
-  const dataJson = JSON.stringify(data2);
-  console.log(dataJson);
-  const Test = {
-    products: [
-      {
-        productId: '636651282a11afcbcfb0b97b',
-        productName: '압박밴드',
-        productPrice: 17900,
-        quantity: 3,
-      },
-    ],
-    fullName: '주문자',
-    phoneNumber: '010-7777-8888',
+  const data = {
+    products: cartList,
+    fullName,
+    phoneNumber: '010-0000-0000',
     address: {
-      postalCode: '12345',
-      address1: 'sdafasf',
-      address2: '성남',
+      postalCode,
+      address1,
+      address2,
     },
   };
-  console.log(Test);
-  const testJson = JSON.stringify(Test);
+  // console.log('data: ', data);
+  // // JSON 만듦
+  const dataJson = JSON.stringify(data);
+  console.log(dataJson);
   const auth =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxZjQ1ZDc4YTcwNWI2NjQ4ZTE1ZDgiLCJyb2xlIjoxLCJpYXQiOjE2NjczNjM5ODd9.3N8s9wjh-QpD9BK2kDeV0g2QVgO5vXovvjtx_a7VSqg';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzY5ZjUwNzI3YjkyNTEyYWI1MjgyYTkiLCJyb2xlIjowLCJpYXQiOjE2Njc4ODgzOTl9.STJ5OF4WJuVnvamz0RC--ioDW_lgl2-RghzNyZhA43k';
   // POST 요청
-  const res = await fetch('/api/order', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${auth}`,
-    },
-    body: testJson,
-  });
+  //   const res = await fetch('/api/order/', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: `Bearer ${auth}`,
+  //     },
+  //     body: dataJson,
+  //   });
 
-  if (res.status === 201) {
-    console.log(res);
+  //   if (res.status === 201) {
+  //     console.log(res);
+  //     alert('주문에 성공하였습니다!');
+  //     location.href = 'complete';
+  //   } else {
+  //     alert('주문에 실패하였습니다...');
+  //   }
+  // }
+  const res = await Api.post('/api/order/', data);
+  if (res) {
+    console.log('res', res);
     alert('주문에 성공하였습니다!');
     location.href = 'complete';
-  } else {
-    alert('주문에 실패하였습니다...');
   }
 }
 

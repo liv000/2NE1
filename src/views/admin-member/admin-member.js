@@ -40,15 +40,14 @@ async function drawUsers() {
                     <td>${email}</td>
                     <td>${fullName}</td>
                     <td>${password}</td>
+                </tr>
+            `
+        );
                     // <td>
                     //     <div>
                     //         <button class="button" id="deletebtn-${_id}" >회원정보 삭제</button>
                     //     </div>
                     // </td>
-                </tr>
-            `
-        );
-
     //     // 요소 선택
     //     const deletebtn = document.querySelector(`#deletebtn-${_id}`);
     //     // 이벤트 - 삭제버튼 클릭 시 Modal 창 띄우고, 동시에, 전역변수에 해당 주문의 id 할당

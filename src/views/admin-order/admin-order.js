@@ -66,7 +66,7 @@ async function drawOrderList() {
                             </div>
                         </td>
                         <td>
-                            <button class="button" id="deleteBtn${_id}" >주문 삭제</button>
+                            <input type="button" class="button" id="deleteBtn${_id}" >주문 삭제</input>
                         </td>
                     </tr>
                 </tbody>
@@ -87,7 +87,15 @@ async function drawOrderList() {
         deleteBtn.addEventListener('click', () => {
             userId = _id;
             openModal(_id);
+            const deletedItem = document.querySelector(`#d${_id}`);
+        console.log(deletedItem);
+            deletedItem.style.backgroundColor = 'grey';
+        const order_cancel_btn = document.getElementById(`deleteBtn${_id}`);
+        order_cancel_btn.disabled = true;
         });
+        if(shipping==="CANCELED"){
+            
+        }
     });
 }
 // function order_cancel(){
@@ -125,13 +133,13 @@ async function deleteOrderData(e) {
         alert('주문 정보가 삭제되었습니다.');
 
         // 삭제한 아이템 화면에서 지우기
-        const deletedItem = document.querySelector(`#d${_id}`);
-        console.log(deletedItem);
+        // const deletedItem = document.querySelector(`#d${_id}`);
+        // console.log(deletedItem);
         // deleteCompleteButton.addEventListener("click",)
         // deletedItem.innerHTML=`<tr style="background-color:gray"><tr></tr></tr>`
-        deletedItem.style.background = 'red';
-        const order_cancel_btn = document.getElementById(`#deleteBtn${_id}`);
-        order_cancel_btn.disabled = true;
+        // deletedItem.style.backgroundColor = 'red';
+        // const order_cancel_btn = document.getElementById(`deleteBtn${_id}`);
+        // order_cancel_btn.disabled = true;
        // 전역변수 초기화
         _id = '';
 

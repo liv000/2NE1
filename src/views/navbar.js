@@ -1,29 +1,32 @@
+import navStyle from "./nav-style.js";
+
 const header = document.querySelector("header");
 const footer = document.querySelector("footer");
-drawHeaderFooter();
+// drawHeaderFooter();
 
-function drawHeaderFooter() {
-    drawNavbar();
-    drawFooter();
-}
+// function drawHeaderFooter() {
+//     drawNavbar();
+//     drawFooter();
+// }
 
 async function drawNavbar(){
-    document.header.prepend(header_section);
+    // document.header.prepend(header_section);
     
     if(isLogin){
-        document.header.prepend(userHeader);
+        header.prepend(userHeader);
     } else if(isAdmin){
-        document.header.prepend(AdminHeader);
+        header.prepend(AdminHeader);
     }else{
-        documnet.header.prepend(nonUser);
+        header.prepend(nonUser);
     }
 }
-const header_section = header.insertAdjacentHTML(
+header.insertAdjacentHTML(
         "beforeend",
-        `    
+        `
+        <style>${navStyle}</style>    
         <nav id="header-logo">
         <a href="https://bulma.io">
-            <img src="drug.png" width="100" height="28">
+            <img src="../drug.png" width="100" height="28">
         </a>
         <a id="header-logo-text">약쟁이네 약팔이</a>
         <a href="#" class="navbar-toogleBtn">
@@ -132,10 +135,10 @@ const nonUser = () => {
 }
 
 async function drawFooter() {
-    document.footer.append(footer_section);
+    // document.footer.append(footer_section);
 }
-
-const footer_section = footer.insertAdjacentHTML(
+// const footer_section = 
+footer.insertAdjacentHTML(
         "beforeend",
         `
         <div id="footer" class="store">
@@ -191,4 +194,4 @@ const footer_section = footer.insertAdjacentHTML(
 );
 
 
-export default drawHeaderFooter;
+// export default drawHeaderFooter;

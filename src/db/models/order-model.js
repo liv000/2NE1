@@ -29,7 +29,7 @@ export class OrderModel {
 
   async getStatus(orderId) {
     const status = await Order.findOne({ _id: orderId });
-    console.log(status);
+
     return status.shipping;
   }
 
@@ -63,8 +63,8 @@ export class OrderModel {
 
   async getAllOrderList(page, perPage) {
     const [total, order] = await Promise.all([
-      Order.countDocuments({}),
-      Order.find({ status: 1 })
+      Order.countDocuments(),
+      Order.find()
         .skip(perPage * (page - 1))
         .limit(perPage)
         .sort({ createdAt: 1 }),
@@ -92,7 +92,7 @@ export class OrderModel {
         .sort({ createdAt: 1 }),
     ]);
     const totalPage = Math.ceil(total / perPage);
-    console.log(order);
+
     return { totalPage, page, perPage, order };
   }
 }

@@ -128,7 +128,9 @@ async function deleteOrderData(e) {
         const deletedItem = document.querySelector(`#${_id}`);
         // deleteCompleteButton.addEventListener("click",)
         // deletedItem.innerHTML=`<tr style="background-color:gray"><tr></tr></tr>`
-        deletedItem.disabled = true;
+        deletedItem.style.background = 'red';
+        const order_cancel_btn = document.getElementById(`#deleteBtn${_id}`);
+        order_cancel_btn.disabled = true;
        // 전역변수 초기화
         _id = '';
 

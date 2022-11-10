@@ -1,10 +1,15 @@
-import * as Api from '/api.js';
-import {data} from "/dummy.js";
+import * as Api from '../api.js';
+// import {data} from "../dummy.js";
 
-console.log("dd");
+
 const orderTable = document.querySelector("#order-table");
+const modal = document.querySelector("#modal");
+const modalBackground = document.querySelector("#modalBackground");
+const modalCloseButton = document.querySelector("#modalCloseButton");
+const deleteCompleteButton = document.querySelector("#deleteCompleteButton");
+const deleteCancelButton = document.querySelector("#deleteCancelButton");
 
-orderList();
+draworderList();
 addAllEvents();
 
 function addAllEvents() {
@@ -14,8 +19,10 @@ function addAllEvents() {
     deleteCancelButton.addEventListener("click", cancelDelete);
 }
 let orderIdToDelete;
-async function orderList() {
-    data.items.map((order) => {
+async function draworderList() {
+    const orders = await Api.get('/api/order/?page=1&perPage=4');
+    console.log(orders);
+    orders.map((order) => {
         const { _id, code, title, price, shipping }= order;
         orderTable.insertAdjacentHTML(
             'beforeend',
@@ -42,7 +49,7 @@ async function orderList() {
 async function deleteData(e){
     e.preventDefault();
     try{
-        await Api.delete("/api/orders", orderIdToDelete);
+        await Api.patch("/order/cancel", orderIdToDelete);
 
     // 삭제 성공
     alert("주문 정보가 삭제되었습니다.");

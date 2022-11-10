@@ -1,20 +1,17 @@
-#header-bar{
-    clear:both;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+const navStyle = `
 
-    height:212px;
-    background: white;
-    margin:0 auto;
-    padding:0 55px;
-    width: 1280px;
-    /* font-size: 16px; */
-    font-size: 100%;
-    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
-    box-sizing: border-box;
-    
-    height: 156px;
+header{
+    margin: 10px;
+    padding: 10px;
+    height: auto;
+}
+#header-navbar{
+    /* background: #54BAB9; */
+    background-color: #F7ECDE;
+    color: #F7ECDE;
+    height:auto;
+    margin: 0px 10px;
+    text-align:center;
 }
 #header-text{
     font-weight: bold;
@@ -32,10 +29,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;;
+    height: 150px;;
+}
+
+#header-logo-text {
+    text-decoration : none;
+    color: #54BAB9;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0 20px;
+}
+a{
+    font-weight: bold;
 }
 #header-navbar{
-    position: relative;
+    /* position: relative;
+    
     box-sizing: border-box;
     margin-bottom: 2px;
     height: 54px;
@@ -44,7 +54,8 @@
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: nowrap; */
+    display: flex;
 }
 /* @media screen and (max-width: 768px) {
     #header-bar{
@@ -132,8 +143,17 @@ footer{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: auto; 
 }
 #footer-text{
     /* width: 200px;
     height: 100px; */
 }
+.hello{
+    width:2000px;
+    height: 100px;
+}
+
+`
+
+export default navStyle;

@@ -17,15 +17,9 @@ async function addAdminProductList() {
     // Variables
     const { _id, price, stock } = product;
     const brandTitle = product.brandInfo.title;
+    const { categoryName } = product.category;
     const updatedAt = product.createdAt.slice(0, 10);
     const productTitle = product.title;
-    let categoryName = '';
-
-    if (product.category) {
-      categoryName = product.category.categoryName;
-    } else {
-      categoryName = '';
-    }
 
     //
     tbody.insertAdjacentHTML(
@@ -65,7 +59,6 @@ function drawAdminProductList(
 ) {
   const productListTemplate = `
   <tr>
-    <td><input type="checkbox"></td>
     <td>${idx}</td>
     <td>${categoryName}</td>
     <td><a id="detail-${_id}">[${brandTitle}] ${productTitle}</a></td>

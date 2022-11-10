@@ -76,19 +76,6 @@
       <form class="box register-user-form-box" id="registerUserForm">
         <p class="title is-5 has-text-primary">환영합니다!</p>
         <div class="field">
-          <label class="label" for="fullNameInput">이름</label>
-          <div class="control">
-            <input
-              class="input"
-              id="fullNameInput"
-              type="text"
-              placeholder="유재석"
-              autocomplete="on"
-            />
-          </div>
-        </div>
-
-        <div class="field">
           <label class="label" for="emailInput">이메일</label>
           <div class="control">
             <input
@@ -96,6 +83,39 @@
               id="emailInput"
               type="email"
               placeholder="abc@example.com"
+              autocomplete="on"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="is-flex">
+            <label class="label" for="emailCodeInput">이메일 코드</label>
+            <button
+              class="button is-small ml-2 mb-2"
+              id="submitEmailCodeButton"
+            >
+              이메일 인증하기
+            </button>
+          </div>
+          <div class="control">
+            <input
+              class="input"
+              id="emailCodeInput"
+              type="emailCode"
+              placeholder="******"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label" for="fullNameInput">이름</label>
+          <div class="control">
+            <input
+              class="input"
+              id="fullNameInput"
+              type="text"
+              placeholder="유재석"
               autocomplete="on"
             />
           </div>
@@ -126,7 +146,6 @@
             />
           </div>
         </div>
-
         <button class="button is-primary is-fullwidth" id="submitButton">
           회원가입하기
         </button>

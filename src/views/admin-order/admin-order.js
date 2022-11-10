@@ -39,25 +39,25 @@ async function drawOrderList() {
                             <div class="select" >
                                 <select class="selectBtn${_id}">
                                     <option ${
-                                    shipping === 'pending' ? 'selected' : ''
+                                    shipping === 'PENDING' ? 'selected' : ''
                                     } 
                                         value="pending">
                                             배송준비중
                                     </option>
                                     <option ${
-                                    shipping === 'shipping' ? 'selected' : ''
+                                    shipping === 'SHIPPING' ? 'selected' : ''
                                     } 
                                         value="shipping">
                                             배송중
                                     </option>
                                     <option ${
-                                    shipping === 'shipped' ? 'selected' : ''
+                                    shipping === 'SHIPPED' ? 'selected' : ''
                                     } 
                                         value="shipped">
                                             배송완료
                                     </option>
                                     <option ${
-                                    shipping === 'canceled' ? 'selected' : ''
+                                    shipping === 'CANCELED' ? 'selected' : ''
                                     } 
                                         value="canceled">
                                             주문취소
@@ -83,7 +83,32 @@ async function drawOrderList() {
             selectBtnBox.className = selectBtnBox[index].className;
             await Api.patch('/api/shipping/admin/edit', null, data);
         });
-
+        function order_cancel(){
+            deletedItem.insertAdjacentHTML('beforeend',
+        `
+        <tr id="${_id}" bgcolor="gray">
+                        <td>${name}</td>
+                        <td>${productName}</td>
+                        <td>${totalAmount}</td>
+                        <td>
+                            <div class="select is-disable" >
+                                <select class="selectBtn${_id}">
+                                    <option ${
+                                    shipping === 'CANCELED' ? 'selected' : ''
+                                    } 
+                                        value="canceled">
+                                            주문취소
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="button is-disable" id="deleteBtn${_id}" >주문 삭제</button>
+                        </td>
+                    </tr>
+        `
+        );
+        }
         deleteBtn.addEventListener('click', () => {
             userId = _id;
             openModal(_id);
@@ -101,9 +126,10 @@ async function deleteOrderData(e) {
 
         // 삭제한 아이템 화면에서 지우기
         const deletedItem = document.querySelector(`#${_id}`);
-        deletedItem.remove();
+        // deleteCompleteButton.addEventListener("click",)
+        order_cancel(deletedItem);
 
-        // 전역변수 초기화
+       // 전역변수 초기화
         _id = '';
 
         closeModal();

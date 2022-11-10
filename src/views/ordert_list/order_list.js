@@ -20,7 +20,7 @@ function addAllEvents() {
 }
 let orderIdToDelete;
 async function draworderList() {
-    const orders = await Api.get('/api/order');
+    const orders = await Api.get('/api/order/?page=1&perPage=4');
     console.log(orders);
     orders.map((order) => {
         const { _id, code, title, price, shipping }= order;
@@ -49,7 +49,7 @@ async function draworderList() {
 async function deleteData(e){
     e.preventDefault();
     try{
-        await Api.delete("/api/orders", orderIdToDelete);
+        await Api.patch("/order/cancel", orderIdToDelete);
 
     // 삭제 성공
     alert("주문 정보가 삭제되었습니다.");

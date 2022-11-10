@@ -11,6 +11,7 @@ header{
     color: #F7ECDE;
     height:auto;
     margin: 0px 10px;
+    text-align:center;
 }
 #header-text{
     font-weight: bold;

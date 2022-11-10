@@ -78,6 +78,8 @@ async function getData() {
 //여기서부터 detail.js에 들어갈 아이
 async function insertTest() {
   console.log('장바구니상품 test');
+  const cartList = localStorage.getItem('products');
+  console.log(cartList);
   const test = await getData();
   console.log('테스트', test.product);
   test?.product.map((item) => {
@@ -112,7 +114,17 @@ async function insertTest() {
       .querySelector(`#addToCartButton-${_id}`)
       .addEventListener('click', async () => {
         try {
-          localStorage.setItem('cartList', JSON.stringify(item));
+          const products = JSON.parse(localStorage.getItem('products')) || [];
+          // if (products == null) products = [];
+          const product = {
+            productId: `${_id}`,
+            productName: `${title}`,
+            productPrice: `${price}`,
+            quantity: 1,
+          };
+          localStorage.setItem('product', JSON.stringify(product));
+          products.push(product);
+          localStorage.setItem('products', JSON.stringify(products));
           console.log(`${title} 이 장바구니에 추가`);
           alert('장바구니에 추가되었습니다.');
         } catch (err) {

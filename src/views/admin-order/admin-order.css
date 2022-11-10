@@ -7,10 +7,15 @@ section{
 .title-header{
     display: flex;
     justify-content: center;
+    align-items: center;
+    /* margin-top: 1px; */
+    margin-bottom: 25px;
 }
 .admin-orderlist-section {
     max-width: 1000px !important;
-    margin: 5rem auto 2rem auto;
+    /* margin: 5rem auto 2rem auto; */
+    /* margin-left: 450px; */
+    margin: 0px auto;
 }
 
 .admin-orderlist-table {
@@ -35,3 +40,15 @@ section{
 .modal .buttons {
     justify-content: center;
 }
+#pagination{
+    margin: 50px 50px;
+    /* width: 50%; */
+}
+#pagination_section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+/* @media screen {
+    
+} */

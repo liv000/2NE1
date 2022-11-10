@@ -1,7 +1,7 @@
-import navStyle from "./nav-style.js";
+import navStyle from './nav-style.js';
 
-const header = document.querySelector("header");
-const footer = document.querySelector("footer");
+const header = document.querySelector('header');
+const footer = document.querySelector('footer');
 // drawHeaderFooter();
 
 // function drawHeaderFooter() {
@@ -9,20 +9,22 @@ const footer = document.querySelector("footer");
 //     drawFooter();
 // }
 // drawNavbar();
-async function drawNavbar(){
-    // document.header.prepend(header_section);
-    
-    if(isLogin){
-        header.prepend(userHeader);
-    } else if(isAdmin){
-        header.prepend(AdminHeader);
-    }else{
-        header.prepend(nonUser);
-    }
+async function drawNavbar() {
+  // document.header.prepend(header_section);
+  const isLogin = localStorage.getItem('token') ? true : false;
+  const isAdmin = localStorage.getItem('admin') ? true : false;
+
+  if (isLogin) {
+    header.prepend(userHeader);
+  } else if (isAdmin) {
+    header.prepend(AdminHeader);
+  } else {
+    header.prepend(nonUser);
+  }
 }
 header.insertAdjacentHTML(
-        "beforeend",
-        `
+  'beforeend',
+  `
         <style>${navStyle}</style>    
         <nav id="header-logo">
         <a href="/">
@@ -106,35 +108,26 @@ header.insertAdjacentHTML(
                 </a>
             </div>
         </nav>
-    `
+    `,
 );
 
-
-const linkTag = {
-    login: '<li><a href="/login" class="button" style="color: #54BAB9">Login</a></li>',
-    logout: '<li><a href="/" id="logout" class="button" style="color: #54BAB9">Logout</a></li>',
-    register: '<li class="register_btn"><a href="/register" class="button" style="color: #54BAB9">Register</a></li>',
-    myPage: '<li><a href="/myPage" class="button" style="color: #54BAB9">myPage</a></li>',
-    admin: '<li><a href="/admin" class="button" style="color: #54BAB9">AdminPage</a></li>',
-}
-
 const userHeader = () => {
-    return linkTag.myPage + linkTag.login;
-}
+  return linkTag.myPage + linkTag.login;
+};
 const AdminHeader = () => {
-    return linkTag.admin + linkTag.logout;
-}
+  return linkTag.admin + linkTag.logout;
+};
 const nonUser = () => {
-    return linkTag.register + linkTag.login;
-}
+  return linkTag.register + linkTag.login;
+};
 
 async function drawFooter() {
-    // document.footer.append(footer_section);
+  // document.footer.append(footer_section);
 }
-// const footer_section = 
+// const footer_section =
 footer.insertAdjacentHTML(
-        "beforeend",
-        `
+  'beforeend',
+  `
         <div id="footer" class="store">
             <div id="footer-text" class="wrapper">
                 <div id="footer-section1">
@@ -184,8 +177,7 @@ footer.insertAdjacentHTML(
             <p class="copyright">ⓒ Carewith Inc. All Right Reversed.</p>
         </div>
     </div> 
-        `
+        `,
 );
-
 
 // export default drawHeaderFooter;

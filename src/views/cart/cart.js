@@ -1,7 +1,6 @@
 // cart.js
 import * as Api from '../api.js';
 import { addCommas, convertToNumber } from '../useful-functions.js';
-import { onClickCart } from './state.js';
 import { data } from './dummy.js';
 console.log('카트리스트');
 // 요소 모음
@@ -11,6 +10,7 @@ const productCount = document.querySelector('#product-count');
 const productTotal = document.querySelector('#product-total');
 const totalPrice = document.querySelector('#total-price');
 const deliveryPrice = document.querySelector('#delivery-price');
+
 insertTest();
 insertProductElement();
 drawOrderCard();
@@ -74,13 +74,14 @@ async function getData() {
 
   return result;
 }
+
+//여기서부터 detail.js에 들어갈 아이
 async function insertTest() {
   console.log('장바구니상품 test');
   const test = await getData();
   console.log('테스트', test.product);
   test?.product.map((item) => {
     const { _id, title, price, thumbnail } = item;
-    // console.log(_id, title, price, thumbnail);
     productTest.insertAdjacentHTML(
       'beforeend',
       `
@@ -99,16 +100,28 @@ async function insertTest() {
             <h5 id="productPrice">${addCommas(price)}원</h5>
           </div>
           
-          <button type="button" class="button is-warning" onClick={(
-            item,
-            _id,
-            ) => onClickCart(item, _id)}
-            id="addToCartButton">
+          <button type="button" class="button is-warning" id="addToCartButton-${_id}">
           장바구니 추가하기
         </button>
         </div>
       </div>
     `,
     );
+    //디테일에 들어갈 카트 버튼
+    document
+      .querySelector(`#addToCartButton-${_id}`)
+      .addEventListener('click', async () => {
+        try {
+          localStorage.setItem('cartList', JSON.stringify(item));
+          console.log(`${title} 이 장바구니에 추가`);
+          alert('장바구니에 추가되었습니다.');
+        } catch (err) {
+          // Key already exists 에러면 아래와 같이 alert함
+          if (err.message.includes('Key')) {
+            alert('이미 장바구니에 추가되어 있습니다.');
+          }
+          console.log(err);
+        }
+      });
   });
 }

@@ -9,24 +9,24 @@ let idx = 1;
 let categoryIdToEdit;
 
 // 1. 카테고리 목록 데이터 요청하고 불러오기
-const categories = await Api.get('/api/category/list', '');
-
+const categoryList = await Api.get('/api/category/list?page=1&perPage=10', '');
+const categories = categoryList.categories;
 // 2.
 categories.forEach((category) => {
   // Variables
   const { _id, categoryName } = category;
   const createdAt = category.createdAt.slice(0, 10);
 
-  // 불러온 데이터 렌더링
+  // // 불러온 데이터 렌더링
   tbody.innerHTML += drawCtgList(idx++, _id, categoryName, createdAt);
 });
 
-// TODO 이벤트 위임 맞게 했는지 질문하기
+// TODO 이벤트 위임
 tbody.addEventListener('click', (e) => {
   if (e.target.tagName !== 'BUTTON') return;
   categoryIdToEdit = e.target.id.slice(5);
   if (e.target.id) {
-    window.location.href = `/admin-category/edit-category.html?id=${categoryIdToEdit}`;
+    window.location.href = `/admin-category-edit?id=${categoryIdToEdit}`;
   }
 });
 
@@ -34,7 +34,6 @@ tbody.addEventListener('click', (e) => {
 function drawCtgList(idx, _id, categoryName, createdAt) {
   const ctgListTemplate = `
   <tr>
-    <td><input type="checkbox"></td>
     <td>${idx}</td>
     <td>${categoryName}</td>
     <td>${createdAt}</td>

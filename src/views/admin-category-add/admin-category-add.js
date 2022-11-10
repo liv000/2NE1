@@ -53,7 +53,7 @@ async function onRegisterCategory(e) {
   data = { categoryName, categoryCode, categoryImg };
 
   // POST 요청
-  const postCategory = await Api.post('/api/category/register', data);
+  const postCategory = await Api.post('/api/category/admin/register', data);
 
   // 카테고리 목록으로 페이지 이동
   window.location.href = '/admin-category';

@@ -12,14 +12,6 @@ import { errorHandler } from './middlewares';
 
 const app = express();
 
-const { swaggerUi, specs } = require('./swagger.js');
-
-app.use(
-  '/api-docs',
-  swaggerUi.serve,
-  swaggerUi.setup(specs, { explorer: true }),
-);
-
 // CORS 에러 방지
 app.use(cors());
 

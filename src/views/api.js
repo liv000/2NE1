@@ -75,7 +75,7 @@ async function patch(endpoint, params = '', data) {
     headers: {
       'Content-Type': 'application/json',
       Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYzYmRiMmY1NGQ4YTg2MDZiNmVkYjAiLCJyb2xlIjoxLCJpYXQiOjE2Njc0ODEwMTR9.1o5xjkV9rAyWMc9SNJxRzF5wWIH_bMIUWKYfSfidYpg',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzY5ZjUwNzI3YjkyNTEyYWI1MjgyYTkiLCJyb2xlIjowLCJpYXQiOjE2Njc4ODgzOTl9.STJ5OF4WJuVnvamz0RC--ioDW_lgl2-RghzNyZhA43k',
     },
     body: bodyData,
   });
@@ -111,7 +111,7 @@ async function del(endpoint, params = '', bodyData) {
     headers: {
       'Content-Type': 'application/json',
       Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYzYmRiMmY1NGQ4YTg2MDZiNmVkYjAiLCJyb2xlIjoxLCJpYXQiOjE2Njc0ODEwMTR9.1o5xjkV9rAyWMc9SNJxRzF5wWIH_bMIUWKYfSfidYpg',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYzYmYzYmFlNGYyY2ZhNDZmMWE3NTMiLCJyb2xlIjowLCJpYXQiOjE2Njc0ODU5MTR9.jkFftJfirD90prlHUo9MHIBtnB2WHKuX_zqyXgOkpvU',
     },
     body: JSON.stringify(bodyData),
   });

@@ -22,17 +22,31 @@ let orderIdToDelete;
 async function draworderList() {
     const orders = await Api.get('/api/order/?page=1&perPage=4');
     console.log(orders);
-    orders.map((order) => {
-        const { _id, code, title, price, shipping }= order;
+    orders.order.map((order) => {
+        const { _id, updatedAt, products, shipping }= order;
+        const date = updatedAt.split("T")[0];
+        const productName = products[0].productName;
+        const productPrice = products[0].productPrice;
+        const quantity = products[0].quantity;
+        let shippingStatus=" ";
+        if(shipping=="pending" || "PENDING"){
+            shippingStatus = "배송 준비중";
+        }else if(shipping=="shipping" || "SHIPPING"){
+            shippingStatus = "배송중";
+        }else if(shipping=="shipped" || "SHIPPED"){
+            shippingStatus = "배송완료";
+        }else if(shipping=="canceled" || "CANCELED"){
+            shippingStatus = "주문취소";
+        }
         orderTable.insertAdjacentHTML(
             'beforeend',
             `
             <tbody>
                 <tr id=no.${_id}>
-                    <td>${code}</td>
-                    <td>${title}</td>
-                    <td>${price}원</td>
-                    <td>${shipping}</td>
+                    <td>${date}</td>
+                    <td>${productName}</td>
+                    <td>${productPrice}원<br>${quantity}개</td>
+                    <td>${shippingStatus}</td>
                     <td><button id="deleteBtn${_id}" class="button">주문취소</button></td>
                 </tr>
             </tbody>

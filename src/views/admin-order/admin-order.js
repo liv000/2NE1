@@ -1,5 +1,5 @@
 import * as Api from "../api.js";
-import drawHeaderFooter from "../navbar.js";
+// import drawHeaderFooter from "../navbar.js";
 
 const admin_orderlist_table = document.querySelector('#admin-orderlist-table');
 const modal = document.querySelector('#modal');
@@ -10,7 +10,7 @@ const deleteCancelButton = document.querySelector('#deleteCancelButton');
 
 drawOrderList();
 drawAllEvents();
-drawHeaderFooter();
+// drawHeaderFooter();
 function drawAllEvents() {
     modalBackground.addEventListener('click', closeModal);
     modalCloseButton.addEventListener('click', closeModal);
@@ -21,7 +21,7 @@ let _id;
 let userId;
 async function drawOrderList() {
     const orders = await Api.get('/api/order/admin/list');
-    console.log(orders.order);
+    console.log(orders);
     orders.map((order) => {
         const { _id, products, name, totalAmount, shipping } = order;
 

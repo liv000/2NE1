@@ -7,6 +7,7 @@ const emailInput = document.querySelector('#emailInput');
 const passwordInput = document.querySelector('#passwordInput');
 const passwordConfirmInput = document.querySelector('#passwordConfirmInput');
 const submitButton = document.querySelector('#submitButton');
+const submitEmailCodeButton = document.querySelector('#submitEmailCodeButton');
 
 addAllElements();
 addAllEvents();
@@ -16,21 +17,33 @@ async function addAllElements() {}
 
 // 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
 function addAllEvents() {
+  submitEmailCodeButton.addEventListener('click', requestEmailCode);
   submitButton.addEventListener('click', handleSubmit);
 }
-
+let emailCodeResponse = '';
+// 이메일 인증 코드 요청
+async function requestEmailCode(e) {
+  e.preventDefault();
+  const email = emailInput.value;
+  const emailCode = emailCodeInput.value;
+  const res = await Api.post('/api/sendEmail', { email: email });
+  console.log(typeof res, res);
+  emailCodeResponse = res;
+  // return res;
+}
 // 회원가입 진행
 async function handleSubmit(e) {
   e.preventDefault();
-
   const fullName = fullNameInput.value;
   const email = emailInput.value;
+  const emailCode = emailCodeInput.value;
   const password = passwordInput.value;
   const passwordConfirm = passwordConfirmInput.value;
-
+  console.log(emailCodeResponse);
   // 잘 입력했는지 확인
   const isFullNameValid = fullName.length >= 2;
   const isEmailValid = validateEmail(email);
+  const isEmailCodeValid = emailCodeResponse == emailCode;
   const isPasswordValid = password.length >= 4;
   const isPasswordSame = password === passwordConfirm;
 
@@ -41,7 +54,9 @@ async function handleSubmit(e) {
   if (!isEmailValid) {
     return alert('이메일 형식이 맞지 않습니다.');
   }
-
+  if (!isEmailCodeValid) {
+    return alert('이메일 코드가 일치하지 않습니다.');
+  }
   if (!isPasswordSame) {
     return alert('비밀번호가 일치하지 않습니다.');
   }

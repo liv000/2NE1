@@ -8,7 +8,7 @@ const footer = document.querySelector("footer");
 //     drawNavbar();
 //     drawFooter();
 // }
-
+// drawNavbar();
 async function drawNavbar(){
     // document.header.prepend(header_section);
     

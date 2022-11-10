@@ -6,8 +6,7 @@ async function get(endpoint, params = '') {
   const res = await fetch(apiUrl, {
     // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
     headers: {
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxZjQ1ZDc4YTcwNWI2NjQ4ZTE1ZDgiLCJyb2xlIjoxLCJpYXQiOjE2NjczNjM5ODd9.3N8s9wjh-QpD9BK2kDeV0g2QVgO5vXovvjtx_a7VSqg',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
   });
 
@@ -32,13 +31,11 @@ async function post(endpoint, data) {
   const bodyData = JSON.stringify(data);
   console.log(`%cPOST 요청: ${apiUrl}`, 'color: #296aba;');
   console.log(`%cPOST 요청 데이터: ${bodyData}`, 'color: #296aba;');
-  const auth =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzY5ZjUwNzI3YjkyNTEyYWI1MjgyYTkiLCJyb2xlIjowLCJpYXQiOjE2Njc4ODgzOTl9.STJ5OF4WJuVnvamz0RC--ioDW_lgl2-RghzNyZhA43k';
   const res = await fetch(apiUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${auth}`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
     body: bodyData,
   });
@@ -75,8 +72,7 @@ async function patch(endpoint, params = '', data) {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzY5ZjUwNzI3YjkyNTEyYWI1MjgyYTkiLCJyb2xlIjowLCJpYXQiOjE2Njc4ODgzOTl9.STJ5OF4WJuVnvamz0RC--ioDW_lgl2-RghzNyZhA43k',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
     body: bodyData,
   });
@@ -111,8 +107,7 @@ async function del(endpoint, params = '', bodyData) {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYzYmYzYmFlNGYyY2ZhNDZmMWE3NTMiLCJyb2xlIjowLCJpYXQiOjE2Njc0ODU5MTR9.jkFftJfirD90prlHUo9MHIBtnB2WHKuX_zqyXgOkpvU',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
     body: JSON.stringify(bodyData),
   });

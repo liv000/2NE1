@@ -83,43 +83,43 @@ async function drawOrderList() {
             selectBtnBox.className = selectBtnBox[index].className;
             await Api.patch('/api/shipping/admin/edit', null, data);
         });
-        function order_cancel(){
-            deletedItem.insertAdjacentHTML('beforeend',
-        `
-        <tr id="${_id}" bgcolor="gray">
-                        <td>${name}</td>
-                        <td>${productName}</td>
-                        <td>${totalAmount}</td>
-                        <td>
-                            <div class="select is-disable" >
-                                <select class="selectBtn${_id}">
-                                    <option ${
-                                    shipping === 'CANCELED' ? 'selected' : ''
-                                    } 
-                                        value="canceled">
-                                            주문취소
-                                    </option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="button is-disable" id="deleteBtn${_id}" >주문 삭제</button>
-                        </td>
-                    </tr>
-        `
-        );
-        }
+        
         deleteBtn.addEventListener('click', () => {
             userId = _id;
             openModal(_id);
         });
     });
 }
-
+// function order_cancel(){
+//     deletedItem.insertAdjacentHTML('beforeend',
+// `
+// <tr id="${_id}" bgcolor="gray">
+//                 <td>${name}</td>
+//                 <td>${productName}</td>
+//                 <td>${totalAmount}</td>
+//                 <td>
+//                     <div class="select is-disable" >
+//                         <select class="selectBtn${_id}">
+//                             <option ${
+//                             shipping === 'CANCELED' ? 'selected' : ''
+//                             } 
+//                                 value="canceled">
+//                                     주문취소
+//                             </option>
+//                         </select>
+//                     </div>
+//                 </td>
+//                 <td>
+//                     <button class="button is-disable" id="deleteBtn${_id}" >주문 삭제</button>
+//                 </td>
+//             </tr>
+// `
+// );
+// }
 async function deleteOrderData(e) {
     e.preventDefault();
     try {
-        await Api.patch('/api/order/cancel', null, { orderId: userId });
+        await Api.patch('/api/order/admin/cancel', null, { orderId: userId });
 
         // 삭제 성공
         alert('주문 정보가 삭제되었습니다.');
@@ -127,8 +127,8 @@ async function deleteOrderData(e) {
         // 삭제한 아이템 화면에서 지우기
         const deletedItem = document.querySelector(`#${_id}`);
         // deleteCompleteButton.addEventListener("click",)
-        order_cancel(deletedItem);
-
+        // deletedItem.innerHTML=`<tr style="background-color:gray"><tr></tr></tr>`
+        deletedItem.disabled = true;
        // 전역변수 초기화
         _id = '';
 

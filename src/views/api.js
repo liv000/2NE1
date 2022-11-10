@@ -75,7 +75,7 @@ async function patch(endpoint, params = '', data) {
     headers: {
       'Content-Type': 'application/json',
       Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzY5ZjUwNzI3YjkyNTEyYWI1MjgyYTkiLCJyb2xlIjowLCJpYXQiOjE2Njc4ODgzOTl9.STJ5OF4WJuVnvamz0RC--ioDW_lgl2-RghzNyZhA43k',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzY1MWQ3ODA4ODkzYWNmMDc2MDhjMjgiLCJyb2xlIjoxLCJpYXQiOjE2Njc1NzEwNzB9.2f_9S9CQB9ts4SlKwVh_sAIorTvbw2EBYwPlcwzVKA4',
     },
     body: bodyData,
   });

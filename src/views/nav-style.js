@@ -8,10 +8,13 @@ header{
 #header-navbar{
     /* background: #54BAB9; */
     background-color: #F7ECDE;
-    color: #F7ECDE;
+    // color: #F7ECDE;
     height:auto;
-    margin: 0px 10px;
+    margin: 0px 300px;
     text-align:center;
+}
+#header-navbar a{
+    margin: 0px 10px;
 }
 #header-text{
     font-weight: bold;

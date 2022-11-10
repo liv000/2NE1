@@ -29,13 +29,13 @@ async function draworderList() {
         const productPrice = products[0].productPrice;
         const quantity = products[0].quantity;
         let shippingStatus=" ";
-        if(shipping=="pending" || "PENDING"){
+        if(shipping==="pending" || shipping==="PENDING"){
             shippingStatus = "배송 준비중";
-        }else if(shipping=="shipping" || "SHIPPING"){
+        }else if(shipping==="shipping" || shipping==="SHIPPING"){
             shippingStatus = "배송중";
-        }else if(shipping=="shipped" || "SHIPPED"){
+        }else if(shipping==="shipped" || shipping==="SHIPPED"){
             shippingStatus = "배송완료";
-        }else if(shipping=="canceled" || "CANCELED"){
+        }else if(shipping==="canceled" || shipping==="CANCELED"){
             shippingStatus = "주문취소";
         }
         orderTable.insertAdjacentHTML(
@@ -61,16 +61,17 @@ async function draworderList() {
 }
 
 async function deleteData(e){
+    const data  = {orderId : orderIdToDelete}
     e.preventDefault();
     try{
-        await Api.patch("/order/cancel", orderIdToDelete);
+        await Api.patch("/api/order/cancel",null, data);
 
     // 삭제 성공
     alert("주문 정보가 삭제되었습니다.");
 
     // 삭제한 아이템 화면에서 지우기
     const deletedItem = document.querySelector(`#order-${orderIdToDelete}`);
-    deletedItem.remove();
+    // deletedItem.remove();
 
     // 전역변수 초기화
     orderIdToDelete = "";

@@ -32,12 +32,13 @@ async function post(endpoint, data) {
   const bodyData = JSON.stringify(data);
   console.log(`%cPOST 요청: ${apiUrl}`, 'color: #296aba;');
   console.log(`%cPOST 요청 데이터: ${bodyData}`, 'color: #296aba;');
-
+  const auth =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzY5ZjUwNzI3YjkyNTEyYWI1MjgyYTkiLCJyb2xlIjowLCJpYXQiOjE2Njc4ODgzOTl9.STJ5OF4WJuVnvamz0RC--ioDW_lgl2-RghzNyZhA43k';
   const res = await fetch(apiUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: `Bearer ${auth}`,
     },
     body: bodyData,
   });

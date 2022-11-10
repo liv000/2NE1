@@ -33,15 +33,18 @@ header{
 
 #header-logo-text {
     text-decoration : none;
-    color: black;
-
+    color: #54BAB9;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 40px;
     font-weight: bold;
     margin: 0 20px;
 }
-
+a{
+    font-weight: bold;
+}
 #header-navbar{
     /* position: relative;
+    
     box-sizing: border-box;
     margin-bottom: 2px;
     height: 54px;

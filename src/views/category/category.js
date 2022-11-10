@@ -1,6 +1,5 @@
 import * as Api from '../api.js';
-import { randomId } from '../useful-functions.js';
-import { getUrlParams, checkUrlParams } from '../useful-functions-s.js';
+import { randomId, getUrlParams } from '../useful-functions.js';
 
 // DOM Elements
 const categoryIcons = document.querySelector('.category-icons');

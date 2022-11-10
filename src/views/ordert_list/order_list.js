@@ -21,21 +21,29 @@ function addAllEvents() {
 let orderIdToDelete;
 async function draworderList() {
     const orders = await Api.get('/api/order/?page=1&perPage=4');
-    console.log(orders);
-    orders.order.map((order) => {
+    console.log(orders)
+    orders.order.map((order,index) => {
         const { _id, updatedAt, products, shipping }= order;
-        const date = updatedAt.split("T")[0];
-        const productName = products[0].productName;
-        const productPrice = products[0].productPrice;
-        const quantity = products[0].quantity;
+        // const date = Date(updatedAt);
+        let date = updatedAt.slice(0, 10);
+        console.log(date)
+        // console.log("order",order.products)
+        order.products.map((item)=>{
+            const {productName, productPrice, quantity} = item;
+            console.log("pro",productName, productPrice, quantity)
+        
+        
+        // const productName = products[0].productName;
+        // const productPrice = products[0].productPrice;
+        // const quantity = products[0].quantity;
         let shippingStatus=" ";
-        if(shipping=="pending" || "PENDING"){
+        if(shipping==="pending" || shipping==="PENDING"){
             shippingStatus = "배송 준비중";
-        }else if(shipping=="shipping" || "SHIPPING"){
+        }else if(shipping==="shipping" || shipping==="SHIPPING"){
             shippingStatus = "배송중";
-        }else if(shipping=="shipped" || "SHIPPED"){
+        }else if(shipping==="shipped" || shipping==="SHIPPED"){
             shippingStatus = "배송완료";
-        }else if(shipping=="canceled" || "CANCELED"){
+        }else if(shipping==="canceled" || shipping==="CANCELED"){
             shippingStatus = "주문취소";
         }
         orderTable.insertAdjacentHTML(
@@ -57,20 +65,22 @@ async function draworderList() {
             orderIdToDelete = _id;
             openModal();
         })
+    })
     });
 }
 
 async function deleteData(e){
+    const data  = {orderId : orderIdToDelete}
     e.preventDefault();
     try{
-        await Api.patch("/order/cancel", orderIdToDelete);
+        await Api.patch("/api/order/cancel",null, data);
 
     // 삭제 성공
     alert("주문 정보가 삭제되었습니다.");
 
     // 삭제한 아이템 화면에서 지우기
     const deletedItem = document.querySelector(`#order-${orderIdToDelete}`);
-    deletedItem.remove();
+    // deletedItem.remove();
 
     // 전역변수 초기화
     orderIdToDelete = "";

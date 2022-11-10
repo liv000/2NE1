@@ -20,9 +20,9 @@ function drawAllEvents() {
 let _id;
 let userId;
 async function drawOrderList() {
-    const orders = await Api.get('/api/order/admin/list');
+    const orders = await Api.get('/api/order/admin/list?page=1&perPage=10 n');
     console.log(orders);
-    orders.map((order) => {
+    orders.order.map((order) => {
         const { _id, products, name, totalAmount, shipping } = order;
 
         const productName = products[0].productName;
@@ -94,7 +94,7 @@ async function drawOrderList() {
 async function deleteOrderData(e) {
     e.preventDefault();
     try {
-        await Api.delete('/api/order/cancel', null, { orderId: userId });
+        await Api.patch('/api/order/cancel', null, { orderId: userId });
 
         // 삭제 성공
         alert('주문 정보가 삭제되었습니다.');

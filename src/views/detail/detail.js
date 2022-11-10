@@ -19,12 +19,7 @@ const purchaseButton = document.querySelector('.btn-purchase');
 const purchseFloating = document.querySelector('.purchase-floating');
 const floatingClose = document.querySelector('.close-purchase');
 
-// counter
-// const minusBtn = document.querySelector('.btn-minus');
-// const plusBtn = document.querySelector('.btn-plus');
-// const number = document.querySelector('.cnt-number');
-
-// Get queryString
+// Get productId
 let productId = new URLSearchParams(window.location.search).get('product');
 // const { id } = getUrlParams();
 // console.log(id);
@@ -87,22 +82,3 @@ floatingClose.addEventListener('click', () => {
   purchseFloating.classList.remove('on');
   purchaseButton.style.display = 'block';
 });
-
-// counter
-// plusBtn.addEventListener('click', () => {
-//   count++;
-//   number.innerText = count;
-//   totalPrice.innerText = `${(count * price).toLocaleString()}원`;
-// });
-
-// minusBtn.addEventListener('click', () => {
-//   if (count <= 1) {
-//     count = 1;
-//     return;
-//   }
-//   count--;
-//   number.innerText = count;
-//   totalPrice.innerText = `${(count * price).toLocaleString()}원`;
-// });
-
-// history.replaceState({}, null, location.pathname);

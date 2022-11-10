@@ -29,6 +29,7 @@ export class OrderModel {
 
   async getStatus(orderId) {
     const status = await Order.findOne({ _id: orderId });
+    console.log(status);
     return status.shipping;
   }
 

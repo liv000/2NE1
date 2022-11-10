@@ -37,14 +37,35 @@ orderRouter.patch(
   loginRequired,
   asyncHandler(async (req, res) => {
     const { orderId } = req.body;
-
+    const { role } = req;
     const userId = req.currentUserId;
 
-    const cancelOrder = await shippingService.cancelOrder(orderId, userId);
+    const cancelOrder = await shippingService.cancelOrder(
+      orderId,
+      userId,
+      role,
+    );
     res.status(201).json(cancelOrder);
   }),
 );
 
+orderRouter.patch(
+  '/admin/cancel',
+  loginRequired,
+  authAdmin,
+  asyncHandler(async (req, res) => {
+    const { orderId } = req.body;
+    const { role } = req;
+    console.log(role);
+    const userId = req.currentUserId;
+    const cancelOrder = await shippingService.cancelOrder(
+      orderId,
+      userId,
+      role,
+    );
+    res.status(201).json(cancelOrder);
+  }),
+);
 // 주문 수정
 // 사용자는 주문 완료 후 배송이 시작되기 전까지 주문 정보를 수정할 수 있다.
 // 주문 수정은 주문한 사람만 가능하다.

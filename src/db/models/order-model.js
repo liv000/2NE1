@@ -1,6 +1,6 @@
 import { model } from 'mongoose';
 import { OrderSchema } from '../schemas/order-schema';
-
+const constants = require('../../constraint/shippingStatus');
 const Order = model('orders', OrderSchema);
 
 export class OrderModel {
@@ -17,12 +17,11 @@ export class OrderModel {
   }
   async updateShippingStatus(orderId, status) {
     const currStatus = await this.getStatus(orderId);
-
-    if (currStatus === 'canceled') {
+    if (currStatus === constants.CANCELED) {
       throw new Error(`이미 취소된 배송 입니다.`);
     }
 
-    if (currStatus === 'shipped' && status === 'canceled') {
+    if (currStatus === constants.SHIPPING && status === constants.CANCELED) {
       throw new Error('취소 불가 : 이미 배송이 시작되었습니다.');
     }
     return await Order.findOneAndUpdate({ _id: orderId }, { shipping: status });
@@ -41,7 +40,7 @@ export class OrderModel {
   async updateOrder(orderId, newInfo) {
     const currStatus = await this.getStatus(orderId);
 
-    if (currStatus === 'shipped') {
+    if (currStatus === constants.SHIPPING) {
       throw new Error('취소 불가 : 이미 배송이 시작되었습니다.');
     }
 
@@ -55,7 +54,7 @@ export class OrderModel {
   async hasOrder(userId) {
     const getOrder = await Order.find({
       userId: userId,
-      shipping: { $in: ['pending', 'shipping'] },
+      shipping: { $in: [constants.SHIPPING, constants.PENDING] },
     }).populate('userId');
 
     return getOrder.length >= 1;

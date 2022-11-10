@@ -19,8 +19,7 @@ class ProductService {
     }
   }
   async getProductDetail(id) {
-    const productDetail = await this.productModel.findOne(id);
-    return productDetail;
+    return await this.productModel.findOne(id);
   }
 
   async getComments(id) {

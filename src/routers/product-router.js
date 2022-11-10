@@ -64,7 +64,7 @@ productRouter.patch(
     const id = req.params.id;
 
     const drop = await productService.updateProduct(id, { status: 0 });
-    res.status(201).json(drop); // todo 상품 삭제 완료 페이지로 이동 // 아니면 프론트에서 alert
+    res.status(201).json(drop);
   }),
 );
 

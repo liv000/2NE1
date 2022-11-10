@@ -8,6 +8,7 @@ const authAdmin = async (req, res, next) => {
     });
     return;
   }
+
   next();
 };
 

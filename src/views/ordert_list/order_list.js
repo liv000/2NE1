@@ -21,13 +21,21 @@ function addAllEvents() {
 let orderIdToDelete;
 async function draworderList() {
     const orders = await Api.get('/api/order/?page=1&perPage=4');
-    console.log(orders);
-    orders.order.map((order) => {
+    console.log(orders)
+    orders.order.map((order,index) => {
         const { _id, updatedAt, products, shipping }= order;
-        const date = updatedAt.split("T")[0];
-        const productName = products[0].productName;
-        const productPrice = products[0].productPrice;
-        const quantity = products[0].quantity;
+        // const date = Date(updatedAt);
+        let date = updatedAt.slice(0, 10);
+        console.log(date)
+        // console.log("order",order.products)
+        order.products.map((item)=>{
+            const {productName, productPrice, quantity} = item;
+            console.log("pro",productName, productPrice, quantity)
+        
+        
+        // const productName = products[0].productName;
+        // const productPrice = products[0].productPrice;
+        // const quantity = products[0].quantity;
         let shippingStatus=" ";
         if(shipping==="pending" || shipping==="PENDING"){
             shippingStatus = "배송 준비중";
@@ -57,6 +65,7 @@ async function draworderList() {
             orderIdToDelete = _id;
             openModal();
         })
+    })
     });
 }
 

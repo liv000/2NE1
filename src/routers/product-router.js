@@ -1,11 +1,12 @@
 import { Router } from 'express';
-import { UserSchema } from '../db/schemas/user-schema';
+
 // 폴더에서 import하면, 자동으로 폴더의 index.js에서 가져옴
 import {
   loginRequired,
   categoryHandler,
   contentType,
   authAdmin,
+  authComments,
 } from '../middlewares';
 
 import { productService, userService } from '../services';
@@ -33,7 +34,14 @@ productRouter.post(
   asyncHandler(async (req, res, next) => {
     let { categoryId } = req;
 
-    const newProduct = await productService.getProductList(categoryId);
+    const page = Number(req.query.page || 1);
+    const perPage = Number(req.query.perPage || 5);
+
+    const newProduct = await productService.getProductList(
+      categoryId,
+      page,
+      perPage,
+    );
 
     res.status(201).json(newProduct);
   }),
@@ -73,10 +81,10 @@ productRouter.patch(
   }),
 );
 
-// todo 댓글 작성 : 구매한 사람만 작성할 수 있다.
 productRouter.post(
   '/:id/comments',
   loginRequired,
+  authComments,
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
     const user = req.currentUserId;

@@ -70,7 +70,7 @@ userRouter.get(
 
 // 사용자 정보 수정
 userRouter.patch(
-  '/user/:userId',
+  '/user/edit/:userId',
   contentType,
   loginRequired,
   validCallNumberCheck,

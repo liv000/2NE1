@@ -32,379 +32,70 @@
     <!-- 메인 -->
     <main>
       <!-- 배너 -->
-      <div class="banner">
-        <img src="" alt="배너" />
-      </div>
+      <div class="banner"></div>
 
       <!-- 고민별 상품 보기 -->
       <!-- TODO 컴포넌트 분리 -->
-      <section class="concern">
+      <section class="category-concern">
         <div class="wrapper">
           <div class="concern-title">
-            <h2>고민별 상품 보기</h2>
-            <a href="#" class="more-link"
-              >더보기<span><img src="" alt="" /></span
-            ></a>
+            <h2 class="title">고민별 상품 보기</h2>
           </div>
 
           <!-- 아이콘 리스트 -->
-          <div class="scroll-container">
-            <ul class="concern-icons">
+          <div class="category-container">
+            <ul class="category-icons is-flex">
               <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
+                <button class="category-link">
+                  <figure class="category-image is-flex">
                     <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-total_off.png"
-                      alt="전체"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-total_on.png"
+                      src="https://pilly.kr/images/store/concern/icon-total_on@2x.png"
                       alt="전체"
                     />
                   </figure>
-                  <p>전체</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-gyniatrics_off.png"
-                      alt="여성건강/PMS"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-gyniatrics_on.png"
-                      alt="여성건강/PMS"
-                    />
-                  </figure>
-                  <p>여성건강 / PMS</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-joints_bone_off.png"
-                      alt="관절/뼈"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-joints_bone_on.png"
-                      alt="관절/뼈"
-                    />
-                  </figure>
-                  <p>관절 / 뼈</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-oral_cavity_off.png"
-                      alt="구강관리"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-oral_cavity_on.png"
-                      alt="구강관리"
-                    />
-                  </figure>
-                  <p>구강관리</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-diet_off.png"
-                      alt="다이어트"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-diet_on.png"
-                      alt="다이어트"
-                    />
-                  </figure>
-                  <p>다이어트</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-mental_fitness_off.png"
-                      alt="마음건강"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-mental_fitness_on.png"
-                      alt="마음건강"
-                    />
-                  </figure>
-                  <p>마음건강</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-skin_health_off.png"
-                      alt="피부"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-skin_health_on.png"
-                      alt="피부"
-                    />
-                  </figure>
-                  <p>피부</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-anti_oxidation_off.png"
-                      alt="노화/향산화"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-anti_oxidation_on.png"
-                      alt="노화/향산화"
-                    />
-                  </figure>
-                  <p>노화 / 향산화</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-vitality_off.png"
-                      alt="피로/활력"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-vitality_on.png"
-                      alt="피로/활력"
-                    />
-                  </figure>
-                  <p>피로 / 활력</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-liver_health_off.png"
-                      alt="간 건강"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-liver_health_on.png"
-                      alt="간 건강"
-                    />
-                  </figure>
-                  <p>간 건강</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-intestinal_health_off.png"
-                      alt="장 건강"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-intestinal_health_on.png"
-                      alt="장 건강"
-                    />
-                  </figure>
-                  <p>장 건강</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-androgenic_health_off.png"
-                      alt="남성 건강"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-androgenic_health_on.png"
-                      alt="남성 건강"
-                    />
-                  </figure>
-                  <p>남성 건강</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-stomache_off.png"
-                      alt="위/소화"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-stomache_on.png"
-                      alt="위/소화"
-                    />
-                  </figure>
-                  <p>위 / 소화</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-constipation_off.png"
-                      alt="변비"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-constipation_on.png"
-                      alt="변비"
-                    />
-                  </figure>
-                  <p>변비</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-ophthalmologic_off.png"
-                      alt="눈건강"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-ophthalmologic_on.png"
-                      alt="눈건강"
-                    />
-                  </figure>
-                  <p>눈건강</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-hair_scalp_off.png"
-                      alt="모발/두피"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-hair_scalp_on.png"
-                      alt="모발/두피"
-                    />
-                  </figure>
-                  <p>모발 / 두피</p></a
-                >
-              </li>
-              <li>
-                <a href="#" class="concern-link"
-                  ><figure class="icon-imgs">
-                    <img
-                      class="default-icon"
-                      src="images/concern-icons/icon-pediatrics_off.png"
-                      alt="유/소아"
-                    />
-                    <img
-                      class="on-icon"
-                      src="images/concern-icons/icon-pediatrics_on.png"
-                      alt="유/소아"
-                    />
-                  </figure>
-                  <p>유 / 소아</p></a
-                >
+                  <p class="category-name is-justify-content-center">전체</p>
+                </button>
               </li>
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- 추천상품 -->
-      <section class="recommend-product">
+      <!-- TODO 컴포넌트 분리 -->
+      <!-- 신상품 -->
+      <section class="mt-6 horizontal">
         <div class="wrapper">
-          <h2>이 상품 어때요?</h2>
-
-          <!-- 상품  -->
+          <h2 class="title">신상품</h2>
+          <!-- 상품 -->
           <div class="product-container">
-            <ul class="product-items">
-              <li>
-                <a href="#">
-                  <figure class="product-img">
-                    <img src="images/product_01.png" alt="제품1" />
-                  </figure>
-                  <div class="product-information">
-                    <span>건강기능식품</span>
-                    <h3>
-                      <span>[닥터노아]</span> 마루 대나무 칫솔 스탠다드(1개입)
-                    </h3>
-                    <p class="product-price">19,500원</p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <figure class="product-img">
-                    <img src="images/product_02.png" alt="제품2" />
-                  </figure>
-                  <div class="product-information">
-                    <span>건강식품</span>
-                    <h3>
-                      <span>[골리]</span> 골리 애플사이다 비니거 구미(60개)
-                    </h3>
-                    <p class="product-price">19,500원</p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <figure class="product-img">
-                    <img src="images/product_03.png" alt="제품3" />
-                  </figure>
-                  <div class="product-information">
-                    <span>건강기능식품</span>
-                    <h3><span>[필리]</span> 콜라겐</h3>
-                    <p class="product-price">19,500원</p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <figure class="product-img">
-                    <img src="images/product_04.png" alt="제품4" />
-                  </figure>
-                  <div class="product-information">
-                    <span>건강기능식품</span>
-                    <h3><span>[필리]</span> 히알루론산 스피루리나</h3>
-                    <p class="product-price">19,500원</p>
-                  </div>
-                </a>
-              </li>
-            </ul>
+            <ul class="product-items is-flex"></ul>
+          </div>
+
+          <!-- 더보기 -->
+          <div class="more">
+            <a href="#" class="btn-more"><span>💊</span>신상품 더보기</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 베스트 -->
+      <section class="best mt-6">
+        <div class="wrapper">
+          <h2 class="title">베스트</h2>
+          <!-- 상품 -->
+          <div class="product-container">
+            <ul class="product-items is-flex"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 할인 -->
+      <section class="sale mt-6">
+        <div class="wrapper">
+          <h2 class="title">할인</h2>
+          <!-- 상품 -->
+          <div class="product-container">
+            <ul class="product-items is-flex"></ul>
           </div>
         </div>
       </section>

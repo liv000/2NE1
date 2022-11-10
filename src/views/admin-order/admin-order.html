@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"/>
     <link rel="stylesheet" href="admin-order.css">
@@ -8,8 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>약쟁이관리자주문조회</title>
     <script src="admin-order.js" type="module" defer></script>
+    <script src="../navbar.js" type="module" defer></script>
+    
 </head>
 <body>
+  <header></header>
     <main role="main">
         <section class="section">
             <div class="title-header">
@@ -66,6 +69,19 @@
               aria-label="close"
             ></button>
           </div>
+          <section id="pagination_section">
+            <div id="pagination" class="pagination is-centered" role="navigation" aria-label="pagination">
+                <a class="pagination-previous">Previous</a>
+                <a class="pagination-next">Next page</a>
+                <ul class="pagination-list">
+                    <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 2">2</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 3">3</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 4">4</a></li>
+                </ul>
+            </div>
+        </section>
     </main>
+    <footer></footer>
 </body>
 </html>

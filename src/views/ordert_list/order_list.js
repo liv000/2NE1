@@ -1,10 +1,15 @@
-import * as Api from '/api.js';
-import {data} from "/dummy.js";
+import * as Api from '../api.js';
+// import {data} from "../dummy.js";
 
-console.log("dd");
+
 const orderTable = document.querySelector("#order-table");
+const modal = document.querySelector("#modal");
+const modalBackground = document.querySelector("#modalBackground");
+const modalCloseButton = document.querySelector("#modalCloseButton");
+const deleteCompleteButton = document.querySelector("#deleteCompleteButton");
+const deleteCancelButton = document.querySelector("#deleteCancelButton");
 
-orderList();
+draworderList();
 addAllEvents();
 
 function addAllEvents() {
@@ -14,8 +19,10 @@ function addAllEvents() {
     deleteCancelButton.addEventListener("click", cancelDelete);
 }
 let orderIdToDelete;
-async function orderList() {
-    data.items.map((order) => {
+async function draworderList() {
+    const orders = await Api.get('/api/order');
+    console.log(orders);
+    orders.map((order) => {
         const { _id, code, title, price, shipping }= order;
         orderTable.insertAdjacentHTML(
             'beforeend',

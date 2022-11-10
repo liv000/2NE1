@@ -69,6 +69,10 @@ export class ProductModel {
       },
     );
   }
+
+  async findProductsByOrderId(categoryId) {
+    return await Product.find({ category: categoryId });
+  }
 }
 
 const productModel = new ProductModel();

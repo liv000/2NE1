@@ -1,9 +1,4 @@
 import * as Api from '../api.js';
-import {
-  getUrlParams,
-  addCommas,
-  checkUrlParams,
-} from '../useful-functions-s.js';
 
 // DOM Elements
 const brandTitle = document.querySelector('.brand-title');

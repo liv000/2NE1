@@ -23,7 +23,7 @@ class ShippingService {
     }
 
     const [orderCancel, shippingCancel] = await Promise.all([
-      // this.orderModel.updateOrder(orderId, { status: 0 }),
+      this.orderModel.updateOrder(orderId, { status: 0 }),
       this.orderModel.updateShippingStatus(orderId, constants.CANCELED),
     ]);
     return orderCancel;

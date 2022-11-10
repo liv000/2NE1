@@ -1,5 +1,4 @@
 import * as Api from '../api.js';
-import { getUrlParams } from '../useful-functions.js';
 
 // DOM Elements
 const brandTitle = document.querySelector('.brand-title');
@@ -26,12 +25,12 @@ const floatingClose = document.querySelector('.close-purchase');
 // const number = document.querySelector('.cnt-number');
 
 // Get queryString
-let id = new URLSearchParams(window.location.search).get('product');
+let productId = new URLSearchParams(window.location.search).get('product');
 // const { id } = getUrlParams();
 // console.log(id);
 
 // 1. 데이터 요청
-const productDetail = await Api.get(`/api/product/`, `${id}`);
+const productDetail = await Api.get(`/api/product/`, `${productId}`);
 const { title, thumbnail, price } = productDetail;
 const brandName = productDetail.brandInfo.title;
 const { contentImg, description } = productDetail.content;
@@ -58,8 +57,9 @@ comments.forEach((element) => {
 });
 
 // 리뷰 등록
+// TODO 권한 없으면 alert 창 띄우기 주문한 사람만 리뷰를 작성할 수 있습니다.
 reviewBtn.addEventListener('click', async () => {
-  const postReview = await Api.post(`/api/product/${id}/comments`, {
+  const postReview = await Api.post(`/api/product/${productId}/comments`, {
     content: inputReview.value,
   });
 });

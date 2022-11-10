@@ -2,24 +2,55 @@ import * as Api from '../api.js';
 
 // DOM Elements
 const inputCategoryName = document.getElementById('category-name');
+const inputCategoryCode = document.getElementById('category-code');
 const inputCategoryImg = document.getElementById('category-url');
-const submit = document.getElementById('btn-submit');
+const submitButton = document.getElementById('btn-submit');
+const cancelButton = document.getElementById('btn-cancel');
+const deleteButton = document.getElementById('btn-delete');
 
 // Get queryString
 let queryStringId = new URLSearchParams(window.location.search).get('id');
 let categoryCode = '';
 
 // GET 요청
-const categories = await Api.get('/api/category/list', '');
+const category = await Api.get('/api/category/list?page=1&perPage=10', '');
+const categories = category.categories;
+
 for (let category of categories) {
   if (queryStringId !== category._id) continue;
   inputCategoryName.value = category.categoryName;
+  inputCategoryCode.value = category.categoryCode;
   inputCategoryImg.value = category.categoryImg;
   categoryCode = category.categoryCode;
 }
 
 // 카테고리 수정
-submit.addEventListener('click', onRegisterCategory);
+submitButton.addEventListener('click', onRegisterCategory);
+cancelButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  history.back();
+});
+deleteButton.addEventListener('click', async (e) => {
+  e.preventDefault();
+
+  // DELETE 요청
+  if (confirm('카테고리를 삭제하겠습니까?')) {
+    // 데이터 저장
+    let data = {
+      categoryId: queryStringId,
+    };
+    console.log(data);
+
+    const deleteCategory = await Api.patch(
+      '/api/category/admin/drop',
+      null,
+      data,
+    );
+
+    // TODO 삭제 alert 창 띄우기
+    window.location.href = '/admin-category';
+  }
+});
 
 async function onRegisterCategory(e) {
   e.preventDefault();
@@ -49,7 +80,7 @@ async function onRegisterCategory(e) {
   data = { categoryId: queryStringId, categoryName, categoryCode, categoryImg };
   console.log(data);
   // PATCH 요청
-  const patchCategory = await Api.patch('/api/category/admin/edit', data);
+  const patchCategory = await Api.patch('/api/category/admin/edit', null, data);
 
   // 카테고리 목록으로 페이지 이동
   window.location.href = '/admin-category';
@@ -58,9 +89,7 @@ async function onRegisterCategory(e) {
 function isEmptyInputValue(inputValue, inputTag) {
   if (!inputValue) {
     inputTag.focus();
-
     return false;
   }
-
   return true;
 }

@@ -3,40 +3,42 @@
     justify-self: center;
     align-items: center;
 }
-.order-aside{
+#order-aside{
     /* display: flex;
     flex-direction: column; */
-    margin: 0px 30px;
+    margin: 100px 100px;
     padding: 5px;
-    font-size: large;
-    width:200px;
-    background-color: #F7ECDE;
+    width:250px;
+    text-align: center;
+    /* background-color: #F7ECDE; */
     
+}
+h2{
+    font-weight: bold;
+    text-align: center;
+}
+div{
+    text-align: center;
 }
 .order-mypage{
     padding: 10px;
     font-size:30px;
     font-weight: bold;
+    color: #54BAB9;
 }
 .order-side{
-    text-align: center;
+    margin: 0px 5px;
+    padding: 5px;
     font-size:20px;
 }
 .order{
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    text-align: center;
+    text-align: center; */
+    margin: 50px 10px;
+    width: 1000px;
 }
-#ordered-title{
 
-
-}
-#ordered-date{
-
-}
-#ordered-date-list{
-
-}
 #ordered-item-list{
     width:1000px;
 }
@@ -49,6 +51,12 @@ thead{
 }
 
 #more-list-button{
-    width:800px;
+    width:1000px;
     height:45px;
+}
+#pagination{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 15px;
 }

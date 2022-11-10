@@ -1,64 +1,100 @@
 import * as Api from '../api.js';
-import { randomId } from '../useful-functions.js';
+import { randomId, getUrlParams } from '../useful-functions.js';
 
 // DOM Elements
 const categoryIcons = document.querySelector('.category-icons');
+const allIcon = document.querySelector('#all-product');
 const productItems = document.querySelector('.product-items');
+const productCount = document.querySelector('.product-count');
 
 // Global Variables
-let _id;
+const { ctg } = getUrlParams();
 
-// 1. 카테고리 아이콘
-const category = await Api.get('/api/category/list');
+// 1. 전체 아이콘
+allIcon.addEventListener('click', () => {
+  window.location.href = `/category?ctg=all-product`;
+});
+
+// 2. 카테고리 아이콘
+const category = await Api.get('/api/category/list?page=1&perPage=20');
 const categories = category.categories;
 
 //
-categories.forEach((category) => {
+categories.forEach(async (category) => {
   // Variables
-  const { categoryName, categoryImg } = category;
+  const { _id, categoryName, categoryImg } = category;
+  const random = randomId();
 
-  //
-  categoryIcons.innerHTML += drawCtgIcons(categoryName, categoryImg);
+  categoryIcons.insertAdjacentHTML(
+    'beforeend',
+    drawCategoryIcons(random, categoryName, categoryImg),
+  );
+
+  const categoryItem = document.querySelector(`#c${random}`);
+  categoryItem.addEventListener('click', () => {
+    window.location.href = `/category?ctg=${_id}`;
+  });
 });
 
-// 2. 제품 목록
+// 3. 제품 목록
 async function addProductItemsToContainer() {
-  const productList = await Api.post('/api/product/list?page=1&perPage=4');
-  const products = productList.product;
-  let getrandomId = '';
-
-  products.forEach((product) => {
-    const { price, title, thumbnail } = product;
-    const brandTitle = product.brandInfo.title;
-    const random = randomId();
-    _id = product._id;
-    console.log(random);
-
-    productItems.insertAdjacentHTML(
-      'beforeend',
-      drawProducts(random, price, thumbnail, title, brandTitle),
+  if (ctg === 'all-product') {
+    const productListAll = await Api.post(
+      '/api/product/list?page=1&perPage=10',
     );
-  });
 
-  productItems.addEventListener('click', (e) => {
-    console.log(e.target);
-    if (e.target.tagName === 'LI') {
-      getrandomId = e.target.id;
-    }
-    window.location.href = `/detail?product=${_id}`;
-  });
+    const products = productListAll.product;
+
+    products.forEach(async (product) => {
+      const { _id, price, title, thumbnail } = product;
+      const brandTitle = product.brandInfo.title;
+      const random = randomId();
+
+      productItems.insertAdjacentHTML(
+        'beforeend',
+        drawProducts(random, price, thumbnail, title, brandTitle),
+      );
+
+      const productItem = document.querySelector(`#p${random}`);
+      productItem.addEventListener('click', () => {
+        window.location.href = `/detail?product=${_id}`;
+      });
+    });
+  } else {
+    const data = { categoryId: ctg };
+    const productList = await Api.post(
+      '/api/product/list?page=1&perPage=10',
+      data,
+    );
+    const products = productList.product;
+
+    products.forEach(async (product) => {
+      const { _id, price, title, thumbnail } = product;
+      const brandTitle = product.brandInfo.title;
+      const random = randomId();
+
+      productItems.insertAdjacentHTML(
+        'beforeend',
+        drawProducts(random, price, thumbnail, title, brandTitle),
+      );
+
+      const productItem = document.querySelector(`#p${random}`);
+      productItem.addEventListener('click', () => {
+        window.location.href = `/detail?product=${_id}`;
+      });
+    });
+  }
 }
 
 addProductItemsToContainer();
 
 // TODO 컴포넌트 파일 분리
-function drawCtgIcons(categoryName, categoryImg) {
+function drawCategoryIcons(random, categoryName, categoryImg) {
   const iconsTemplate = `
-<li>
+<li id="c${random}">
   <button class="category-link">
     <figure class="category-image is-flex">
       <img
-        class="is-justify-content-center is-align-items-center"
         src="${categoryImg}"
         alt="${categoryName}"
       />
@@ -73,7 +109,7 @@ function drawCtgIcons(categoryName, categoryImg) {
 
 function drawProducts(random, price, thumbnail, title, brandTitle) {
   const productTemplate = `
-  <li id=${random}>
+  <li id="p${random}">
     <figure class="product-img">
         <img src="${thumbnail}" alt="${title}" />
       </figure>

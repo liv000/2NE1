@@ -40,16 +40,6 @@ button {
   margin-top: 56px;
 }
 
-.concern-title {
-  position: relative;
-}
-
-.more-link {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
 .category-container {
   width: 100%;
   height: 100%;
@@ -87,6 +77,10 @@ button {
 }
 
 .category-image:hover {
+  background-color: #ffefeb;
+}
+
+.icon-on {
   background-color: #ffefeb;
 }
 
@@ -170,7 +164,7 @@ button {
   border-radius: 8px;
 }
 
-.function-items {
+.product-items {
   display: grid;
   margin-top: 42px;
   grid-template-columns: repeat(4, 1fr);

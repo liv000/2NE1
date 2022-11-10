@@ -13,7 +13,7 @@ export class CategoryModel {
   async getCategoryList(page, perPage) {
     const [total, categories] = await Promise.all([
       Category.countDocuments({}),
-      Category.find({ stats: 1 })
+      Category.find({ status: 1 })
         .skip(perPage * (page - 1))
         .limit(perPage)
         .sort({ createdAt: 1 }),

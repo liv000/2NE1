@@ -1,10 +1,17 @@
 import { Schema } from 'mongoose';
+const constants = require('../../constraint/shippingStatus');
 const ProductSchema = new Schema({
   productId: { type: String, required: true },
   productName: { type: String, required: true },
   productPrice: { type: Number, required: true },
   quantity: { type: Number, required: true, default: 1 },
 });
+const SHIPPING_STATUS = [
+  constants.PENDING,
+  constants.SHIPPING,
+  constants.SHIPPED,
+  constants.CANCELED,
+];
 
 const OrderSchema = new Schema(
   {
@@ -30,7 +37,8 @@ const OrderSchema = new Schema(
     shipping: {
       type: String,
       required: true,
-      default: 'pending',
+      enum: SHIPPING_STATUS,
+      default: constants.PENDING,
     },
     address: {
       type: new Schema(
@@ -50,7 +58,7 @@ const OrderSchema = new Schema(
       required: true,
     },
     status: {
-      // 0이면 취소한 주문 (관리자만 수행)
+      // 0이면 취소한 주문
       type: Number,
       required: true,
       default: 1,

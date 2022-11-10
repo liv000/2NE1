@@ -31,7 +31,7 @@ async function drawOrderList() {
         'beforeend',
         `
                 <tbody>
-                    <tr id="${_id}">
+                    <tr id="d${_id}">
                         <td>${name}</td>
                         <td>${productName}</td>
                         <td>${totalAmount}</td>
@@ -125,7 +125,8 @@ async function deleteOrderData(e) {
         alert('주문 정보가 삭제되었습니다.');
 
         // 삭제한 아이템 화면에서 지우기
-        const deletedItem = document.querySelector(`#${_id}`);
+        const deletedItem = document.querySelector(`#d${_id}`);
+        console.log(deletedItem);
         // deleteCompleteButton.addEventListener("click",)
         // deletedItem.innerHTML=`<tr style="background-color:gray"><tr></tr></tr>`
         deletedItem.style.background = 'red';

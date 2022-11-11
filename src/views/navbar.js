@@ -2,8 +2,19 @@ import navStyle from './nav-style.js';
 import { checkAccount } from './check-account.js';
 const header = document.querySelector('header');
 const footer = document.querySelector('footer');
+checkAccount();
+const headerNavbar = document.querySelector(".navbar-end");
+const btn_mine = document.querySelector(".button is-primary");
+const btn_logout = document.querySelector("button");
 
-drawNavbar();
+    // if (!isLogined) {
+    //     btn_mine.innerHTML("signIn");
+    // }else if(isAdmin){
+    //     btn_mine.innerHTML("Admin");
+    // }else{
+    //     btn_mine.innerHTML("Mypage");
+    // }
+
 
 header.insertAdjacentHTML(
     'beforeend',
@@ -12,10 +23,6 @@ header.insertAdjacentHTML(
         <nav id="header-logo">
             <a href="/">
                 <img src="../drug.png" width="100" height="28">
-            </a>
-            
-            <a href="#" class="navbar-toogleBtn">
-                <i class="fa-solid fa-bars"></i>
             </a>
         </nav>
         <!--메뉴바 왼쪽 끝  -->
@@ -90,6 +97,10 @@ header.insertAdjacentHTML(
                     랭킹
                 </a>
             </div>
+            <div class="navbar-end">
+                <button class="button is-primary"></button>
+                <button class="button"></button> 
+            </div>
         </nav>
     `,
 );
@@ -110,29 +121,31 @@ const AdminHeader = () => {
 const nonUser = () => {
     return linkTag.register + linkTag.login;
 }
-async function drawNavbar(){
-    checkAccount();
-    const headerNavbar = document.querySelector("#header-logo");
+// headerNavbar.insertAdjacentHTML(
+//     'afterend',
+//     `
+//     <button>qjxms</button>
+//     `
+// );
+// if(!isLogined){
+//     headerNavbar.insertAdjacentHTML(
+//         'beforeend',
+//         `
+//         <div><a>qkqh</a></div>>
+//         `
+//     );
+// } else if(isAdmin){
+//     headerNavbar.insertAdjacentHTML('beforeend',
+//     `
+//     <button class="button" ><a href="/myPage">myPage</a></button>
+//     `);
+// }else{
+//     headerNavbar.insertAdjacentHTML('beforeend',
+//     `
+//     <button class="button" ><a href="/myPage">myPage</a></button>
+//     `);
+// }
 
-    if(isLogined){
-        headerNavbar.insertAdjacentHTML(
-            'beforeend',
-            `
-            <button class="button" ><a href="/myPage">myPage</a></button>
-            `
-        );
-    } else if(isAdmin){
-        headerNavbar.insertAdjacentHTML('beforeend',
-        `
-        <button class="button" ><a href="/myPage">myPage</a></button>
-        `);
-    }else{
-        headerNavbar.insertAdjacentHTML('beforeend',
-        `
-        <button class="button" ><a href="/myPage">myPage</a></button>
-        `);
-    }
-}
 footer.insertAdjacentHTML(
     'beforeend',
     `

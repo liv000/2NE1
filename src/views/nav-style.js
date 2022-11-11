@@ -13,8 +13,7 @@ header{
 }
 #header-navbar{
     background-color: #F7ECDE;
-    justify-content: center;
-    
+    justify-content: center; 
 }
 #header-navbar a{
     margin: 0px 10px;
@@ -26,15 +25,7 @@ a{
     
     display: flex;
 }
-@media screen and (max-width: 768px) {
-    #header-bar{
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    #nav-bar{
-        flex-direction: column;
-        align-items: center;
-    }
+@media screen and (max-width: 1024px) {
     #header-navbar{
         flex-direction: column;
         align-items: center;
@@ -44,6 +35,12 @@ a{
         flex-direction: column;
         align-items: center;
         width: 100%;
+    }
+    .navbar-dropdown{
+        display:none;
+    }
+    .navbar-dropdown:hover{
+        display: block;
     }
 
 } 

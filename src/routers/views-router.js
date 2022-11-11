@@ -11,7 +11,7 @@ viewsRouter.use('/register', serveStatic('register'));
 viewsRouter.use('/login', serveStatic('login'));
 viewsRouter.use('/cart', serveStatic('cart'));
 viewsRouter.use('/order', serveStatic('order'));
-viewsRouter.use('/order/complete', serveStatic('order-complete'));
+viewsRouter.use('/order/order-complete', serveStatic('order-complete'));
 viewsRouter.use('/ordered', serveStatic('ordered'));
 viewsRouter.use('/category', serveStatic('category'));
 viewsRouter.use('/detail', serveStatic('detail'));

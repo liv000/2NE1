@@ -1,215 +1,185 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>제품상세페이지</title>
-    <!-- 아이콘 -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/elice-rabbit-favicon.png"
-    />
-    <!-- bulma css 관련 -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
-    />
-    <!-- 폰트 어썸: 아이콘 -->
-    <script
-      defer
-      src="https://kit.fontawesome.com/9daa42bcef.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- 커스텀 css, js -->
-    <link rel="stylesheet" href="detail.css" />
-    <script src="detail.js" type="module" defer></script>
-    <!-- navbar -->
-    <script src="../navbar.js" type="module" defer></script>
-  </head>
-  <body>
-    <!-- 헤더 -->
-    <header></header>
 
-    <!-- 메인 -->
-    <main>
-      <!-- 장바구니 이동 모달창 -->
-      <div class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-          <p>장바구니에 제품을 추가했어요!</p>
-          <p>지금 장바구니를 확인하세요.</p>
-          <div class="">
-            <button class="" aria-label="close">닫기</button>
-            <button class="">장바구니로 이동</button>
-          </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>제품상세페이지</title>
+  <!-- 아이콘 -->
+  <link rel="icon" type="image/png" sizes="16x16" href="/elice-rabbit-favicon.png" />
+  <!-- bulma css 관련 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+  <!-- 폰트 어썸: 아이콘 -->
+  <script defer src="https://kit.fontawesome.com/9daa42bcef.js" crossorigin="anonymous"></script>
+  <!-- 커스텀 css, js -->
+  <link rel="stylesheet" href="detail.css" />
+  <script src="detail.js" type="module" defer></script>
+  <!-- navbar -->
+  <script src="../navbar.js" type="module" defer></script>
+</head>
+
+<body>
+  <!-- 헤더 -->
+  <header></header>
+
+  <!-- 메인 -->
+  <main>
+    <!-- 장바구니 이동 모달창 -->
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <p>장바구니에 제품을 추가했어요!</p>
+        <p>지금 장바구니를 확인하세요.</p>
+        <div class="">
+          <button class="" aria-label="close">닫기</button>
+          <button class="">장바구니로 이동</button>
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
       </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
 
-      <div class="wrapper is-flex is-flex-wrap-nowrap">
-        <div class="left-container">
-          <!-- 제품 이미지 -->
-          <div class="is-flex">
-            <img src="" alt="제품이미지" class="product-image" />
-          </div>
+    <div class="wrapper is-flex">
+      <div class="left-container">
+        <!-- 제품 이미지 -->
+        <div class="box is-flex">
+          <img src="" alt="제품이미지" class="product-image" />
+        </div>
 
-          <!-- 구매하기 -->
-          <aside class="product-purchase mt-6">
-            <section>
-              <p class="brand-title"></p>
-              <h1 class="product-title mt-4"></h1>
-              <p class="product-price"></p>
-              <p class="review-more mt-5">
-                후기 <span class="review-count">13</span
-                ><span class="icon-more">></span>
-              </p>
+        <!-- 구매하기 -->
+        <aside class="box product-purchase">
+          <section>
+            <p class="brand-title"></p>
+            <h1 class="product-title mt-4"></h1>
+            <p class="product-price"></p>
+            <p class="review-more mt-5">
+              후기 <span class="review-count">13</span><span class="icon-more">></span>
+            </p>
 
-              <!-- 제품설명 -->
-              <div class="product-description mt-5 pt-5 pb-5"></div>
+            <!-- 제품설명 -->
+            <div class="product-description mt-5 pt-5 pb-5"></div>
 
-              <!-- 배송비 -->
-              <div class="delivery mt-5 is-flex">
-                <p>배송비</p>
-                <div>
-                  3,000원
-                  <p>
-                    30,000원 이상 구매 혹은
-                    <span>정기구독으로 10,000원 이상 구매 시 무료배송!</span>
-                  </p>
-                </div>
-              </div>
-
-              <!-- 구매 버튼 -->
-              <div class="purchase mt-6">
-                <button class="btn-purchase">구매하기</button>
-              </div>
-            </section>
-
-            <!-- 장바구니 담기 -->
-            <section class="purchase-floating">
-              <div class="purchase-wrapper">
-                <p class="close-purchase">
-                  닫기 <span class="close-icon">x</span>
-                </p>
-
-                <div class="scroll-box">
-                  <p class="cart-title"></p>
-
-                  <!-- 카운트 -->
-                  <!-- <div class="cart-count">
-                    <p>수량</p>
-                    <div class="count-wrapper">
-                      <button class="btn-minus"><span>-</span></button
-                      ><span class="cnt-number">1</span
-                      ><button class="btn-plus"><span>+</span></button>
-                    </div>
-                  </div> -->
-
-                  <div>
-                    <div
-                      class="is-flex is-justify-content-space-between cart-total"
-                    >
-                      <p>제품 금액</p>
-                      <p class="cart-price"></p>
-                    </div>
-
-                    <!-- 장바구니 담기 버튼 -->
-                    <div class="cart-add">
-                      <button class="cart-btn">장바구니 담기</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </aside>
-
-          <!-- 구분선 -->
-          <hr class="nav-seperate" />
-
-          <!-- 스크롤 메뉴-->
-          <nav class="scroll-menu">
-            <ul class="navbar is-flex">
-              <li class="is-flex-grow-1">제품설명</li>
-              <li class="is-flex-grow-1">
-                후기 <span class="review-count">13</span>
-              </li>
-              <li class="is-flex-grow-1">문의</li>
-              <li class="is-flex-grow-1">배송반품취소</li>
-            </ul>
-          </nav>
-
-          <!-- contents -->
-          <section class="contents">
-            <article class="product-content">
-              <h2>제품설명</h2>
+            <!-- 배송비 -->
+            <div class="delivery mt-5 is-flex">
+              <p>배송비</p>
               <div>
-                <img src="" alt="제품상세이미지" class="product-detail-image" />
-              </div>
-            </article>
-
-            <!-- 제품후기 -->
-            <article class="review-content mt-6">
-              <h2>제품후기</h2>
-              <div>
-                <h3>제품후기 남기기</h3>
-                <div class="is-flex">
-                  <input type="text" id="product-review" />
-                  <button class="review-btn">등록</button>
-                </div>
-              </div>
-
-              <!-- 후기목록 -->
-              <div class="review-list">
-                <div>
-                  <h4 class="customer-name"></h4>
-                  <p class="review-content"></p>
-                </div>
-              </div>
-            </article>
-
-            <!-- 문의 -->
-            <article class="inquiry-content mt-6">
-              <h2>문의</h2>
-              <p>
-                결제, 정기구독, 포인트 사용방법 등 필리 스토어에 대해 궁금하신
-                내용은 전화 또는 카카오톡으로 문의하실 수 있습니다.
-              </p>
-            </article>
-
-            <!-- 배송반품취소 -->
-            <article class="delivery-content mt-6">
-              <h2>배송 / 반품 / 취소</h2>
-              <div class="">
-                <p>배송 안내</p>
+                3,000원
                 <p>
-                  배송은 평일 결제 시 오후 12시에 출고가 마감됩니다. 오후 12시
-                  이후 결제 건은 익일 출고가 진행됩니다. (주말 결제 시 다음
-                  영업일 출고)
+                  30,000원 이상 구매 혹은
+                  <span>정기구독으로 10,000원 이상 구매 시 무료배송!</span>
                 </p>
-                <ul>
-                  <li>
-                    배송이 시작된 후에는 배송지 변경 및 취소가 불가능합니다.
-                  </li>
-                  <li>배송기간은 출고일로부터 평균 3~5일 정도 소요됩니다.</li>
-                  <li>
-                    도서·산간 지역 배송 시 추가 배송비가 없으나, 배송 기일이
-                    추가적으로 소요될 수 있는 점 양해하여 주시기 바랍니다.
-                  </li>
-                  <li>
-                    배송 과정 중 기상 악화 혹은 도로교통 상황에 따라 부득이하게
-                    지연 배송이 발생될 수 있습니다.
-                  </li>
-                </ul>
               </div>
-            </article>
-          </section>
-        </div>
-      </div>
-    </main>
+            </div>
 
-    <!-- 푸터 -->
-    <footer></footer>
-  </body>
+            <!-- 구매 버튼 -->
+            <div class="purchase mt-6">
+              <button class="button is-success btn-purchase">구매하기</button>
+              <button class="button is-warning" id="cart-btn">
+                장바구니 담기
+              </button>
+            </div>
+          </section>
+
+          <!-- 장바구니 담기 -->
+          <section class="purchase-floating">
+            <div class="purchase-wrapper">
+              <p class="close-purchase">
+                닫기 <span class="close-icon">x</span>
+              </p>
+
+              <div class="scroll-box">
+                <p class="cart-title"></p>
+
+                <div></div>
+              </div>
+            </div>
+          </section>
+        </aside>
+
+        <!-- 구분선 -->
+        <hr class="nav-seperate" />
+
+        <!-- 스크롤 메뉴-->
+        <nav class="scroll-menu">
+          <ul class="navbar is-flex">
+            <li class="is-flex-grow-1">제품설명</li>
+            <li class="is-flex-grow-1">
+              후기 <span class="review-count">13</span>
+            </li>
+            <li class="is-flex-grow-1">문의</li>
+            <li class="is-flex-grow-1">배송반품취소</li>
+          </ul>
+        </nav>
+
+        <!-- contents -->
+        <section class="contents">
+          <article class="box product-content">
+            <h2>제품설명</h2>
+            <div>
+              <img src="" alt="제품상세이미지" class="product-detail-image" />
+            </div>
+          </article>
+
+          <!-- 제품후기 -->
+          <article class="box review-content mt-6">
+            <h2>제품후기</h2>
+            <div>
+              <h3>제품후기 남기기</h3>
+              <div class="is-flex">
+                <input type="text" id="product-review" />
+                <button class="review-btn">등록</button>
+              </div>
+            </div>
+
+            <!-- 후기목록 -->
+            <div class="box review-list">
+              <div>
+                <p class="review-content"></p>
+              </div>
+            </div>
+          </article>
+
+          <!-- 문의 -->
+          <article class="box inquiry-content mt-6">
+            <h2>문의</h2>
+            <p>
+              결제, 정기구독, 포인트 사용방법 등 필리 스토어에 대해 궁금하신
+              내용은 전화 또는 카카오톡으로 문의하실 수 있습니다.
+            </p>
+          </article>
+
+          <!-- 배송반품취소 -->
+          <article class="box delivery-content mt-6">
+            <h2>배송 / 반품 / 취소</h2>
+            <div class="">
+              <p>배송 안내</p>
+              <p>
+                배송은 평일 결제 시 오후 12시에 출고가 마감됩니다. 오후 12시
+                이후 결제 건은 익일 출고가 진행됩니다. (주말 결제 시 다음
+                영업일 출고)
+              </p>
+              <ul>
+                <li>
+                  배송이 시작된 후에는 배송지 변경 및 취소가 불가능합니다.
+                </li>
+                <li>배송기간은 출고일로부터 평균 3~5일 정도 소요됩니다.</li>
+                <li>
+                  도서·산간 지역 배송 시 추가 배송비가 없으나, 배송 기일이
+                  추가적으로 소요될 수 있는 점 양해하여 주시기 바랍니다.
+                </li>
+                <li>
+                  배송 과정 중 기상 악화 혹은 도로교통 상황에 따라 부득이하게
+                  지연 배송이 발생될 수 있습니다.
+                </li>
+              </ul>
+            </div>
+          </article>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- 푸터 -->
+  <footer></footer>
+</body>
+
 </html>

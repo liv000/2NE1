@@ -26,17 +26,20 @@
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="cart.css" />
     <script src="cart.js" type="module" defer></script>
-  </head>
-  <body>
-    <!-- 헤더 -->
-    <nav class="navbar" role="navigation" aria-label="main navigation"></nav>
+   <!-- navbar -->
+   <script src="../navbar.js" type="module" defer></script>
+   <script src="../footer.js" type="module" defer></script>
+ </head>
+ <body>
+   <!-- 헤더 -->
+   <header class="navbar"></header>
     <!-- 장바구니 -->
-    <div class="wrapper">
+    <div class="wrapper mt-5">
       <div class="content">
         <section class="is-flex is-justify-content-space-between"><h2 class="title is-3 mt-3">장바구니</h2><div id="deleteButton"></div></section>
         <section class="products">
           <div id="products"></div>
-          <a class="button is-primary is-fullwidth is-hovered mt-4" href="/"
+          <a class="button is-success is-fullwidth is-hovered mt-4" href="/"
           ><strong>제품 추가하기</strong></a
         >
       </div>
@@ -58,7 +61,7 @@
         </section>
         <section class="mt-4">
           <button
-                  class="button is-primary is-fullwidth is-hovered"
+                  class="button is-success is-fullwidth is-hovered"
                   onclick="location.href='/order'">
                  주문서 작성
                 </button>
@@ -67,5 +70,7 @@
         </section>
       </aside>
     </div>
+      <!-- 푸터 -->
+      <footer class="footer"></footer>
   </body>
 </html>

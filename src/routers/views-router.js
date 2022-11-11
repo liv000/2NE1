@@ -18,6 +18,7 @@ viewsRouter.use('/detail', serveStatic('detail'));
 viewsRouter.use('/admin-category', serveStatic('admin-category'));
 viewsRouter.use('/admin-category-add', serveStatic('admin-category-add'));
 viewsRouter.use('/admin-category-edit', serveStatic('admin-category-edit'));
+viewsRouter.use('/mypage', serveStatic('mypage'));
 viewsRouter.use('/admin-product', serveStatic('admin-product'));
 viewsRouter.use('/admin-product-add', serveStatic('admin-product-add'));
 viewsRouter.use('/admin-product-edit', serveStatic('admin-product-edit'));

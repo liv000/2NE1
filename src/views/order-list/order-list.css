@@ -70,7 +70,7 @@ tbody tr a{
         flex-direction: column;
     }
     #order-aside{
-        margin: 0px;
+        width: 100%;
         display: flex;
         
     }
@@ -80,6 +80,7 @@ tbody tr a{
     }
     #ordered-item-list{
         display: flex;
+        align-items: center;
         justify-content: center;
     }
 }

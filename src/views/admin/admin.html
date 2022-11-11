@@ -24,8 +24,8 @@
     ></script>
 
     <!-- 커스텀 css, js -->
-    <link rel="stylesheet" href="login.css" />
-    <script src="login.js" type="module" defer></script>
+    <link rel="stylesheet" href="admin.css" />
+    <script src="admin.js" type="module" defer></script>
   </head>
   <body>
     <!-- 헤더 -->
@@ -34,7 +34,7 @@
         <div class="navbar-brand">
           <a class="navbar-item" href="/">
             <img src="/elice-rabbit.png" width="30" height="30" />
-            <span class="has-text-link">쇼핑-데모</span>
+            <span class="has-text-link">쇼핑-카트</span>
           </a>
 
           <a
@@ -68,40 +68,43 @@
       </div>
     </nav>
 
-    <!-- 로그인 폼(Form) -->
-    <div class="login-form-container">
-      <form class="box login-form-box" id="loginForm">
-        <p class="title is-5 has-text-success">어서오세요!</p>
-        <div class="field">
-          <label class="label" for="emailInput">이메일</label>
-          <div class="control">
-            <input
-              class="input"
-              id="emailInput"
-              type="email"
-              placeholder="abc@example.com"
-              autocomplete="on"
-            />
-          </div>
+    <!-- 관리자 기능  -->
+    <section class="section">
+      <div class="title is-3">관리자 페이지</div>
+      <div class="wrapper">
+        <div class="menu-container">
+          <a class="box menu-card" href="/admin-order">주문관리>
+            <div class="menu-body">
+              <p class="title is-3">주문 관리</p>
+              <p class="subtile is-3">
+                회원들의 주문 내역을 확인, 취소할 수 있습니다.
+              </p>
+            </div>
+          </a>
+          <a class="box menu-card" href="/admin-member">회원관리>
+            <div class="menu-body">
+              <p class="title is-3">회원 관리</p>
+              <p class="subtile is-3">회원들의 정보를 확인할 수 있습니다.</p>
+            </div>
+          </a>
+          <a class="box menu-card" href="/admin-category">카테고리관리>
+            <div class="menu-body">
+              <p class="title is-3">카테고리 관리</p>
+              <p class="subtile is-3">
+                카테고리를 등록, 수정, 삭제 할 수 있습니다.
+              </p>
+            </div>
+          </a>
+          <a class="box menu-card" href="/admin-product">제품관리>
+            <div class="menu-body">
+              <p class="title is-3">제품 관리</p>
+              <p class="subtile is-3">
+                제품을 등록, 수정, 삭제 할 수 있습니다.
+              </p>
+            </div>
+          </a>
         </div>
-
-        <div class="field mb-5">
-          <label class="label" for="passwordInput">비밀번호</label>
-          <div class="control">
-            <input
-              class="input"
-              id="passwordInput"
-              type="password"
-              placeholder="********"
-              autocomplete="on"
-            />
-          </div>
-        </div>
-
-        <button class="button is-success is-fullwidth" id="submitButton">
-          로그인하기
-        </button>
-      </form>
-    </div>
+      </div>
+    </section>
   </body>
 </html>

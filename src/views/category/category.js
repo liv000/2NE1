@@ -40,7 +40,7 @@ categories.forEach(async (category) => {
 async function addProductItemsToContainer() {
   if (ctg === 'all-product') {
     const productListAll = await Api.post(
-      '/api/product/list?page=1&perPage=10',
+      '/api/product/list?page=1&perPage=12',
     );
 
     const products = productListAll.product;
@@ -63,7 +63,7 @@ async function addProductItemsToContainer() {
   } else {
     const data = { categoryId: ctg };
     const productList = await Api.post(
-      '/api/product/list?page=1&perPage=10',
+      '/api/product/list?page=1&perPage=8',
       data,
     );
     const products = productList.product;

@@ -60,27 +60,27 @@ a{
     flex-wrap: nowrap; */
     display: flex;
 }
-/* @media screen and (max-width: 768px) {
-    #header-bar{
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    #nav-bar{
-        flex-direction: column;
-        align-items: center;
-    }
-    #header-navbar{
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-    #header-navbar a{
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
+//  @media screen and (max-width: 768px) {
+//     #header-bar{
+//         flex-direction: column;
+//         align-items: flex-start;
+//     }
+//     #nav-bar{
+//         flex-direction: column;
+//         align-items: center;
+//     }
+//     #header-navbar{
+//         flex-direction: column;
+//         align-items: center;
+//         width: 100%;
+//     }
+//     #header-navbar a{
+//         flex-direction: column;
+//         align-items: center;
+//         width: 100%;
+//     }
 
-} */
+// } 
 .navbar-toogleBtn{
     display:none;
     position: absolute;

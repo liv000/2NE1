@@ -1,7 +1,7 @@
-import navStyle from "./nav-style.js";
+import navStyle from './nav-style.js';
 
-const header = document.querySelector("header");
-const footer = document.querySelector("footer");
+const header = document.querySelector('header');
+const footer = document.querySelector('footer');
 // drawHeaderFooter();
 
 // function drawHeaderFooter() {
@@ -38,8 +38,8 @@ async function drawNavbar(){
     }
 }
 header.insertAdjacentHTML(
-        "beforeend",
-        `
+  'beforeend',
+  `
         <style>${navStyle}</style>    
         <nav id="header-logo">
         <a href="/">
@@ -123,19 +123,26 @@ header.insertAdjacentHTML(
                 </a>
             </div>
         </nav>
-    `
+    `,
 );
 
-
-
+// const userHeader = () => {
+//   return linkTag.myPage + linkTag.login;
+// };
+// const AdminHeader = () => {
+//   return linkTag.admin + linkTag.logout;
+// };
+// const nonUser = () => {
+//   return linkTag.register + linkTag.login;
+// };
 
 async function drawFooter() {
-    // document.footer.append(footer_section);
+  // document.footer.append(footer_section);
 }
-// const footer_section = 
+// const footer_section =
 footer.insertAdjacentHTML(
-        "beforeend",
-        `
+  'beforeend',
+  `
         <div id="footer" class="store">
             <div id="footer-text" class="wrapper">
                 <div id="footer-section1">
@@ -185,8 +192,7 @@ footer.insertAdjacentHTML(
             <p class="copyright">ⓒ Carewith Inc. All Right Reversed.</p>
         </div>
     </div> 
-        `
+        `,
 );
-
 
 // export default drawHeaderFooter;

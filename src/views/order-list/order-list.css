@@ -1,0 +1,73 @@
+.order-main{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+#order-aside{
+    /* display: flex;
+    flex-direction: column; */
+    margin: 100px 100px;
+    padding: 5px;
+    width:250px;
+    text-align: center;
+    /* background-color: #F7ECDE; */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: auto; 
+    
+}
+h2{
+    font-weight: bold;
+    text-align: center;
+}
+div{
+    text-align: center;
+}
+.order-mypage{
+    padding: 10px;
+    font-size:30px;
+    font-weight: bold;
+    color: #54BAB9;
+    
+}
+.order-side{
+    margin: 0px 5px;
+    padding: 5px;
+    font-size:20px;
+    
+}
+.order-side a{
+    text-decoration : none;
+    color: #54BAB9;
+}
+.order{
+    /* display: flex;
+    flex-direction: column;
+    text-align: center; */
+    margin: 50px 10px;
+    width: 1000px;
+}
+
+#ordered-item-list{
+    width:1000px;
+}
+table{
+    width:900px;
+    text-align: center;
+}
+thead{
+    text-align: center;
+}
+tbody tr a{
+    font-size: 5px;
+}
+
+#pagination{
+    margin: 50px 50px;
+    /* width: 50%; */
+}
+#pagination_section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

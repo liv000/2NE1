@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"/>
     <link rel="stylesheet" href="admin-order.css">
@@ -7,23 +7,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>약쟁이관리자주문조회</title>
-    <script scr="admin-order.js" type="module" defer></script>
+    <script src="admin-order.js" type="module" defer></script>
+    <script src="../navbar.js" type="module" defer></script>
+    
 </head>
 <body>
+  <header></header>
     <main role="main">
         <section class="section">
             <div class="title-header">
                 <h1 class="subtitle is-4">회원주문관리</h1>
+                <div class="test"></div>
             </div>
             <div class="admin-orderlist-section">
                 <table id="admin-orderlist-table" class="table has-shadow is-striped">
-                    <tr>
-                        <th width="300">주문날짜</th>
-                        <th width="400">주문정보</th>
+                  <thead> 
+                  <tr>
+                        <th width="300">주문번호</th>
+                        <th width="400">주문자이름</th>
                         <th width="300">주문총액</th>
                         <th width="300">상태관리</th>
                         <th width="200">삭제</th>
                     </tr>
+                  </thead> 
+                  <!-- <tbody id="admin-test">
+
+                  </tbody> -->
                 </table>
             </div>
         </section>
@@ -60,6 +69,19 @@
               aria-label="close"
             ></button>
           </div>
+          <section id="pagination_section">
+            <div id="pagination" class="pagination is-centered" role="navigation" aria-label="pagination">
+                <a class="pagination-previous">Previous</a>
+                <a class="pagination-next">Next page</a>
+                <ul class="pagination-list">
+                    <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 2">2</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 3">3</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 4">4</a></li>
+                </ul>
+            </div>
+        </section>
     </main>
+    <footer></footer>
 </body>
 </html>

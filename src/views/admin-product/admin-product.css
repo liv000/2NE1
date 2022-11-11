@@ -1,5 +1,17 @@
 @charset "UTF-8";
 
+/* 태그 기본값 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 main {
   margin-top: 20px;
 }
@@ -7,6 +19,7 @@ main {
 .wrapper {
   width: 1280px;
   margin: 0 auto;
+  padding: 0 55px;
 }
 
 .snb {
@@ -17,4 +30,21 @@ main {
   flex-basis: 80%;
 }
 
-/* 버튼 */
+/* 페이지네이션 */
+.pagination {
+  display: block;
+}
+
+.page-button {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  background-color: #eaeaea;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.page-button:not(:first-child) {
+  margin-left: 12px;
+}

@@ -1,4 +1,3 @@
-import { Cursor } from 'mongoose';
 import { orderModel, userModel } from '../db';
 
 class OrderService {
@@ -38,6 +37,18 @@ class OrderService {
 
   async hasOrder(userId) {
     return await orderModel.hasOrder(userId);
+  }
+
+  async getAllOrderList(page, perPage) {
+    return await orderModel.getAllOrderList(page, perPage);
+  }
+
+  async getOrderByUserId(userId, productId) {
+    return await orderModel.getOrderByUserId(userId, productId);
+  }
+
+  async getOrderListByUser(userId, page, perPage) {
+    return await orderModel.getOrderListByUser(userId, page, perPage);
   }
 }
 

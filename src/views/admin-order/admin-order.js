@@ -1,158 +1,165 @@
-import { addCommas, checkAdmin, createNavbar } from "../../useful-functions.js";
-import * as Api from "../../api.js";
+import * as Api from '../api.js';
+// import drawHeaderFooter from "../navbar.js";
 
-// 요소(element), input 혹은 상수
-const ordersContainer = document.querySelector("#ordersContainer");
-const modal = document.querySelector("#modal");
-const modalBackground = document.querySelector("#modalBackground");
-const modalCloseButton = document.querySelector("#modalCloseButton");
-const deleteCompleteButton = document.querySelector("#deleteCompleteButton");
-const deleteCancelButton = document.querySelector("#deleteCancelButton");
+const admin_orderlist_table = document.querySelector('#admin-orderlist-table');
+const modal = document.querySelector('#modal');
+const modalBackground = document.querySelector('#modalBackground');
+const modalCloseButton = document.querySelector('#modalCloseButton');
+const deleteCompleteButton = document.querySelector('#deleteCompleteButton');
+const deleteCancelButton = document.querySelector('#deleteCancelButton');
 
-checkAdmin();
-addAllElements();
-addAllEvents();
-
-// 요소 삽입 함수들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-function addAllElements() {
-    createNavbar();
-    insertOrders();
+drawOrderList();
+drawAllEvents();
+// drawHeaderFooter();
+function drawAllEvents() {
+  modalBackground.addEventListener('click', closeModal);
+  modalCloseButton.addEventListener('click', closeModal);
+  deleteCompleteButton.addEventListener('click', deleteOrderData);
+  deleteCancelButton.addEventListener('click', cancelDelete);
 }
+let _id;
+let userId;
 
-// 여러 개의 addEventListener들을 묶어주어서 코드를 깔끔하게 하는 역할임.
-function addAllEvents() {
-    modalBackground.addEventListener("click", closeModal);
-    modalCloseButton.addEventListener("click", closeModal);
-    document.addEventListener("keydown", keyDownCloseModal);
-    deleteCompleteButton.addEventListener("click", deleteOrderData);
-    deleteCancelButton.addEventListener("click", cancelDelete);
-}
+async function drawOrderList() {
+  const orders = await Api.get('/api/order/admin/list?page=1&perPage=10 n');
 
-// 페이지 로드 시 실행, 삭제할 주문 id를 전역변수로 관리함
-let orderIdToDelete;
-async function insertOrders() {
-    const orders = await Api.get("/api/orderlist/all");
+  orders.order.map((order, i) => {
+    const { _id, products, name, totalAmount, shipping } = order;
 
-    for (const order of orders) {
-        const { _id, totalPrice, createdAt, summaryTitle, status } = order;
-        const date = createdAt.split("T")[0];
-    
-        ordersContainer.insertAdjacentHTML(
-            "beforeend",
-            `
-                <div class="columns orders-item" id="order-${_id}">
-                    <div class="column is-2">${date}</div>
-                    <div class="column is-4 order-summary">${summaryTitle}</div>
-                    <div class="column is-2">${addCommas(totalPrice)}</div>
-                    <div class="column is-2">
-                        <div class="select" >
-                            <select id="statusSelectBox-${_id}">
-                                <option 
-                                class="has-background-danger-light has-text-danger"
-                                ${status === "상품 준비중" ? "selected" : ""} 
-                                value="상품 준비중">
-                                    상품 준비중
-                                </option>
-                                <option 
-                                class="has-background-primary-light has-text-primary"
-                                ${status === "상품 배송중" ? "selected" : ""} 
-                                value="상품 배송중">
-                                    상품 배송중
-                                </option>
-                                <option 
-                                class="has-background-grey-light"
-                                ${status === "배송완료" ? "selected" : ""} 
-                                value="배송완료">
-                                    배송완료
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="column is-2">
-                        <button class="button" id="deleteButton-${_id}" >주문 취소</button>
-                    </div>
-                </div>
-            `
-        );
+    const detail = products
+      .map(
+        (e) =>
+          `<tr><td>${e.productName}</td><td>${e.productPrice}</td><td>${e.quantity}</td></tr>`,
+      )
+      .join('');
 
-    // 요소 선택
-        const statusSelectBox = document.querySelector(`#statusSelectBox-${_id}`);
-        const deleteButton = document.querySelector(`#deleteButton-${_id}`);
+    admin_orderlist_table.insertAdjacentHTML(
+      'beforeend',
+      `
+                <tbody id="detail${_id}">
+                    <tr id="d${_id}">
+                        <td>${_id}</td>
+                        <td>${name}</td>
+                        <td>${totalAmount}</td>
+                        <td>
+                            <div class="select" >
+                                <select class="selectBtn${_id}">
+                                    <option ${
+                                      shipping === 'PENDING' ? 'selected' : ''
+                                    } 
+                                        value="pending">
+                                            배송준비중
+                                    </option>
+                                    <option ${
+                                      shipping === 'SHIPPING' ? 'selected' : ''
+                                    } 
+                                        value="shipping">
+                                            배송중
+                                    </option>
+                                    <option ${
+                                      shipping === 'SHIPPED' ? 'selected' : ''
+                                    } 
+                                        value="shipped">
+                                            배송완료
+                                    </option>
+                                    <option ${
+                                      shipping === 'CANCELED' ? 'selected' : ''
+                                    } 
+                                        value="canceled">
+                                            주문취소
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="button" id="deleteBtn${_id}" >주문 삭제</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody id= "showDetail${_id}" class="showDetail" style = "display : none">
+                <tr>
+                <th>상품명</th><th>개수</th><th>가격</th></tr>
+                    ${detail}
 
-        // 상태관리 박스에, 선택되어 있는 옵션의 배경색 반영
-        const index = statusSelectBox.selectedIndex;
-        statusSelectBox.className = statusSelectBox[index].className;
+                </tbody>
+                `,
+    );
+    const selectBtnBox = document.querySelector(`.selectBtn${_id}`);
+    const deleteBtn = document.querySelector(`#deleteBtn${_id}`);
+    const index = selectBtnBox.selectedIndex;
+    selectBtnBox.className = selectBtnBox[index].className;
+    selectBtnBox.addEventListener('change', async () => {
+      const newStatus = selectBtnBox.value;
+      const data = { status: newStatus, orderId: _id };
+      const index = selectBtnBox.selectedIndex;
+      selectBtnBox.className = selectBtnBox[index].className;
+      await Api.patch('/api/shipping/admin/edit', null, data);
+    });
+    function orderCancel() {
+      const deletedItem = document.querySelector(`#d${_id}`);
 
-        // 이벤트 - 상태관리 박스 수정 시 바로 db 반영
-        statusSelectBox.addEventListener("change", async () => {
-            const newStatus = statusSelectBox.value;
-            const data = { status: newStatus };
-
-        // 선택한 옵션의 배경색 반영
-            const index = statusSelectBox.selectedIndex;
-            statusSelectBox.className = statusSelectBox[index].className;
-
-        // api 요청
-            await Api.patch("/api/orders", _id, data);
-        });
-
-    // 이벤트 - 삭제버튼 클릭 시 Modal 창 띄우고, 동시에, 전역변수에 해당 주문의 id 할당
-        deleteButton.addEventListener("click", () => {
-            orderIdToDelete = _id;
-            openModal();
-        });
+      deletedItem.style.backgroundColor = 'lightgrey';
+      const order_cancel_btn = document.getElementById(`deleteBtn${_id}`);
+      order_cancel_btn.disabled = true;
+      selectBtnBox.disabled = true;
     }
-
-  // 총 요약 값 삽입
-    ordersCount.innerText = addCommas(summary.ordersCount);
-    prepareCount.innerText = addCommas(summary.prepareCount);
-    deliveryCount.innerText = addCommas(summary.deliveryCount);
-    completeCount.innerText = addCommas(summary.completeCount);
+    deleteBtn.addEventListener('click', () => {
+      userId = _id;
+      openModal(_id);
+    });
+    if (shipping === 'CANCELED') {
+      orderCancel();
+    }
+    const show = document.querySelector(`#detail${_id}`);
+    show.addEventListener('click', () => {
+      userId = _id;
+      showDetail();
+    });
+  });
 }
+const showDetail = async () => {
+  const showDetail = document.querySelector(`#showDetail${userId}`);
+  if (showDetail.style.display === 'none') {
+    showDetail.style.display = 'block';
+  } else {
+    showDetail.style.display = 'none';
+  }
+};
 
-// db에서 주문정보 삭제
 async function deleteOrderData(e) {
-    e.preventDefault();
+  e.preventDefault();
+  try {
+    await Api.patch('/api/order/admin/cancel', null, { orderId: userId });
 
-    try {
-        await Api.delete("/api/orders", orderIdToDelete);
-
-        // 삭제 성공
-        alert("주문 정보가 삭제되었습니다.");
-
-        // 삭제한 아이템 화면에서 지우기
-        const deletedItem = document.querySelector(`#order-${orderIdToDelete}`);
-        deletedItem.remove();
-
-        // 전역변수 초기화
-        orderIdToDelete = "";
-
-        closeModal();
-    } catch (err) {
-        alert(`주문정보 삭제 과정에서 오류가 발생하였습니다: ${err}`);
-    }
-}
-
-// Modal 창에서 아니오 클릭할 시, 전역 변수를 다시 초기화함.
-function cancelDelete() {
-    orderIdToDelete = "";
+    // 삭제 성공
+    alert('주문 정보가 삭제되었습니다.');
+    _id = '';
+    location.reload();
     closeModal();
+  } catch (err) {
+    alert(`오류가 발생하였습니다: ${err}`);
+  }
 }
-
-// Modal 창 열기
+function cancelDelete() {
+  _id = '';
+  closeModal();
+}
 function openModal() {
-    modal.classList.add("is-active");
+  modal.classList.add('is-active');
 }
-
-// Modal 창 닫기
 function closeModal() {
-    modal.classList.remove("is-active");
+  modal.classList.remove('is-active');
 }
 
-// 키보드로 Modal 창 닫기
-function keyDownCloseModal(e) {
-  // Esc 키
-    if (e.keyCode === 27) {
-        closeModal();
-    }
-}
+// async function getData() {
+//     setPage += 1;
+//     const res = await fetch(
+//         /api/order/admin?list=${setlist}&perPage=${perPage}&page=${setPage},
+//     );
+//     const data = await res.json();
+//     drawOrderList( data.orderList);
+// };
+// const AOL = await Api.post('/api/order/admin/list?page=1&perPage=4');
+// async function pagenation () {
+//     await Api.post('/api/order/admin/list?page=1&perPage=4');
+// }

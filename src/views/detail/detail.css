@@ -151,3 +151,17 @@ main {
   padding-top: 30px;
   text-align: center;
 }
+
+@media screen and (max-width: 1024px) {
+  .wrapper{
+    width:auto;
+  }
+  .product-purchase{
+    position: relative;
+    width:auto;
+    margin-left: 7.25rem;
+  }
+  .box{
+    margin-bottom: 30px;
+  }
+}

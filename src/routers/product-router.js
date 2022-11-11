@@ -76,8 +76,8 @@ productRouter.patch(
     const id = req.params.id;
     const newInfo = req.body;
 
-    await productService.updateProduct(id, newInfo);
-    res.redirect(`${id}`);
+    const update = await productService.updateProduct(id, newInfo);
+    res.json(update);
   }),
 );
 

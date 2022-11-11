@@ -12,7 +12,11 @@ const totalPrice = document.querySelector('#total-price');
 const deliveryPrice = document.querySelector('#delivery-price');
 
 const cartList = JSON.parse(localStorage.getItem('products'));
-insertTest();
+// insertTest();
+const deleteAll = () => {
+  localStorage.removeItem('products');
+  console.log('전체삭제');
+};
 insertProductElement();
 drawOrderCard();
 // 데이터를 받아 요소를 만든 후, html에 삽입
@@ -29,7 +33,7 @@ function insertProductElement() {
     </div>`,
     );
   } else {
-    deleteButton.innerHTML = `<button class = "button is-small  is-rounded mt-4" id="deleteItem">
+    deleteButton.innerHTML = `<button class = "button is-small  is-rounded mt-4" onclick='${deleteAll()}' id="deleteItem">
   전체 삭제
   </button>`;
     cartList.map((item) => {
@@ -37,30 +41,25 @@ function insertProductElement() {
       productList.insertAdjacentHTML(
         'beforeend',
         `
-      <div class="box product-item ">
-        <div>
-          <figure>
-            <img id="productImage" src="" alt="thumnail-image" />
-          </figure>
-        </div>
+      <div class="box product-item">
         <div class="description">
         <button class = "button is-small  is-rounded ml-2 mb-2" id="deleteItem-${productId}">
       선택 삭제
       </button>
-        <h5 id="productTitle">${productName}</h5>
+        <h5 id="productTitle" class="ml-3">${productName}</h5>
         
           <div class="detail is-flex">
             <h5 id="quantity"> 
             <button
-            class="button is-small is-rounded  ml-2 mb-2"
+            class="button is-small is-rounded  ml-2 mb-1"
             id="minus--${productId}">-</button>
             ${quantity}
             </h5>
             <button
-            class="button is-small  is-rounded ml-2 mb-2"
+            class="button is-small  is-rounded ml-2 mb-1"
             id="plus-${productId}">+</button>
           </div>
-          <div class="price">
+          <div class="price is-flex">
             <h5 id="productPrice">${addCommas(productPrice)}원</h5>
           </div>
         </div>
@@ -127,61 +126,61 @@ async function getData() {
   return result;
 }
 
-//여기서부터 detail.js에 들어갈 아이
-async function insertTest() {
-  console.log('장바구니상품 test');
-  const test = await getData();
-  // console.log('테스트', test.product);
-  test?.product.map((item) => {
-    const { _id, title, price, thumbnail } = item;
-    productTest.insertAdjacentHTML(
-      'beforeend',
-      `
-      <div class="box product-item ">
-        <div>
-          <figure>
-            <img id="productImage" src="${thumbnail}" alt="clothes-image" />
-          </figure>
-        </div>
-        <div class="description">
-          <div class="detail">
-            <h5 id="productTitle">${title}</h5>
-            
-          </div>
-          <div class="price">
-            <h5 id="productPrice">${addCommas(price)}원</h5>
-          </div>
-          
-          <button type="button" class="button is-warning" id="addToCartButton-${_id}">
-          장바구니 추가하기
-        </button>
-        </div>
-      </div>
-    `,
-    );
-    //디테일에 들어갈 카트 버튼
-    document
-      .querySelector(`#addToCartButton-${_id}`)
-      .addEventListener('click', async () => {
-        try {
-          const products = JSON.parse(localStorage.getItem('products')) || [];
-          const product = {
-            productId: `${_id}`,
-            productName: `${title}`,
-            productPrice: `${price}`,
-            quantity: 1,
-          };
-          localStorage.setItem('product', JSON.stringify(product));
-          products.push(product);
-          localStorage.setItem('products', JSON.stringify(products));
-          console.log(`${title} 이 장바구니에 추가`);
-          alert('장바구니에 추가되었습니다.');
-        } catch (err) {
-          if (err.message.includes('Key')) {
-            alert('이미 장바구니에 추가되어 있습니다.');
-          }
-          console.log(err);
-        }
-      });
-  });
-}
+// //여기서부터 detail.js에 들어갈 아이
+// async function insertTest() {
+//   console.log('장바구니상품 test');
+//   const test = await getData();
+//   // console.log('테스트', test.product);
+//   test?.product.map((item) => {
+//     const { _id, title, price, thumbnail } = item;
+//     productTest.insertAdjacentHTML(
+//       'beforeend',
+//       `
+//       <div class="box product-item ">
+//         <div>
+//           <figure>
+//             <img id="productImage" src="${thumbnail}" alt="clothes-image" />
+//           </figure>
+//         </div>
+//         <div class="description">
+//           <div class="detail">
+//             <h5 id="productTitle">${title}</h5>
+
+//           </div>
+//           <div class="price">
+//             <h5 id="productPrice">${addCommas(price)}원</h5>
+//           </div>
+
+//           <button type="button" class="button is-warning" id="addToCartButton-${_id}">
+//           장바구니 추가하기
+//         </button>
+//         </div>
+//       </div>
+//     `,
+//     );
+//     //디테일에 들어갈 카트 버튼
+//     document
+//       .querySelector(`#addToCartButton-${_id}`)
+//       .addEventListener('click', async () => {
+//         try {
+//           const products = JSON.parse(localStorage.getItem('products')) || [];
+//           const product = {
+//             productId: `${_id}`,
+//             productName: `${title}`,
+//             productPrice: `${price}`,
+//             quantity: 1,
+//           };
+//           localStorage.setItem('product', JSON.stringify(product));
+//           products.push(product);
+//           localStorage.setItem('products', JSON.stringify(products));
+//           console.log(`${title} 이 장바구니에 추가`);
+//           alert('장바구니에 추가되었습니다.');
+//         } catch (err) {
+//           if (err.message.includes('Key')) {
+//             alert('이미 장바구니에 추가되어 있습니다.');
+//           }
+//           console.log(err);
+//         }
+//       });
+//   });
+// }

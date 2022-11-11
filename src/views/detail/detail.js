@@ -50,13 +50,12 @@ cartBtn.addEventListener('click', async () => {
       productPrice: `${price}`,
       quantity: 1,
     };
-    localStorage.setItem('product', JSON.stringify(product));
     products.push(product);
     localStorage.setItem('products', JSON.stringify(products));
     console.log(`${title} 이 장바구니에 추가`);
     alert('장바구니에 추가되었습니다.');
   } catch (err) {
-    if (err.message.includes('Key')) {
+    if (`${productId}`) {
       alert('이미 장바구니에 추가되어 있습니다.');
     }
     console.log(err);

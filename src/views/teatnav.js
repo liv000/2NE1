@@ -1,22 +1,45 @@
 import navStyle from './nav-style.js';
-import { checkAccount } from './check-account.js';
+
 const header = document.querySelector('header');
 const footer = document.querySelector('footer');
-
 drawNavbar();
-
+const linkTag = {
+    login: '<li><a href="/login" class="button" style="color: #54BAB9">Login</a></li>',
+    logout: '<li><a href="/" id="logout" class="button" style="color: #54BAB9">Logout</a></li>',
+    register: '<li class="register_btn"><a href="/register" class="button" style="color: #54BAB9">Register</a></li>',
+    myPage: '<li><a href="/myPage" class="button" style="color: #54BAB9">myPage</a></li>',
+    admin: '<li><a href="/admin" class="button" style="color: #54BAB9">AdminPage</a></li>',
+}
+const userHeader = () => {
+    return linkTag.myPage + linkTag.login;
+}
+const AdminHeader = () => {
+    return linkTag.admin + linkTag.logout;
+}
+const nonUser = () => {
+    return linkTag.register + linkTag.login;
+}
+async function drawNavbar(){
+    if(isLogin){
+        header.prepend(userHeader);
+    } else if(isAdmin){
+        header.prepend(AdminHeader);
+    }else{
+        header.prepend(nonUser);
+    }
+}
 header.insertAdjacentHTML(
-    'beforeend',
-    `
+  'beforeend',
+  `
         <style>${navStyle}</style>    
         <nav id="header-logo">
-            <a href="/">
-                <img src="../drug.png" width="100" height="28">
-            </a>
-            
-            <a href="#" class="navbar-toogleBtn">
-                <i class="fa-solid fa-bars"></i>
-            </a>
+        <a href="/">
+            <img src="../drug.png" width="100" height="28">
+        </a>
+        <a href="/" id="header-logo-text">약쟁이네 약팔이</a>
+        <a href="#" class="navbar-toogleBtn">
+            <i class="fa-solid fa-bars"></i>
+        </a>
         </nav>
         <!--메뉴바 왼쪽 끝  -->
         <nav id="header-navbar" class="navbar-menu">
@@ -93,57 +116,17 @@ header.insertAdjacentHTML(
         </nav>
     `,
 );
-const linkTag = {
-    login: '<li><a href="/login" class="button" style="color: #54BAB9">Login</a></li>',
-    logout: '<li><a href="/" id="logout" class="button" style="color: #54BAB9">Logout</a></li>',
-    register: '<li class="register_btn"><a href="/register" class="button" style="color: #54BAB9">Register</a></li>',
-    myPage: '<li><a href="/myPage" class="button" style="color: #54BAB9">myPage</a></li>',
-    admin: '<li><a href="/admin" class="button" style="color: #54BAB9">AdminPage</a></li>',
-}
 
-const userHeader = () => {
-    return linkTag.myPage + linkTag.login;
-}
-const AdminHeader = () => {
-    return linkTag.admin + linkTag.logout;
-}
-const nonUser = () => {
-    return linkTag.register + linkTag.login;
-}
-async function drawNavbar(){
-    checkAccount();
-    const headerNavbar = document.querySelector("#header-logo");
-
-    if(isLogined){
-        headerNavbar.insertAdjacentHTML(
-            'beforeend',
-            `
-            <button class="button" ><a href="/myPage">myPage</a></button>
-            `
-        );
-    } else if(isAdmin){
-        headerNavbar.insertAdjacentHTML('beforeend',
-        `
-        <button class="button" ><a href="/myPage">myPage</a></button>
-        `);
-    }else{
-        headerNavbar.insertAdjacentHTML('beforeend',
-        `
-        <button class="button" ><a href="/myPage">myPage</a></button>
-        `);
-    }
-}
 footer.insertAdjacentHTML(
-    'beforeend',
-    `
+  'beforeend',
+  `
         <div id="footer" class="store">
             <div id="footer-text" class="wrapper">
                 <div id="footer-section1">
-                    <h4 class="footerTitle">당신의 건강을 책임지는 영양제<br><br></brt></h4>
-                    <a href="https://www.instagram.com/"><img src="../instagramLogo.png" width="30" height="30">&nbsp;&nbsp;</a>
-                    <a href="https://www.facebook.com/"><img src="../facebookLogo.png" width="30" height="30">&nbsp;&nbsp;</a>
-                    <a href="https://line.me/en/"> <img src="../lineLogo.png" width="30" height="30"> </a>
-                    
+                    일단 테스트 
+                    <em>[</em>
+                    어렵네유 
+                    <em>]</em>
                 </div>
                 <div id="footer-section2" class="content">
                     <div class="cs">

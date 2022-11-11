@@ -9,7 +9,7 @@ const productDetailImage = document.querySelector('.product-detail-image');
 const productDescription = document.querySelector('.product-description');
 const cartTitle = document.querySelector('.cart-title');
 const cartPrice = document.querySelector('.cart-price');
-const cartBtn = document.querySelector('.cart-btn');
+const cartBtn = document.querySelector('#cart-btn');
 const reviewBtn = document.querySelector('.review-btn');
 const reviewList = document.querySelector('.review-list');
 const inputReview = document.getElementById('product-review');
@@ -40,10 +40,27 @@ productDescription.innerText = description;
 cartTitle.innerText = title;
 cartPrice.innerText = `${price.toLocaleString()}원`;
 
-//
-cartBtn.addEventListener('click', () => {
-  // 로컬스토리지 카트리스트에 저장
-  alert('장바구니에 담겼습니다.');
+//카트에 제품 추가
+cartBtn.addEventListener('click', async () => {
+  try {
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const product = {
+      productId: `${productId}`,
+      productName: `${title}`,
+      productPrice: `${price}`,
+      quantity: 1,
+    };
+    localStorage.setItem('product', JSON.stringify(product));
+    products.push(product);
+    localStorage.setItem('products', JSON.stringify(products));
+    console.log(`${title} 이 장바구니에 추가`);
+    alert('장바구니에 추가되었습니다.');
+  } catch (err) {
+    if (err.message.includes('Key')) {
+      alert('이미 장바구니에 추가되어 있습니다.');
+    }
+    console.log(err);
+  }
 });
 
 // 리뷰 렌더링

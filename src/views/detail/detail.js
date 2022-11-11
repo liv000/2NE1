@@ -43,7 +43,16 @@ cartTitle.innerText = title;
 //카트에 제품 추가
 cartBtn.addEventListener('click', async () => {
   const products = JSON.parse(localStorage.getItem('products')) || [];
-  try {
+  let checkId;
+  products.map((item, index) => {
+    if (item.productId === `${productId}`) {
+      checkId = index;
+    }
+  });
+  console.log(checkId);
+  if (!isNaN(checkId)) {
+    alert('이미 장바구니에 추가되어 있습니다.');
+  } else {
     const product = {
       productId: `${productId}`,
       productName: `${title}`,
@@ -54,11 +63,6 @@ cartBtn.addEventListener('click', async () => {
     localStorage.setItem('products', JSON.stringify(products));
     console.log(`${title} 이 장바구니에 추가`);
     alert('장바구니에 추가되었습니다.');
-  } catch (err) {
-    if (`${productId}`) {
-      alert('이미 장바구니에 추가되어 있습니다.');
-    }
-    console.log(err);
   }
 });
 

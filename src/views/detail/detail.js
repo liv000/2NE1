@@ -9,22 +9,17 @@ const productDetailImage = document.querySelector('.product-detail-image');
 const productDescription = document.querySelector('.product-description');
 const cartTitle = document.querySelector('.cart-title');
 const cartPrice = document.querySelector('.cart-price');
-const cartBtn = document.querySelector('.cart-btn');
+const cartBtn = document.querySelector('#cart-btn');
 const reviewBtn = document.querySelector('.review-btn');
 const reviewList = document.querySelector('.review-list');
 const inputReview = document.getElementById('product-review');
 
 // purchase-floating
-const purchaseButton = document.querySelector('.btn-purchase');
-const purchseFloating = document.querySelector('.purchase-floating');
-const floatingClose = document.querySelector('.close-purchase');
+// const purchaseButton = document.querySelector('.btn-purchase');
+// const purchseFloating = document.querySelector('.purchase-floating');
+// const floatingClose = document.querySelector('.close-purchase');
 
-// counter
-// const minusBtn = document.querySelector('.btn-minus');
-// const plusBtn = document.querySelector('.btn-plus');
-// const number = document.querySelector('.cnt-number');
-
-// Get queryString
+// Get productId
 let productId = new URLSearchParams(window.location.search).get('product');
 // const { id } = getUrlParams();
 // console.log(id);
@@ -43,12 +38,28 @@ productTitle.innerText = title;
 productPrice.innerText = `${price.toLocaleString()}원`;
 productDescription.innerText = description;
 cartTitle.innerText = title;
-cartPrice.innerText = `${price.toLocaleString()}원`;
+// cartPrice.innerText = `${price.toLocaleString()}원`;
 
-//
-cartBtn.addEventListener('click', () => {
-  // 로컬스토리지 카트리스트에 저장
-  alert('장바구니에 담겼습니다.');
+//카트에 제품 추가
+cartBtn.addEventListener('click', async () => {
+  const products = JSON.parse(localStorage.getItem('products')) || [];
+  try {
+    const product = {
+      productId: `${productId}`,
+      productName: `${title}`,
+      productPrice: `${price}`,
+      quantity: 1,
+    };
+    products.push(product);
+    localStorage.setItem('products', JSON.stringify(products));
+    console.log(`${title} 이 장바구니에 추가`);
+    alert('장바구니에 추가되었습니다.');
+  } catch (err) {
+    if (`${productId}`) {
+      alert('이미 장바구니에 추가되어 있습니다.');
+    }
+    console.log(err);
+  }
 });
 
 // 리뷰 렌더링
@@ -66,7 +77,7 @@ reviewBtn.addEventListener('click', async () => {
 
 function drawReviewList(content) {
   const reviewTemplelate = `
-  <div class="review-list">
+  <div class="box review-list">
     <div class="mt-5">
       <h4 class="customer-name">${'이름'}</h4>
       <p class="review-content">${content}</p>
@@ -78,31 +89,12 @@ function drawReviewList(content) {
 }
 
 // floating onoff
-purchaseButton.addEventListener('click', () => {
-  purchseFloating.classList.add('on');
-  purchaseButton.style.display = 'none';
-});
-
-floatingClose.addEventListener('click', () => {
-  purchseFloating.classList.remove('on');
-  purchaseButton.style.display = 'block';
-});
-
-// counter
-// plusBtn.addEventListener('click', () => {
-//   count++;
-//   number.innerText = count;
-//   totalPrice.innerText = `${(count * price).toLocaleString()}원`;
+// purchaseButton.addEventListener('click', () => {
+//   purchseFloating.classList.add('on');
+//   purchaseButton.style.display = 'none';
 // });
 
-// minusBtn.addEventListener('click', () => {
-//   if (count <= 1) {
-//     count = 1;
-//     return;
-//   }
-//   count--;
-//   number.innerText = count;
-//   totalPrice.innerText = `${(count * price).toLocaleString()}원`;
+// floatingClose.addEventListener('click', () => {
+//   purchseFloating.classList.remove('on');
+//   purchaseButton.style.display = 'block';
 // });
-
-// history.replaceState({}, null, location.pathname);

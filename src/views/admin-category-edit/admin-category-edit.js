@@ -12,7 +12,7 @@ const deleteButton = document.getElementById('btn-delete');
 let queryStringId = new URLSearchParams(window.location.search).get('id');
 let categoryCode = '';
 
-// GET 요청
+//  1. 카테고리 option 목록 렌더링
 const category = await Api.get('/api/category/list?page=1&perPage=10', '');
 const categories = category.categories;
 
@@ -24,22 +24,22 @@ for (let category of categories) {
   categoryCode = category.categoryCode;
 }
 
-// 카테고리 수정
+// 2. 카테고리 수정하기
 submitButton.addEventListener('click', onRegisterCategory);
+// 취소 버튼
 cancelButton.addEventListener('click', (e) => {
   e.preventDefault();
-  history.back();
+  if (confirm('수정을 취소하겠습니까?')) history.back();
 });
+
+// 3. 카테고리 삭제하기
 deleteButton.addEventListener('click', async (e) => {
   e.preventDefault();
 
-  // DELETE 요청
-  if (confirm('카테고리를 삭제하겠습니까?')) {
-    // 데이터 저장
+  if (confirm('등록된 카테고리를 삭제하겠습니까?')) {
     let data = {
       categoryId: queryStringId,
     };
-    console.log(data);
 
     const deleteCategory = await Api.patch(
       '/api/category/admin/drop',
@@ -78,12 +78,15 @@ async function onRegisterCategory(e) {
 
   // 데이터 저장
   data = { categoryId: queryStringId, categoryName, categoryCode, categoryImg };
-  console.log(data);
+
   // PATCH 요청
   const patchCategory = await Api.patch('/api/category/admin/edit', null, data);
 
   // 카테고리 목록으로 페이지 이동
-  window.location.href = '/admin-category';
+  if (patchCategory) {
+    alert('카테고리 수정이 완료되었습니다.');
+    window.location.href = '/admin-category';
+  }
 }
 
 function isEmptyInputValue(inputValue, inputTag) {

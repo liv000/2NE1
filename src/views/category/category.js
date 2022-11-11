@@ -5,7 +5,7 @@ import { randomId, getUrlParams } from '../useful-functions.js';
 const categoryIcons = document.querySelector('.category-icons');
 const allIcon = document.querySelector('#all-product');
 const productItems = document.querySelector('.product-items');
-const productCount = document.querySelector('.product-count');
+const productTitle = document.querySelector('.product-title');
 const pagination = document.querySelector('.pagination');
 
 // Global Variables
@@ -41,6 +41,7 @@ categories.forEach(async (category) => {
 // 3. 제품 목록
 if (ctg === 'all-product') {
   const productListAll = await Api.post(`/api/product/list?page=1&perPage=12`);
+  productTitle.innerText = '전체';
   addProductItemsAll();
   const { totalPage, page, perPage } = productListAll;
   drawPageButton(totalPage);
@@ -96,7 +97,8 @@ async function addProductItemsCategory(page = 1) {
     const { _id, price, title, thumbnail } = product;
     const brandTitle = product.brandInfo.title;
     const random = randomId();
-
+    const categoryName = product.category.categoryName;
+    productTitle.innerText = categoryName;
     productItems.insertAdjacentHTML(
       'beforeend',
       drawProducts(random, price, thumbnail, title, brandTitle),
@@ -109,7 +111,6 @@ async function addProductItemsCategory(page = 1) {
   });
 }
 
-// TODO 컴포넌트 파일 분리
 function drawCategoryIcons(random, categoryName, categoryImg) {
   const iconsTemplate = `
 <li id="c${random}">

@@ -1,4 +1,7 @@
 /* 주문 리스트 */
+*{
+    font-family: 'Noto Serif KR', serif;
+}
 section{
     display: flex;
     flex-direction: column;

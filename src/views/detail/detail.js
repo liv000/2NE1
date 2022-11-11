@@ -15,9 +15,9 @@ const reviewList = document.querySelector('.review-list');
 const inputReview = document.getElementById('product-review');
 
 // purchase-floating
-const purchaseButton = document.querySelector('.btn-purchase');
-const purchseFloating = document.querySelector('.purchase-floating');
-const floatingClose = document.querySelector('.close-purchase');
+// const purchaseButton = document.querySelector('.btn-purchase');
+// const purchseFloating = document.querySelector('.purchase-floating');
+// const floatingClose = document.querySelector('.close-purchase');
 
 // Get productId
 let productId = new URLSearchParams(window.location.search).get('product');
@@ -38,12 +38,12 @@ productTitle.innerText = title;
 productPrice.innerText = `${price.toLocaleString()}원`;
 productDescription.innerText = description;
 cartTitle.innerText = title;
-cartPrice.innerText = `${price.toLocaleString()}원`;
+// cartPrice.innerText = `${price.toLocaleString()}원`;
 
 //카트에 제품 추가
 cartBtn.addEventListener('click', async () => {
+  const products = JSON.parse(localStorage.getItem('products')) || [];
   try {
-    const products = JSON.parse(localStorage.getItem('products')) || [];
     const product = {
       productId: `${productId}`,
       productName: `${title}`,
@@ -77,7 +77,7 @@ reviewBtn.addEventListener('click', async () => {
 
 function drawReviewList(content) {
   const reviewTemplelate = `
-  <div class="review-list">
+  <div class="box review-list">
     <div class="mt-5">
       <h4 class="customer-name">${'이름'}</h4>
       <p class="review-content">${content}</p>
@@ -89,12 +89,12 @@ function drawReviewList(content) {
 }
 
 // floating onoff
-purchaseButton.addEventListener('click', () => {
-  purchseFloating.classList.add('on');
-  purchaseButton.style.display = 'none';
-});
+// purchaseButton.addEventListener('click', () => {
+//   purchseFloating.classList.add('on');
+//   purchaseButton.style.display = 'none';
+// });
 
-floatingClose.addEventListener('click', () => {
-  purchseFloating.classList.remove('on');
-  purchaseButton.style.display = 'block';
-});
+// floatingClose.addEventListener('click', () => {
+//   purchseFloating.classList.remove('on');
+//   purchaseButton.style.display = 'block';
+// });

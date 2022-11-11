@@ -32,7 +32,9 @@ section{
 .orders-item:not(:last-child) {
     border-bottom: #bbb 1px solid;
 }
-
+.showDetail{
+    
+}
 
 .modal .box {
     text-align: center;

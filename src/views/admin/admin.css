@@ -1,0 +1,14 @@
+/* admin.css */
+@charset "UTF-8";
+
+.wrapper {
+  width: 100%;
+  padding: 0 15px;
+  /* max-width: 960px; */
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.menu-container {
+  display: flex;
+}

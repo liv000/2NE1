@@ -86,7 +86,6 @@ async function doCheckout() {
   if (res) {
     console.log('res', res);
     localStorage.removeItem('products');
-    localStorage.removeItem('product');
     alert('주문에 성공하였습니다!');
     location.href = 'complete';
   }

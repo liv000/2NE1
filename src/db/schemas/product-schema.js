@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-
+import { CommentSchema } from './comment-schema';
 const ProductSchema = new Schema(
   {
     title: {
@@ -51,6 +51,7 @@ const ProductSchema = new Schema(
       required: true,
       default: 1,
     },
+    comments: [CommentSchema],
   },
   {
     collection: 'products',

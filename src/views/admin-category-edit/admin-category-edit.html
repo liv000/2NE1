@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>카테고리 관리페이지</title>
+    <!-- 아이콘 -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/elice-rabbit-favicon.png"
+    />
+    <!-- bulma css 관련 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/9daa42bcef.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="admin-category-edit.css" />
+    <script src="admin-category-edit.js" type="module" defer></script>
+    <!-- navbar -->
+    <script src="../navbar.js" type="module" defer></script>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header></header>
+
+    <main>
+      <div
+        class="wrapper is-flex is-justify-content-center is-align-content-center"
+      >
+        <!-- 사이드 바 -->
+        <aside class="snb">
+          <h1 class="title is-5">카테고리 관리</h1>
+          <nav id="navbar">
+            <ul>
+              <li><a href="/admin-category">카테고리 목록</a></li>
+              <li><a href="/admin-category-add">카테고리 등록</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- 카테고리 추가 form -->
+        <section class="category-form">
+          <div class="container">
+            <h2 class="title">카테고리 수정</h2>
+
+            <!-- form -->
+            <form>
+              <div class="field">
+                <label class="label">이름</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="카테고리 이름을 입력하세요."
+                    id="category-name"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">코드</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="카테고리 코드를 입력하세요.(4자리 숫자)"
+                    id="category-code"
+                    disabled
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">카테고리 이미지</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="이미지 URL를 입력하세요."
+                    id="category-url"
+                  />
+                </div>
+              </div>
+
+              <div class="field is-grouped is-justify-content-center mt-8">
+                <div class="control">
+                  <input
+                    type="submit"
+                    value="수정하기"
+                    class="button is-link"
+                    id="btn-submit"
+                  />
+                </div>
+                <div class="control">
+                  <button class="button is-link is-light" id="btn-cancel">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+
+              <div class="control">
+                <button class="button is-link is-light" id="btn-delete">
+                  삭제하기
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer></footer>
+  </body>
+</html>

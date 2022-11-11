@@ -1,4 +1,6 @@
 //order.js
+import * as Api from '/api.js';
+import { addCommas, convertToNumber } from '../useful-functions.js';
 const receiverNameInput = document.querySelector('#receiverName');
 const receiverPhoneNumberInput = document.querySelector('#receiverPhoneNumber');
 const postalCodeInput = document.querySelector('#postalCode');
@@ -7,11 +9,16 @@ const address1Input = document.querySelector('#address1');
 const address2Input = document.querySelector('#address2');
 const requestSelectBox = document.querySelector('#requestSelectBox');
 const orderButton = document.querySelector('#orderButton');
+const productCount = document.querySelector('#product-count');
+const productTotal = document.querySelector('#product-total');
+const totalPrice = document.querySelector('#total-price');
+const deliveryPrice = document.querySelector('#delivery-price');
+const cartList = JSON.parse(localStorage.getItem('products'));
 
 // 이벤트 추가
 searchAddressButton.addEventListener('click', searchAddress);
 orderButton.addEventListener('click', doCheckout);
-
+drawOrderCard();
 // 이벤트에 사용할 함수
 function searchAddress() {
   new daum.Postcode({
@@ -49,8 +56,8 @@ function searchAddress() {
 
 async function doCheckout() {
   // 각 입력값 가져옴
-  const receiverName = receiverNameInput.value;
-  const receiverPhoneNumber = receiverPhoneNumberInput.value;
+  const fullName = receiverNameInput.value;
+  // const phoneNumber = receiverPhoneNumberInput.value;
   const postalCode = postalCodeInput.value;
   const address1 = address1Input.value;
   const address2 = address2Input.value;
@@ -60,33 +67,42 @@ async function doCheckout() {
   if (!receiverName || !receiverPhoneNumber || !postalCode || !address2) {
     return alert('배송지 정보를 모두 입력해 주세요.');
   }
-
   // 객체 만듦
+  console.log(cartList);
   const data = {
-    receiverName,
-    receiverPhoneNumber,
-    postalCode,
-    address1,
-    address2,
-    request,
-  };
-
-  // JSON 만듦
-  const dataJson = JSON.stringify(data);
-  const apiUrl = `https://${window.location.hostname}:8190/api/order`;
-
-  // POST 요청
-  const res = await fetch(apiUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+    products: cartList,
+    fullName,
+    phoneNumber: '010-0000-0000',
+    address: {
+      postalCode,
+      address1,
+      address2,
     },
-    body: dataJson,
-  });
+  };
+  // // JSON 만듦
+  const dataJson = JSON.stringify(data);
 
-  if (res.status === 201) {
+  const res = await Api.post('/api/order/', data);
+  if (res) {
+    console.log('res', res);
+    localStorage.removeItem('products');
     alert('주문에 성공하였습니다!');
-  } else {
-    alert('주문에 실패하였습니다...');
+    location.href = 'complete';
   }
+}
+
+//결제정보 카드에 상품 수와 가격 삽입
+async function drawOrderCard() {
+  let allPrice = 0;
+  let totalCount = 0;
+  cartList.map((item) => {
+    const { productPrice, quantity } = item;
+    allPrice += productPrice * quantity;
+    totalCount += quantity;
+  });
+  let price = allPrice;
+  productCount.innerHTML = totalCount + '개';
+  productTotal.innerHTML = `${addCommas(price)}원`;
+  deliveryPrice.innerHTML = `3,000원`;
+  totalPrice.innerHTML = `${addCommas(price + 3000)}원`;
 }

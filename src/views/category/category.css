@@ -23,18 +23,108 @@ li {
   list-style: none;
 }
 
-main {
-  min-height: calc(100%-212px);
+button {
+  all: unset;
+  cursor: pointer;
 }
 
-/* 공통 설정값 */
 .wrapper {
   width: 1280px;
   margin: 0 auto;
   padding: 0 55px;
 }
 
-.list {
+/* 고민별 상품 보기 */
+/* TODO 컴포넌트 분리 */
+.category-concern {
+  margin-top: 56px;
+}
+
+.category-container {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+.category-icons {
+  margin-top: 24px;
+  user-select: none;
+}
+
+.category-icons li:not(:first-child) {
+  margin-left: 12px;
+}
+
+.category-image {
+  width: 72px;
+  height: 72px;
+  border-radius: 24px;
+  background-color: #f2f2f2;
+}
+
+.category-image img {
+  width: 32px;
+  height: 32px;
+  margin: auto;
+}
+
+.category-name {
+  margin-top: 8px;
+  font-size: 10px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.category-image:hover {
+  background-color: #ffefeb;
+}
+
+.icon-on {
+  background-color: #ffefeb;
+}
+
+/*  */
+.product-container {
+  overflow: hidden;
+  margin-top: 16px;
+}
+
+.product-items {
+  margin-top: 24px;
+}
+
+.product-items li {
+  max-width: 270px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.product-items li:not(:first-child) {
+  margin-left: 30px;
+}
+
+.product-img {
+  width: 100%;
+  background-color: #eaeaea;
+  border-radius: 100%;
+}
+
+.product-img img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-information {
+  margin-top: 16px;
+}
+
+.product-information p {
+  margin-top: 8px;
+}
+
+/* */
+.horizontal {
   margin-top: 56px;
   padding-top: 56px;
   border-top: 12px solid #f2f2f2;
@@ -74,77 +164,29 @@ main {
   border-radius: 8px;
 }
 
-/* 배너 */
-.banner {
-  background-color: gray;
-  width: 100%;
-  height: 310px;
-  margin: 0 auto;
-}
-
-/* 고민별 상품 보기(임시) */
-/* TODO 컴포넌트 분리 */
-.concern {
-  margin-top: 56px;
-}
-
-.concern-title {
-  position: relative;
-}
-
-.scroll-container {
-  width: 100%;
-  height: 100%;
-  overflow-x: auto;
-  margin-top: 16px;
-}
-
-.scroll-container::-webkit-scrollbar {
-  /* display: none; */
-}
-
-.concern-icons {
-  display: flex;
-  margin-top: 24px;
-  user-select: none;
-}
-
-.concern-icons li:not(:first-child) {
-  margin-left: 12px;
-}
-
-/* js - icon onoff*/
-.on {
-  display: none;
-}
-
-.icon-imgs {
-  position: relative;
-  width: 72px;
-  height: 72px;
-  border-radius: 24px;
-  background-color: #f2f2f2;
-}
-
-.icon-imgs img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.icon-imgs + p {
-  text-align: center;
-  margin-top: 8px;
-  font-size: 10px;
-  font-weight: 500;
-}
-
-/* 건강기능식품 */
-.function-items {
+.product-items {
   display: grid;
   margin-top: 42px;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 29px;
   row-gap: 56px;
+}
+
+/* 페이지네이션 */
+.pagination {
+  display: block;
+}
+
+.page-button {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  background-color: #eaeaea;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.page-button:not(:first-child) {
+  margin-left: 12px;
 }

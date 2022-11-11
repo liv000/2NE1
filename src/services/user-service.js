@@ -7,12 +7,14 @@ class UserService {
   constructor(userModel) {
     this.userModel = userModel;
   }
-
+  async isUsingEmail(email) {
+    return await this.userModel.isUsingEmail(email);
+  }
   // 회원가입
   async addUser(userInfo) {
     const { email, fullName, password, role } = userInfo;
 
-    const isUsingEmail = await this.userModel.isUsingEmail(email);
+    const isUsingEmail = await this.isUsingEmail(email);
 
     // 탈퇴한 회원의 이메일이면 가입 가능
     if (!isUsingEmail) {
@@ -71,7 +73,9 @@ class UserService {
 
     // 2개 프로퍼티를 jwt 토큰에 담음
     const token = jwt.sign({ userId: user._id, role: user.role }, secretKey);
-
+    if (user.role === 1) {
+      return { token, admin: 1 };
+    }
     return { token };
   }
 
@@ -79,6 +83,10 @@ class UserService {
   async getUsers() {
     const users = await this.userModel.findAll();
     return users;
+  }
+
+  async getUser(id) {
+    return await this.userModel.findById(id);
   }
 
   // 유저정보 수정, 현재 비밀번호가 있어야 수정 가능함.

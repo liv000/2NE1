@@ -1,4 +1,7 @@
 /* 주문 리스트 */
+*{
+    font-family: 'Noto Serif KR', serif;
+}
 section{
     display: flex;
     flex-direction: column;
@@ -20,7 +23,7 @@ section{
 
 .admin-orderlist-table {
     text-align: center;
-
+    display: flex;
     padding: 0;
 }
 
@@ -32,8 +35,16 @@ section{
 .orders-item:not(:last-child) {
     border-bottom: #bbb 1px solid;
 }
+.showDetail{
+    text-align: center;
+}
+.Detail{
+    text-align: center;
+}
 
-
+tbody tbody{
+    display: flex;
+}
 .modal .box {
     text-align: center;
 }

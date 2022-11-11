@@ -7,7 +7,7 @@ const modalBackground = document.querySelector('#modalBackground');
 const modalCloseButton = document.querySelector('#modalCloseButton');
 const deleteCompleteButton = document.querySelector('#deleteCompleteButton');
 const deleteCancelButton = document.querySelector('#deleteCancelButton');
-
+const pagination = document.querySelector('.pagination');
 draworderList();
 addAllEvents();
 
@@ -19,7 +19,8 @@ function addAllEvents() {
 }
 let orderIdToDelete;
 async function draworderList() {
-  const orders = await Api.get('/api/order/?page=1&perPage=4');
+  const orders = await Api.get('/api/order');
+  const { totalPage, page, perPage } = orders;
 
   orders.order.map((order, index) => {
     const { _id, updatedAt, shipping } = order;
@@ -73,8 +74,8 @@ async function deleteData(e) {
     await Api.patch('/api/order/cancel', null, data);
 
     // 삭제 성공
-    alert('주문 정보가 삭제되었습니다.');
-
+    alert('주문이 취소되었습니다.');
+    location.reload();
     // 삭제한 아이템 화면에서 지우기
     const deletedItem = document.querySelector(`#order-${orderIdToDelete}`);
     // deletedItem.remove();

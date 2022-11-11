@@ -1,0 +1,165 @@
+<!-- order-complete.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Daum 주소 API 사용하기 위한 파일 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <title>쇼핑-데모</title>
+    <!-- 아이콘 -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/elice-rabbit-favicon.png"
+    />
+    <!-- bulma css 관련 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- 폰트 어썸: 아이콘 -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/9daa42bcef.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- 커스텀 css, js -->
+    <link rel="stylesheet" href="mypage.css" />
+    <script src="mypage.js" type="module" defer></script>
+    <script src="../navbar.js" type="module" defer></script>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header></header>
+
+    <main>
+      <div class="wrapper is-flex is-justify-content-center">
+        <!-- 사이드 바 -->
+        <aside class="snb">
+          <h1 class="title is-5">마이페이지</h1>
+          <nav id="navbar">
+            <ul>
+              <li><a href="/admin-product">주문조회</a></li>
+              <li><a href="/admin-product-add">회원관리</a></li>
+              <li><a href="/admin-product-add">로그아웃</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- 회원관리 form -->
+        <section class="box product-form">
+          <div class="container">
+            <h2 class="title">회원관리</h2>
+
+            <!-- form -->
+            <form>
+              <div class="field">
+                <label class="label">이름</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Text input"
+                    id="product-name"
+                    disabled
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label" >이메일</label>
+                <div class="control">
+                  <input 
+                    class="input"
+                    type="text"
+                    placeholder="Text input"
+                    id="emailInput"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">전화번호</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Text input"
+                    id="phoneNumber"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">비밀번호</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="password"
+                    placeholder="Text input"
+                    id="password"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">우편번호</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Text input"
+                    id="postCodeInput"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">주소</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Text input"
+                    id="adrress1Input"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">상세주소</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Text input"
+                    id="adrress2Input"
+                  />
+                </div>
+              </div>
+
+              
+
+              <div class="field is-grouped is-justify-content-center mt-8">
+                <div class="control">
+                  <input
+                    type="submit"
+                    value="수정하기"
+                    class="button is-link"
+                    id="btn-submit"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer></footer>
+  </body>
+</html>

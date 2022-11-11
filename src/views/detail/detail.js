@@ -73,6 +73,10 @@ reviewBtn.addEventListener('click', async () => {
   const postReview = await Api.post(`/api/product/${productId}/comments`, {
     content: inputReview.value,
   });
+  if (postReview) {
+    alert('후기가 등록되었습니다!');
+    location.reload();
+  }
 });
 
 function drawReviewList(content) {

@@ -26,47 +26,12 @@
     <!-- 커스텀 css, js -->
     <link rel="stylesheet" href="admin-product-edit.css" />
     <script src="admin-product-edit.js" type="module" defer></script>
+    <!-- navbar -->
+    <script src="../navbar.js" type="module" defer></script>
   </head>
   <body>
     <!-- 헤더 -->
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="container mt-3">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="/">
-            <img src="/elice-rabbit.png" width="30" height="30" />
-            <span class="has-text-link">쇼핑-카트</span>
-          </a>
-
-          <a
-            role="button"
-            class="navbar-burger"
-            aria-label="menu"
-            aria-expanded="false"
-            data-target="navbarBasicExample"
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-end breadcrumb my-auto" aria-label="breadcrumbs">
-            <ul id="navbar">
-              <li><a href="/register">회원가입</a></li>
-              <li>
-                <a href="/cart" aria-current="page">
-                  <span class="icon">
-                    <i class="fas fa-cart-shopping"></i>
-                  </span>
-                  <span>카트</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <header></header>
 
     <main>
       <div class="wrapper is-flex is-justify-content-center">
@@ -87,11 +52,16 @@
             <h2 class="title">제품 수정</h2>
 
             <!-- form -->
-            <form action="/product-upload" method="post">
+            <form>
               <div class="field">
                 <label class="label">제품 이름</label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Text input" />
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Text input"
+                    id="product-name"
+                  />
                 </div>
               </div>
 
@@ -99,7 +69,7 @@
                 <label class="label">카테고리</label>
                 <div class="control">
                   <div class="select is-fullwidth">
-                    <select>
+                    <select id="select-box">
                       <option disabled selected>
                         카테고리를 선택해주세요.
                       </option>
@@ -109,16 +79,25 @@
               </div>
 
               <div class="field">
-                <label class="label">제조사</label>
+                <label class="label">브랜드</label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Text input" />
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Text input"
+                    id="brand-name"
+                  />
                 </div>
               </div>
 
               <div class="field">
                 <label class="label">요약 설명</label>
                 <div class="control">
-                  <textarea class="textarea" placeholder="Textarea"></textarea>
+                  <textarea
+                    class="textarea"
+                    placeholder="Textarea"
+                    id="product-description"
+                  ></textarea>
                 </div>
               </div>
 
@@ -149,24 +128,45 @@
               <div class="field">
                 <label class="label">재고 수</label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Text input" />
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Text input"
+                    id="product-stock"
+                  />
                 </div>
               </div>
 
               <div class="field">
                 <label class="label">가격</label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Text input" />
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Text input"
+                    id="product-price"
+                  />
                 </div>
               </div>
 
               <div class="field is-grouped is-justify-content-center mt-8">
                 <div class="control">
-                  <input type="submit" value="upload" class="button is-link" />
+                  <input
+                    type="submit"
+                    value="등록하기"
+                    class="button is-link"
+                    id="btn-submit"
+                  />
                 </div>
                 <div class="control">
                   <button class="button is-link is-light">Cancel</button>
                 </div>
+              </div>
+
+              <div class="control">
+                <button class="button is-link is-light" id="btn-delete">
+                  삭제하기
+                </button>
               </div>
             </form>
           </div>
@@ -175,5 +175,6 @@
     </main>
 
     <!-- 푸터 -->
+    <footer></footer>
   </body>
 </html>

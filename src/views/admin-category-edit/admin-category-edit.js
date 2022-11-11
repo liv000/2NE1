@@ -83,7 +83,10 @@ async function onRegisterCategory(e) {
   const patchCategory = await Api.patch('/api/category/admin/edit', null, data);
 
   // 카테고리 목록으로 페이지 이동
-  window.location.href = '/admin-category';
+  if (patchCategory) {
+    alert('카테고리 수정이 완료되었습니다.');
+    window.location.href = '/admin-category';
+  }
 }
 
 function isEmptyInputValue(inputValue, inputTag) {

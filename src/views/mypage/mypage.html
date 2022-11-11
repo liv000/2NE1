@@ -1,9 +1,12 @@
+<!-- order-complete.html -->
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>제품 관리페이지</title>
+    <!-- Daum 주소 API 사용하기 위한 파일 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <title>쇼핑-데모</title>
     <!-- 아이콘 -->
     <link
       rel="icon"
@@ -24,9 +27,8 @@
     ></script>
 
     <!-- 커스텀 css, js -->
-    <link rel="stylesheet" href="admin-product-edit.css" />
-    <script src="admin-product-edit.js" type="module" defer></script>
-    <!-- navbar -->
+    <link rel="stylesheet" href="mypage.css" />
+    <script src="mypage.js" type="module" defer></script>
     <script src="../navbar.js" type="module" defer></script>
   </head>
   <body>
@@ -37,117 +39,109 @@
       <div class="wrapper is-flex is-justify-content-center">
         <!-- 사이드 바 -->
         <aside class="snb">
-          <h1 class="title is-5">제품 관리</h1>
+          <h1 class="title is-5">마이페이지</h1>
           <nav id="navbar">
             <ul>
-              <li><a href="/admin-product">제품 목록</a></li>
-              <li><a href="/admin-product-add">제품 등록</a></li>
+              <li><a href="/admin-product">주문조회</a></li>
+              <li><a href="/admin-product-add">회원관리</a></li>
+              <li><a href="/admin-product-add">로그아웃</a></li>
             </ul>
           </nav>
         </aside>
 
-        <!-- 제품 추가 form -->
-        <section class="product-form">
+        <!-- 회원관리 form -->
+        <section class="box product-form">
           <div class="container">
-            <h2 class="title">제품 수정</h2>
+            <h2 class="title">회원관리</h2>
 
             <!-- form -->
             <form>
               <div class="field">
-                <label class="label">제품 이름</label>
+                <label class="label">이름</label>
                 <div class="control">
                   <input
                     class="input"
                     type="text"
                     placeholder="Text input"
                     id="product-name"
+                    disabled
                   />
                 </div>
               </div>
 
               <div class="field">
-                <label class="label">카테고리</label>
+                <label class="label" >이메일</label>
                 <div class="control">
-                  <div class="select is-fullwidth">
-                    <select id="select-box">
-                      <option disabled selected>
-                        카테고리를 선택해주세요.
-                      </option>
-                    </select>
-                  </div>
+                  <input 
+                    class="input"
+                    type="text"
+                    placeholder="Text input"
+                    id="emailInput"
+                  />
                 </div>
               </div>
 
               <div class="field">
-                <label class="label">브랜드</label>
+                <label class="label">전화번호</label>
                 <div class="control">
                   <input
                     class="input"
                     type="text"
                     placeholder="Text input"
-                    id="brand-name"
+                    id="phoneNumber"
                   />
                 </div>
               </div>
 
               <div class="field">
-                <label class="label">요약 설명</label>
-                <div class="control">
-                  <textarea
-                    class="textarea"
-                    placeholder="Textarea"
-                    id="product-description"
-                  ></textarea>
-                </div>
-              </div>
-
-              <div class="field">
-                <label class="label">제품 이미지</label>
+                <label class="label">비밀번호</label>
                 <div class="control">
                   <input
                     class="input"
-                    type="text"
-                    placeholder="이미지 URL를 입력하세요."
-                    id="product-url"
+                    type="password"
+                    placeholder="Text input"
+                    id="password"
                   />
                 </div>
               </div>
 
               <div class="field">
-                <label class="label">제품 상세 이미지</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="이미지 URL를 입력하세요."
-                    id="product-detail-url"
-                  />
-                </div>
-              </div>
-
-              <div class="field">
-                <label class="label">재고 수</label>
+                <label class="label">우편번호</label>
                 <div class="control">
                   <input
                     class="input"
                     type="text"
                     placeholder="Text input"
-                    id="product-stock"
+                    id="postCodeInput"
                   />
                 </div>
               </div>
 
               <div class="field">
-                <label class="label">가격</label>
+                <label class="label">주소</label>
                 <div class="control">
                   <input
                     class="input"
                     type="text"
                     placeholder="Text input"
-                    id="product-price"
+                    id="adrress1Input"
                   />
                 </div>
               </div>
+
+              <div class="field">
+                <label class="label">상세주소</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Text input"
+                    id="adrress2Input"
+                  />
+                </div>
+              </div>
+
+              
 
               <div class="field is-grouped is-justify-content-center mt-8">
                 <div class="control">
@@ -158,17 +152,6 @@
                     id="btn-submit"
                   />
                 </div>
-                <div class="control">
-                  <button class="button is-link is-light" id="btn-cancel">
-                    Cancel
-                  </button>
-                </div>
-              </div>
-
-              <div class="control">
-                <button class="button is-link is-light" id="btn-delete">
-                  삭제하기
-                </button>
               </div>
             </form>
           </div>

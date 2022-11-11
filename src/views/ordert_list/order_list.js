@@ -23,16 +23,14 @@ async function draworderList() {
     const orders = await Api.get('/api/order/?page=1&perPage=4');
     console.log(orders)
     orders.order.map((order,index) => {
-        const { _id, updatedAt, products, shipping }= order;
+        const { _id, updatedAt, shipping }= order;
         // const date = Date(updatedAt);
         let date = updatedAt.slice(0, 10);
         console.log(date)
         // console.log("order",order.products)
         order.products.map((item)=>{
-            const {productName, productPrice, quantity} = item;
-            console.log("pro",productName, productPrice, quantity)
-        
-        
+            const {productName, productId, productPrice, quantity} = item;
+            console.log("pro",order);
         // const productName = products[0].productName;
         // const productPrice = products[0].productPrice;
         // const quantity = products[0].quantity;
@@ -50,9 +48,9 @@ async function draworderList() {
             'beforeend',
             `
             <tbody>
-                <tr id=no.${_id}>
+                <tr id="no${_id}">
                     <td>${date}</td>
-                    <td>${productName}</td>
+                    <td>${productName}<br><a href="/detail/?product=${productId}">제품 설명 바로가기</a></td>
                     <td>${productPrice}원<br>${quantity}개</td>
                     <td>${shippingStatus}</td>
                     <td><button id="deleteBtn${_id}" class="button">주문취소</button></td>
@@ -60,11 +58,13 @@ async function draworderList() {
             </tbody>
             `
         );
+        
         const deleteBtn = document.querySelector(`#deleteBtn${_id}`);
         deleteBtn.addEventListener("click", () => {
             orderIdToDelete = _id;
             openModal();
-        })
+        });
+        
     })
     });
 }

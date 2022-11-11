@@ -8,19 +8,34 @@ const footer = document.querySelector('footer');
 //     drawNavbar();
 //     drawFooter();
 // }
-// drawNavbar();
-async function drawNavbar() {
-  // document.header.prepend(header_section);
-  const isLogin = localStorage.getItem('token') ? true : false;
-  const isAdmin = localStorage.getItem('admin') ? true : false;
+drawNavbar();
+const linkTag = {
+    login: '<li><a href="/login" class="button" style="color: #54BAB9">Login</a></li>',
+    logout: '<li><a href="/" id="logout" class="button" style="color: #54BAB9">Logout</a></li>',
+    register: '<li class="register_btn"><a href="/register" class="button" style="color: #54BAB9">Register</a></li>',
+    myPage: '<li><a href="/myPage" class="button" style="color: #54BAB9">myPage</a></li>',
+    admin: '<li><a href="/admin" class="button" style="color: #54BAB9">AdminPage</a></li>',
+}
 
-  if (isLogin) {
-    header.prepend(userHeader);
-  } else if (isAdmin) {
-    header.prepend(AdminHeader);
-  } else {
-    header.prepend(nonUser);
-  }
+const userHeader = () => {
+    return linkTag.myPage + linkTag.login;
+}
+const AdminHeader = () => {
+    return linkTag.admin + linkTag.logout;
+}
+const nonUser = () => {
+    return linkTag.register + linkTag.login;
+}
+async function drawNavbar(){
+    // document.header.prepend(header_section);
+    
+    if(isLogin){
+        header.prepend(userHeader);
+    } else if(isAdmin){
+        header.prepend(AdminHeader);
+    }else{
+        header.prepend(nonUser);
+    }
 }
 header.insertAdjacentHTML(
   'beforeend',
@@ -111,15 +126,15 @@ header.insertAdjacentHTML(
     `,
 );
 
-const userHeader = () => {
-  return linkTag.myPage + linkTag.login;
-};
-const AdminHeader = () => {
-  return linkTag.admin + linkTag.logout;
-};
-const nonUser = () => {
-  return linkTag.register + linkTag.login;
-};
+// const userHeader = () => {
+//   return linkTag.myPage + linkTag.login;
+// };
+// const AdminHeader = () => {
+//   return linkTag.admin + linkTag.logout;
+// };
+// const nonUser = () => {
+//   return linkTag.register + linkTag.login;
+// };
 
 async function drawFooter() {
   // document.footer.append(footer_section);

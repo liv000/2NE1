@@ -58,14 +58,16 @@ table{
 thead{
     text-align: center;
 }
-
-#more-list-button{
-    width:1000px;
-    height:45px;
+tbody tr a{
+    font-size: 5px;
 }
+
 #pagination{
+    margin: 50px 50px;
+    /* width: 50%; */
+}
+#pagination_section{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 15px;
 }

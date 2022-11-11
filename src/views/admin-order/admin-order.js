@@ -76,7 +76,7 @@ async function drawOrderList() {
                         </td>
                     </tr>
                 </tbody>
-                <tbody id= "showDetail${_id}" style = "display : none">
+                <tbody id= "showDetail${_id}" class="showDetail" style = "display : none">
                 <tr>
                 <th>상품명</th><th>개수</th><th>가격</th></tr>
                     ${detail}

@@ -28,15 +28,15 @@ function insertProductElement() {
       <p>나에게 필요한 영양제를 추천받고 장바구니에 담아보세요!</p>
     </div>`,
     );
-  }
-  deleteButton.innerHTML = `<button class = "button is-small  is-rounded mt-4" id="deleteItem">
+  } else {
+    deleteButton.innerHTML = `<button class = "button is-small  is-rounded mt-4" id="deleteItem">
   전체 삭제
   </button>`;
-  cartList.map((item) => {
-    const { productId, productName, productPrice, quantity } = item;
-    productList.insertAdjacentHTML(
-      'beforeend',
-      `
+    cartList.map((item) => {
+      const { productId, productName, productPrice, quantity } = item;
+      productList.insertAdjacentHTML(
+        'beforeend',
+        `
       <div class="box product-item ">
         <div>
           <figure>
@@ -66,26 +66,27 @@ function insertProductElement() {
         </div>
       </div>
     `,
-    );
-    document
-      .querySelector(`#deleteItem-${productId}`)
-      .addEventListener('click', async () => {
-        const products = JSON.parse(localStorage.getItem('products')) || [];
-        let delIndex;
-        products.map((item, index) => {
-          if (item.productId === `${productId}`) {
-            console.log('선택삭제');
-            delIndex = index;
-          }
+      );
+      document
+        .querySelector(`#deleteItem-${productId}`)
+        .addEventListener('click', async () => {
+          const products = JSON.parse(localStorage.getItem('products')) || [];
+          let delIndex;
+          products.map((item, index) => {
+            if (item.productId === `${productId}`) {
+              console.log('선택삭제');
+              delIndex = index;
+            }
+          });
+          console.log(delIndex);
+          products.splice(delIndex, 1);
+          localStorage.setItem('products', JSON.stringify(products));
         });
-        console.log(delIndex);
-        products.splice(delIndex, 1);
-        localStorage.setItem('products', JSON.stringify(products));
-      });
-    //   document
-    //     .querySelector(`#plus-${productId}`)
-    //     .addEventListener('click', async () => {});
-  });
+      //   document
+      //     .querySelector(`#plus-${productId}`)
+      //     .addEventListener('click', async () => {});
+    });
+  }
 }
 //결제정보 카드에 상품 수와 가격 삽입
 async function drawOrderCard() {

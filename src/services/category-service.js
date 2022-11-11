@@ -1,4 +1,4 @@
-import { categoryModel } from '../db';
+import { categoryModel, productModel } from '../db';
 
 class CategoryService {
   constructor(categoryModel) {
@@ -45,6 +45,11 @@ class CategoryService {
   }
 
   async dropCategory(categoryId) {
+    const hasProduct = await productModel.findProductsByOrderId(categoryId);
+
+    if (hasProduct.length > 0) {
+      throw new Error('카테고리에 속한 상품이 있습니다.');
+    }
     const newInfo = { categoryId, status: 0 };
     return await this.updateCategory(newInfo);
   }

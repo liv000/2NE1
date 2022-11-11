@@ -20,7 +20,7 @@ function addAllEvents() {
 let orderIdToDelete;
 async function draworderList() {
   const orders = await Api.get('/api/order/?page=1&perPage=4');
-  console.log(orders);
+
   orders.order.map((order, index) => {
     const { _id, updatedAt, shipping } = order;
 
@@ -39,7 +39,7 @@ async function draworderList() {
     const products = order.products
       .map((item) => {
         const { productName, productId, productPrice, quantity } = item;
-        return `<table><tr><td>${productName}</td><td>${productPrice}원</td><td>${quantity}개</td></tr></table>`;
+        return `<table class = "table is-fullwidth"><tr><td>${productName}</td><td>${productPrice}원</td><td>${quantity}개</td></tr></table>`;
       })
       .join('');
     // <td>${productName}<br><a href="/detail/?product=${productId}">제품 설명 바로가기</a></td>

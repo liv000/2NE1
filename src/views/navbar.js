@@ -126,15 +126,15 @@ header.insertAdjacentHTML(
     `,
 );
 
-const userHeader = () => {
-  return linkTag.myPage + linkTag.login;
-};
-const AdminHeader = () => {
-  return linkTag.admin + linkTag.logout;
-};
-const nonUser = () => {
-  return linkTag.register + linkTag.login;
-};
+// const userHeader = () => {
+//   return linkTag.myPage + linkTag.login;
+// };
+// const AdminHeader = () => {
+//   return linkTag.admin + linkTag.logout;
+// };
+// const nonUser = () => {
+//   return linkTag.register + linkTag.login;
+// };
 
 async function drawFooter() {
   // document.footer.append(footer_section);

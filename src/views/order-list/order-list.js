@@ -26,6 +26,7 @@ async function draworderList() {
 
     let date = updatedAt.slice(0, 10);
     let shippingStatus = ' ';
+    let disabled = '';
     if (shipping === 'pending' || shipping === 'PENDING') {
       shippingStatus = '배송 준비중';
     } else if (shipping === 'shipping' || shipping === 'SHIPPING') {
@@ -34,6 +35,7 @@ async function draworderList() {
       shippingStatus = '배송완료';
     } else if (shipping === 'canceled' || shipping === 'CANCELED') {
       shippingStatus = '주문취소';
+      disabled = 'disabled';
     }
 
     const products = order.products
@@ -47,11 +49,11 @@ async function draworderList() {
     orderTable.insertAdjacentHTML(
       'beforeend',
       `
-              <tr id="no${_id}">
+              <tr id="no${_id}" >
                 <td rowspan = ${order.products.length}>${date}</td>
-                <td>${products}</td>
+                <td >${products}</td>
                 <td>${shippingStatus}</td>
-                <td><button id="deleteBtn${_id}" class="button">주문취소</button></td>
+                <td><button id="deleteBtn${_id}" class="button is-warning is-light" ${disabled}>주문취소</button></td>
               </tr>
           `,
     );

@@ -20,7 +20,7 @@ function addAllEvents() {
 let orderIdToDelete;
 async function draworderList() {
   const orders = await Api.get('/api/order/?page=1&perPage=4');
-  console.log(orders);
+
   orders.order.map((order, index) => {
     const { _id, updatedAt, shipping } = order;
 

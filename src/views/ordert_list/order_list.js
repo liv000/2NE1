@@ -30,9 +30,7 @@ async function draworderList() {
         // console.log("order",order.products)
         order.products.map((item)=>{
             const {productName, productId, productPrice, quantity} = item;
-            console.log("pro",productName, productPrice, quantity)
-        
-        
+            console.log("pro",order);
         // const productName = products[0].productName;
         // const productPrice = products[0].productPrice;
         // const quantity = products[0].quantity;
@@ -50,7 +48,7 @@ async function draworderList() {
             'beforeend',
             `
             <tbody>
-                <tr id=no.${_id}>
+                <tr id="no${_id}">
                     <td>${date}</td>
                     <td>${productName}<br><a href="/detail/?product=${productId}">제품 설명 바로가기</a></td>
                     <td>${productPrice}원<br>${quantity}개</td>
@@ -65,7 +63,8 @@ async function draworderList() {
         deleteBtn.addEventListener("click", () => {
             orderIdToDelete = _id;
             openModal();
-        })
+        });
+        
     })
     });
 }

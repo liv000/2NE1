@@ -88,14 +88,53 @@ function insertProductElement() {
       document
         .querySelector(`#plus-${productId}`)
         .addEventListener('click', async () => {
-          cartList.map(() => {
-            console.log(cartList);
+          const products = JSON.parse(localStorage.getItem('products')) || [];
+          let newIndex;
+          products.map((item, index) => {
+            if (item.productId === `${productId}`) {
+              console.log('선택 수량 증가');
+              newIndex = index;
+            }
           });
+          console.log(newIndex);
+          console.log(products[newIndex]);
+          products[newIndex] = {
+            productId: `${productId}`,
+            productName: `${productName}`,
+            productPrice: `${productPrice}`,
+            quantity: Number(`${quantity}`) + 1,
+          };
+          console.log(products[newIndex]);
+          localStorage.setItem('products', JSON.stringify(products));
         });
       //제품 수량 감소
       document
         .querySelector(`#minus-${productId}`)
-        .addEventListener('click', async () => {});
+        .addEventListener('click', async () => {
+          const products = JSON.parse(localStorage.getItem('products')) || [];
+          let newIndex;
+          products.map((item, index) => {
+            if (item.productId === `${productId}`) {
+              console.log('선택 수량 감소');
+              newIndex = index;
+            }
+          });
+          console.log(newIndex);
+          console.log(products[newIndex]);
+          if (products[newIndex].quantity == 1) {
+            console.log('0이야');
+            alert('수량은 1 이상만 가능합니다!');
+          } else {
+            products[newIndex] = {
+              productId: `${productId}`,
+              productName: `${productName}`,
+              productPrice: `${productPrice}`,
+              quantity: Number(`${quantity}`) - 1,
+            };
+            console.log(products[newIndex]);
+            localStorage.setItem('products', JSON.stringify(products));
+          }
+        });
     });
   }
 }
@@ -137,62 +176,3 @@ async function getData() {
 
   return result;
 }
-
-// //여기서부터 detail.js에 들어갈 아이
-// async function insertTest() {
-//   console.log('장바구니상품 test');
-//   const test = await getData();
-//   // console.log('테스트', test.product);
-//   test?.product.map((item) => {
-//     const { _id, title, price, thumbnail } = item;
-//     productTest.insertAdjacentHTML(
-//       'beforeend',
-//       `
-//       <div class="box product-item ">
-//         <div>
-//           <figure>
-//             <img id="productImage" src="${thumbnail}" alt="clothes-image" />
-//           </figure>
-//         </div>
-//         <div class="description">
-//           <div class="detail">
-//             <h5 id="productTitle">${title}</h5>
-
-//           </div>
-//           <div class="price">
-//             <h5 id="productPrice">${addCommas(price)}원</h5>
-//           </div>
-
-//           <button type="button" class="button is-warning" id="addToCartButton-${_id}">
-//           장바구니 추가하기
-//         </button>
-//         </div>
-//       </div>
-//     `,
-//     );
-//     //디테일에 들어갈 카트 버튼
-//     document
-//       .querySelector(`#addToCartButton-${_id}`)
-//       .addEventListener('click', async () => {
-//         try {
-//           const products = JSON.parse(localStorage.getItem('products')) || [];
-//           const product = {
-//             productId: `${_id}`,
-//             productName: `${title}`,
-//             productPrice: `${price}`,
-//             quantity: 1,
-//           };
-//           localStorage.setItem('product', JSON.stringify(product));
-//           products.push(product);
-//           localStorage.setItem('products', JSON.stringify(products));
-//           console.log(`${title} 이 장바구니에 추가`);
-//           alert('장바구니에 추가되었습니다.');
-//         } catch (err) {
-//           if (err.message.includes('Key')) {
-//             alert('이미 장바구니에 추가되어 있습니다.');
-//           }
-//           console.log(err);
-//         }
-//       });
-//   });
-// }

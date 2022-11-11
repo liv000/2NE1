@@ -5,6 +5,7 @@ console.log('카트');
 // 요소 모음
 const productTest = document.querySelector('#products-test');
 const productList = document.querySelector('#products');
+const deleteButton = document.querySelector('#deleteButton');
 const productCount = document.querySelector('#product-count');
 const productTotal = document.querySelector('#product-total');
 const totalPrice = document.querySelector('#total-price');
@@ -18,6 +19,19 @@ drawOrderCard();
 function insertProductElement() {
   console.log('장바구니리스트 test');
   console.log(cartList);
+  if (cartList === null) {
+    productList.insertAdjacentHTML(
+      'beforeend',
+      `<div class="box empty">
+      <img src="../images/icon-cart@2x.png" width="64px" height="64px" />
+      <p>장바구니에 담겨있는 제품이 없어요.</p>
+      <p>나에게 필요한 영양제를 추천받고 장바구니에 담아보세요!</p>
+    </div>`,
+    );
+  }
+  deleteButton.innerHTML = `<button class = "button is-small  is-rounded mt-4" id="deleteItem">
+  전체 삭제
+  </button>`;
   cartList.map((item) => {
     const { productId, productName, productPrice, quantity } = item;
     productList.insertAdjacentHTML(
@@ -30,9 +44,21 @@ function insertProductElement() {
           </figure>
         </div>
         <div class="description">
-          <div class="detail">
-            <h5 id="productTitle">${productName}</h5>
-            <h5 id="quantity">${quantity}</h5>
+        <button class = "button is-small  is-rounded ml-2 mb-2" id="deleteItem-${productId}">
+      선택 삭제
+      </button>
+        <h5 id="productTitle">${productName}</h5>
+        
+          <div class="detail is-flex">
+            <h5 id="quantity"> 
+            <button
+            class="button is-small is-rounded  ml-2 mb-2"
+            id="minus--${productId}">-</button>
+            ${quantity}
+            </h5>
+            <button
+            class="button is-small  is-rounded ml-2 mb-2"
+            id="plus-${productId}">+</button>
           </div>
           <div class="price">
             <h5 id="productPrice">${addCommas(productPrice)}원</h5>
@@ -41,9 +67,26 @@ function insertProductElement() {
       </div>
     `,
     );
+    document
+      .querySelector(`#deleteItem-${productId}`)
+      .addEventListener('click', async () => {
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+        let delIndex;
+        products.map((item, index) => {
+          if (item.productId === `${productId}`) {
+            console.log('선택삭제');
+            delIndex = index;
+          }
+        });
+        console.log(delIndex);
+        products.splice(delIndex, 1);
+        localStorage.setItem('products', JSON.stringify(products));
+      });
+    //   document
+    //     .querySelector(`#plus-${productId}`)
+    //     .addEventListener('click', async () => {});
   });
 }
-
 //결제정보 카드에 상품 수와 가격 삽입
 async function drawOrderCard() {
   console.log('결제정보카드', cartList);
@@ -121,7 +164,6 @@ async function insertTest() {
       .addEventListener('click', async () => {
         try {
           const products = JSON.parse(localStorage.getItem('products')) || [];
-          // if (products == null) products = [];
           const product = {
             productId: `${_id}`,
             productName: `${title}`,
@@ -134,7 +176,6 @@ async function insertTest() {
           console.log(`${title} 이 장바구니에 추가`);
           alert('장바구니에 추가되었습니다.');
         } catch (err) {
-          // Key already exists 에러면 아래와 같이 alert함
           if (err.message.includes('Key')) {
             alert('이미 장바구니에 추가되어 있습니다.');
           }

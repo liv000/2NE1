@@ -39,10 +39,12 @@ async function handleSubmit(e) {
     const data = { email, password };
 
     const result = await Api.post('/api/login', data);
+    console.log(result);
     const token = result.token;
-
+    const admin = result.admin;
     // 로그인 성공, 토큰을 로컬스토리지에 저장
     localStorage.setItem('token', token);
+    localStorage.setItem('admin', admin);
 
     alert(`정상적으로 로그인되었습니다.`);
 

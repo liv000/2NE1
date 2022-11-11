@@ -1,7 +1,7 @@
 import * as Api from '../api.js';
 
 // DOM Elements
-const iconList = document.querySelector('.icon-list');
+
 const tbody = document.querySelector('.table > tbody');
 
 // Global Variable

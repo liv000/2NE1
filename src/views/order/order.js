@@ -13,6 +13,7 @@ const productCount = document.querySelector('#product-count');
 const productTotal = document.querySelector('#product-total');
 const totalPrice = document.querySelector('#total-price');
 const deliveryPrice = document.querySelector('#delivery-price');
+const cartList = JSON.parse(localStorage.getItem('products'));
 
 // 이벤트 추가
 searchAddressButton.addEventListener('click', searchAddress);
@@ -66,9 +67,8 @@ async function doCheckout() {
   if (!receiverName || !receiverPhoneNumber || !postalCode || !address2) {
     return alert('배송지 정보를 모두 입력해 주세요.');
   }
-  const cartList = JSON.parse(localStorage.getItem('products'));
-  console.log(cartList);
   // 객체 만듦
+  console.log(cartList);
   const data = {
     products: cartList,
     fullName,
@@ -79,33 +79,14 @@ async function doCheckout() {
       address2,
     },
   };
-  // console.log('data: ', data);
   // // JSON 만듦
   const dataJson = JSON.stringify(data);
-  console.log(dataJson);
-  const auth =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzY5ZjUwNzI3YjkyNTEyYWI1MjgyYTkiLCJyb2xlIjowLCJpYXQiOjE2Njc4ODgzOTl9.STJ5OF4WJuVnvamz0RC--ioDW_lgl2-RghzNyZhA43k';
-  // POST 요청
-  //   const res = await fetch('/api/order/', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${auth}`,
-  //     },
-  //     body: dataJson,
-  //   });
 
-  //   if (res.status === 201) {
-  //     console.log(res);
-  //     alert('주문에 성공하였습니다!');
-  //     location.href = 'complete';
-  //   } else {
-  //     alert('주문에 실패하였습니다...');
-  //   }
-  // }
   const res = await Api.post('/api/order/', data);
   if (res) {
     console.log('res', res);
+    localStorage.removeItem('products');
+    localStorage.removeItem('product');
     alert('주문에 성공하였습니다!');
     location.href = 'complete';
   }
@@ -113,9 +94,15 @@ async function doCheckout() {
 
 //결제정보 카드에 상품 수와 가격 삽입
 async function drawOrderCard() {
-  console.log('결제카드 정보 삽입');
-  let price = 20000;
-  productCount.innerHTML = `${data.total}개`;
+  let allPrice = 0;
+  let totalCount = 0;
+  cartList.map((item) => {
+    const { productPrice, quantity } = item;
+    allPrice += productPrice * quantity;
+    totalCount += quantity;
+  });
+  let price = allPrice;
+  productCount.innerHTML = totalCount + '개';
   productTotal.innerHTML = `${addCommas(price)}원`;
   deliveryPrice.innerHTML = `3,000원`;
   totalPrice.innerHTML = `${addCommas(price + 3000)}원`;

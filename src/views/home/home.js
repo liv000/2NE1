@@ -1,25 +1,71 @@
-// 고민별 상품 보기 아이콘 온오프
-const concernLinks = document.querySelectorAll('.concern-link');
-const defaultIcons = document.querySelectorAll('.default-icon');
-const onIcons = document.querySelectorAll('.on-icon');
+import * as Api from '../api.js';
+import { randomId } from '../useful-functions.js';
 
-/**
- * 아이콘 on
- * 1. link에 마우스오버
- * 2. 기본 아이콘 none
- * 3. on 아이콘 block
- * 4. 텍스트 색깔 변경
- *
- * 아이콘 off
- * 1. 기본 아이콘 block
- * 2. on 아이콘 none
- * 3. 텍스트 색깔 변경
- *  */
+// DOM Elements
+const categoryIcons = document.querySelector('.category-icons');
+const allIcon = document.querySelector('#all-product');
 
-concernLinks.forEach((icon) =>
-  icon.addEventListener('click', (e) => iconOn(e)),
-);
+// Global Variables
 
-function iconOn(e) {
-  console.log(e.target.nodeName);
+// 1. 전체 아이콘
+allIcon.addEventListener('click', () => {
+  window.location.href = `/category?ctg=all-product`;
+});
+
+// 2. 카테고리 아이콘
+const category = await Api.get('/api/category/list?page=1&perPage=10');
+const categories = category.categories;
+
+//
+categories.forEach(async (category) => {
+  // Variables
+  const { _id, categoryName, categoryImg } = category;
+  const random = randomId();
+
+  categoryIcons.insertAdjacentHTML(
+    'beforeend',
+    drawCategoryIcons(random, categoryName, categoryImg),
+  );
+
+  const categoryItem = document.querySelector(`#c${random}`);
+  categoryItem.addEventListener('click', () => {
+    window.location.href = `/category?ctg=${_id}`;
+  });
+});
+
+// 3. 제품목록
+function drawCategoryIcons(random, categoryName, categoryImg) {
+  const iconsTemplate = `
+  <li id="c${random}">
+    <button class="category-link">
+      <figure class="category-image is-flex">
+        <img
+          src="${categoryImg}"
+          alt="${categoryName}"
+        />
+      </figure>
+      <p class="category-name is-justify-content-center">${categoryName}</p>
+    </button>
+  </li>
+`;
+
+  return iconsTemplate;
+}
+
+function drawProducts(random, price, thumbnail, title, brandTitle) {
+  const productTemplate = `
+  <li id="p${random}">
+    <figure class="product-img">
+        <img src="${thumbnail}" alt="${title}" />
+      </figure>
+      <div class="product-information">
+        <h3>
+          <span>[${brandTitle}]</span> ${title}
+        </h3>
+        <p class="product-price">${price.toLocaleString()}원</p>
+      </div>
+  </li>
+    `;
+
+  return productTemplate;
 }

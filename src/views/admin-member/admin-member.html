@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"/>
     <link rel="stylesheet" href="admin-member.css"/>
@@ -7,29 +7,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>약쟁이의 관리자 회원관리</title>
-    <script src="admin-member.js" defer></script>
+    <script type="module" src="admin-member.js" defer></script>
+    <script src="../navbar.js" type="module" defer></script>
 </head>
 <body>
+<header></header>
     <main role="main">
         <section class="admin-memberList-section">
             <div class="member-title-section">
                 <h1 class="subtitle is-4">회원관리</h1>
             </div>
             <div class="memberList-section">
-                <table id="admin-memberList">
-                    <thead>
+                <table id="admin-memberList" class="table has-shadow">
+                    <thead id="memberListHead">
                         <tr id="admin-memberList">
                             <td width="300">가입날짜</td>
                             <td width="300">이메일</td>
                             <td width="200">이름</td>
                             <td width="300">전화번호</td>
-                            <td width="200">삭제</td>
+                            <!-- <td width="200">삭제</td> -->
                         </tr>
                     </thead>
                 </table>
             </div>
         </section>
-        <div id="modal" class="modal">
+        <!-- <div id="modal" class="modal">
             <div class="modal-background" id="modalBackground"></div>
             <div class="modal-content">
                 <div class="box">
@@ -45,7 +47,20 @@
                 </div>
             </div>
             <button class="modal-close is-large" id="modalCloseButton" aria-label="close"></button>
-        </div>
+        </div> -->
+        <section id="pagination_section">
+            <div id="pagination" class="pagination is-centered" role="navigation" aria-label="pagination">
+                <a class="pagination-previous">Previous</a>
+                <a class="pagination-next">Next page</a>
+                <ul class="pagination-list">
+                    <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 2">2</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 3">3</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 4">4</a></li>
+                </ul>
+            </div>
+        </section>
     </main>
+<footer></footer>
 </body>
 </html>

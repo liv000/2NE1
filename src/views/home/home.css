@@ -23,6 +23,11 @@ li {
   list-style: none;
 }
 
+button {
+  all: unset;
+  cursor: pointer;
+}
+
 .wrapper {
   width: 1280px;
   margin: 0 auto;
@@ -31,13 +36,34 @@ li {
 
 /* 배너 */
 .banner {
-  height: 500px;
-  background-color: lightgray;
+  position: relative;
+}
+
+.banner-text {
+  position: absolute;
+  top: 130px;
+  left: 200px;
+}
+
+.banner-text h1 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #ff5c35;
+}
+
+.text-bold {
+  font-weight: 400;
+  color: #000000;
+}
+
+.banner-image img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
 }
 
 /* 고민별 상품 보기 */
-/* TODO 컴포넌트 분리 */
-.concern {
+.category-concern {
   margin-top: 56px;
 }
 
@@ -45,95 +71,80 @@ li {
   position: relative;
 }
 
-.more-link {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.scroll-container {
+.category-container {
   width: 100%;
   height: 100%;
   overflow-x: auto;
   margin-top: 16px;
 }
 
-.concern-icons {
-  display: flex;
+.category-icons {
   margin-top: 24px;
   user-select: none;
 }
 
-.concern-icons li:not(:first-child) {
+.category-icons li:not(:first-child) {
   margin-left: 12px;
 }
 
-/* js - icon onoff*/
-.on-icon {
-  display: none;
-}
-
-.icon-imgs {
-  position: relative;
+.category-image {
   width: 72px;
   height: 72px;
   border-radius: 24px;
   background-color: #f2f2f2;
 }
 
-.icon-imgs img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.category-image img {
+  width: 32px;
+  height: 32px;
+  margin: auto;
 }
 
-.icon-imgs + p {
-  text-align: center;
+.category-name {
   margin-top: 8px;
   font-size: 10px;
   font-weight: 500;
+  text-align: center;
 }
 
-/* 추천 상품 */
-.recommend-product {
+.category-image:hover {
+  background-color: #ffefeb;
+}
+
+/* 유튜브 */
+.video {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.video-title h2 {
+  padding-top: 11px;
+}
+
+.video-title p {
+  margin-top: 8px;
+  color: #858589;
+}
+
+.video-title span {
+  color: #ff5c35;
+}
+
+.youtube {
+  margin-top: 36px;
+  width: 1170px;
+  height: 658px;
+}
+
+.text-content {
   margin-top: 56px;
 }
 
-.product-container {
-  overflow: hidden;
-  margin-top: 16px;
+.text h3 {
+  font-size: 24px;
+  color: #ff5c35;
 }
 
-.product-items {
-  display: flex;
-  margin-top: 24px;
-}
-
-.product-items li {
-  max-width: 270px;
-  vertical-align: top;
-}
-
-.product-items li:not(:first-child) {
-  margin-left: 30px;
-}
-
-.product-img {
-  width: 100%;
-  background-color: #eaeaea;
-  border-radius: 100%;
-}
-
-.product-img img {
-  max-width: 100%;
-  height: auto;
-}
-
-.product-information {
-  margin-top: 16px;
-}
-
-.product-information p {
-  margin-top: 8px;
+.text p {
+  margin-top: 18px;
 }

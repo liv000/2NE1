@@ -1,4 +1,7 @@
 /* 주문 리스트 */
+*{
+    font-family: 'Noto Serif KR', serif;
+}
 section{
     display: flex;
     flex-direction: column;
@@ -7,15 +10,20 @@ section{
 .title-header{
     display: flex;
     justify-content: center;
+    align-items: center;
+    /* margin-top: 1px; */
+    margin-bottom: 25px;
 }
 .admin-orderlist-section {
     max-width: 1000px !important;
-    margin: 5rem auto 2rem auto;
+    /* margin: 5rem auto 2rem auto; */
+    /* margin-left: 450px; */
+    margin: 0px auto;
 }
 
 .admin-orderlist-table {
     text-align: center;
-
+    display: flex;
     padding: 0;
 }
 
@@ -27,11 +35,31 @@ section{
 .orders-item:not(:last-child) {
     border-bottom: #bbb 1px solid;
 }
+.showDetail{
+    text-align: center;
+}
+.Detail{
+    text-align: center;
+}
 
-
+tbody tbody{
+    display: flex;
+}
 .modal .box {
     text-align: center;
 }
 .modal .buttons {
     justify-content: center;
 }
+#pagination{
+    margin: 50px 50px;
+    /* width: 50%; */
+}
+#pagination_section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+/* @media screen {
+    
+} */

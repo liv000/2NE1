@@ -1,8 +1,5 @@
-import { productModel } from '../db';
-var cheerio = require('cheerio');
-// var request = require('request');
-const axios = require('axios');
-
+import { productModel, userModel } from '../db';
+import { setStock } from './components/setStock';
 class ProductService {
   constructor(productModel) {
     this.productModel = productModel;
@@ -12,23 +9,35 @@ class ProductService {
     return await this.productModel.create(productInfo);
   }
 
-  async getProductList(topCategoryCode) {
-    return await this.productModel.getProductList(topCategoryCode);
+  async getProductList(categoryId, page, perPage) {
+    return await this.productModel.getProductList(categoryId, page, perPage);
   }
 
   async setStock(products) {
     for (let i = 0; i < products.length; i++) {
-      await this.productModel.updateStock(products[i]);
+      await setStock(products[i]);
     }
   }
   async getProductDetail(id) {
-    const productDetail = await this.productModel.findOne(id);
-    return productDetail;
+    return await this.productModel.findOne(id);
   }
 
+  async getComments(id) {
+    const product = await this.getProductDetail(id);
+
+    return await userModel.getAuthor(product.comments);
+  }
   async updateProduct(id, newInfo) {
     const update = await this.productModel.updateProduct(id, newInfo);
     return update;
+  }
+
+  async findByCategoryId(categoryId) {
+    return await this.productModel.getProductList(categoryId);
+  }
+
+  async setComments(id, author, content) {
+    return await this.productModel.setComments(id, author, content);
   }
 }
 

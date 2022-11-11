@@ -148,3 +148,26 @@ button {
 .text p {
   margin-top: 18px;
 }
+.text-content{
+  display:flex;
+  flex-direction: row;
+  justify-content:space-around;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .category-concern{
+    display: flex;
+  }
+  #video-title{
+    width: 72.5%;
+  }
+  .youtube{
+    width: 72.5%
+  }
+  .text-content{
+    flex-direction: column;
+    width:72.5%;
+  }
+  .text{
+    padding: 50px 0px;
+  }
+}

@@ -1,6 +1,6 @@
 //order.js
 import * as Api from '/api.js';
-import { addCommas, convertToNumber } from '../useful-functions.js';
+import { addCommas, formatPhoneNumber } from '../useful-functions.js';
 const receiverNameInput = document.querySelector('#receiverName');
 const receiverPhoneNumberInput = document.querySelector('#receiverPhoneNumber');
 const postalCodeInput = document.querySelector('#postalCode');
@@ -57,7 +57,7 @@ function searchAddress() {
 async function doCheckout() {
   // 각 입력값 가져옴
   const fullName = receiverNameInput.value;
-  // const phoneNumber = receiverPhoneNumberInput.value;
+  const phoneNumber = formatPhoneNumber(receiverPhoneNumberInput.value);
   const postalCode = postalCodeInput.value;
   const address1 = address1Input.value;
   const address2 = address2Input.value;
@@ -67,12 +67,13 @@ async function doCheckout() {
   if (!receiverName || !receiverPhoneNumber || !postalCode || !address2) {
     return alert('배송지 정보를 모두 입력해 주세요.');
   }
+
   // 객체 만듦
   console.log(cartList);
   const data = {
     products: cartList,
     fullName,
-    phoneNumber: '010-0000-0000',
+    phoneNumber: phoneNumber,
     address: {
       postalCode,
       address1,

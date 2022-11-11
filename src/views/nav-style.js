@@ -40,7 +40,7 @@ a{
         display:none;
     }
     .navbar-dropdown:hover{
-        display: block;
+        display: "";
     }
 
 } 

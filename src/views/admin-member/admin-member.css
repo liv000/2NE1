@@ -1,11 +1,9 @@
-
-
 .admin-memberList-section{
     display:flex;
     flex-direction: column;
     align-items: center;
     padding:auto;
-    margin:10px 100px;
+    margin:30px 100px;
 }
 .member-title-section{
     display: flex;
@@ -17,20 +15,14 @@
 
 thead{
     height:25px;
-    /* background-color: #54BAB9;
-    color: #F7ECDE; */
 }
 .userList{
     padding: auto;
 }
 #admin-memberList{
-    /* background-color: #54BAB9; */
     text-align: center;
 }
-/* #pagination_section{
-    display: flex;
-    flex-direction:row;
-} */
+
 #pagination{
     display: flex;
     flex-direction: row;

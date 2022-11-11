@@ -1,5 +1,4 @@
 import * as Api from '../api.js';
-// import drawHeaderFooter from "../navbar.js";
 
 const admin_orderlist_table = document.querySelector('#admin-orderlist-table');
 const modal = document.querySelector('#modal');
@@ -10,7 +9,6 @@ const deleteCancelButton = document.querySelector('#deleteCancelButton');
 
 drawOrderList();
 drawAllEvents();
-// drawHeaderFooter();
 function drawAllEvents() {
   modalBackground.addEventListener('click', closeModal);
   modalCloseButton.addEventListener('click', closeModal);
@@ -136,8 +134,6 @@ async function deleteOrderData(e) {
   e.preventDefault();
   try {
     await Api.patch('/api/order/admin/cancel', null, { orderId: userId });
-
-    // 삭제 성공
     alert('주문 정보가 삭제되었습니다.');
     _id = '';
     location.reload();
@@ -156,16 +152,3 @@ function openModal() {
 function closeModal() {
   modal.classList.remove('is-active');
 }
-
-// async function getData() {
-//     setPage += 1;
-//     const res = await fetch(
-//         /api/order/admin?list=${setlist}&perPage=${perPage}&page=${setPage},
-//     );
-//     const data = await res.json();
-//     drawOrderList( data.orderList);
-// };
-// const AOL = await Api.post('/api/order/admin/list?page=1&perPage=4');
-// async function pagenation () {
-//     await Api.post('/api/order/admin/list?page=1&perPage=4');
-// }

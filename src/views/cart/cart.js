@@ -37,6 +37,7 @@ function insertProductElement() {
       .addEventListener('click', async () => {
         console.log('전체 삭제됨');
         localStorage.removeItem('products');
+        window.location.reload();
       });
     cartList.map((item) => {
       const { productId, productName, productPrice, quantity } = item;
@@ -83,6 +84,7 @@ function insertProductElement() {
           console.log(delIndex);
           products.splice(delIndex, 1);
           localStorage.setItem('products', JSON.stringify(products));
+          window.location.reload();
         });
       //제품 수량 증가
       document
@@ -106,6 +108,7 @@ function insertProductElement() {
           };
           console.log(products[newIndex]);
           localStorage.setItem('products', JSON.stringify(products));
+          window.location.reload();
         });
       //제품 수량 감소
       document
@@ -133,6 +136,7 @@ function insertProductElement() {
             };
             console.log(products[newIndex]);
             localStorage.setItem('products', JSON.stringify(products));
+            window.location.reload();
           }
         });
     });

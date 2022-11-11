@@ -43,6 +43,9 @@ class UserService {
 
     const user = await this.userModel.findByEmail(email);
 
+    if (!user) {
+      throw new Error('회원 정보가 없습니다');
+    }
     if (user.status === 0) {
       throw new Error('탈퇴한 회원 입니다');
     }

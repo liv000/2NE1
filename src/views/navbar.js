@@ -1,8 +1,7 @@
 import navStyle from './nav-style.js';
-
+import { checkAccount } from './check-account.js';
 const header = document.querySelector('header');
 const footer = document.querySelector('footer');
-// drawHeaderFooter();
 
 // function drawHeaderFooter() {
 //     drawNavbar();
@@ -24,8 +23,8 @@ async function drawNavbar() {
   }
 }
 header.insertAdjacentHTML(
-  'beforeend',
-  `
+    'beforeend',
+    `
         <style>${navStyle}</style>    
         <nav id="header-logo">
         <a href="/">
@@ -111,6 +110,13 @@ header.insertAdjacentHTML(
         </nav>
     `,
 );
+const linkTag = {
+    login: '<li><a href="/login" class="button" style="color: #54BAB9">Login</a></li>',
+    logout: '<li><a href="/" id="logout" class="button" style="color: #54BAB9">Logout</a></li>',
+    register: '<li class="register_btn"><a href="/register" class="button" style="color: #54BAB9">Register</a></li>',
+    myPage: '<li><a href="/myPage" class="button" style="color: #54BAB9">myPage</a></li>',
+    admin: '<li><a href="/admin" class="button" style="color: #54BAB9">AdminPage</a></li>',
+}
 
 const linkTag = {
   login:
@@ -136,20 +142,36 @@ const nonUser = () => {
   return linkTag.register + linkTag.login;
 };
 
-async function drawFooter() {
-  // document.footer.append(footer_section);
+    if(isLogined){
+        headerNavbar.insertAdjacentHTML(
+            'beforeend',
+            `
+            <button class="button" ><a href="/myPage">myPage</a></button>
+            `
+        );
+    } else if(isAdmin){
+        headerNavbar.insertAdjacentHTML('beforeend',
+        `
+        <button class="button" ><a href="/myPage">myPage</a></button>
+        `);
+    }else{
+        headerNavbar.insertAdjacentHTML('beforeend',
+        `
+        <button class="button" ><a href="/myPage">myPage</a></button>
+        `);
+    }
 }
-// const footer_section =
 footer.insertAdjacentHTML(
-  'beforeend',
-  `
+    'beforeend',
+    `
         <div id="footer" class="store">
             <div id="footer-text" class="wrapper">
                 <div id="footer-section1">
-                    일단 테스트 
-                    <em>[</em>
-                    어렵네유 
-                    <em>]</em>
+                    <h4 class="footerTitle">당신의 건강을 책임지는 영양제<br><br></brt></h4>
+                    <a href="https://www.instagram.com/"><img src="../instagramLogo.png" width="30" height="30">&nbsp;&nbsp;</a>
+                    <a href="https://www.facebook.com/"><img src="../facebookLogo.png" width="30" height="30">&nbsp;&nbsp;</a>
+                    <a href="https://line.me/en/"> <img src="../lineLogo.png" width="30" height="30"> </a>
+                    
                 </div>
                 <div id="footer-section2" class="content">
                     <div class="cs">
@@ -194,5 +216,3 @@ footer.insertAdjacentHTML(
     </div> 
         `,
 );
-
-// export default drawHeaderFooter;

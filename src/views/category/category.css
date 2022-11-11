@@ -92,16 +92,13 @@ button {
 
 .product-items {
   margin-top: 24px;
+  gap: 30px;
 }
 
 .product-items li {
   max-width: 270px;
   vertical-align: top;
   cursor: pointer;
-}
-
-.product-items li:not(:first-child) {
-  margin-left: 30px;
 }
 
 .product-img {
@@ -170,4 +167,23 @@ button {
   grid-template-columns: repeat(4, 1fr);
   column-gap: 29px;
   row-gap: 56px;
+}
+
+/* 페이지네이션 */
+.pagination {
+  display: block;
+}
+
+.page-button {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  background-color: #eaeaea;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.page-button:not(:first-child) {
+  margin-left: 12px;
 }

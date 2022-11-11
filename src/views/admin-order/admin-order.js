@@ -29,7 +29,11 @@ async function drawOrderList() {
     const detail = products
       .map(
         (e) =>
-          `<tr><td>${e.productName}</td><td>${e.productPrice}</td><td>${e.quantity}</td></tr>`,
+          `<tr class="Detail">
+            <td colspan="2">${e.productName}</td>
+            <td colspan="1">${e.productPrice}</td>
+            <td colspan="2">${e.quantity}</td>
+          </tr>`,
       )
       .join('');
 
@@ -76,11 +80,13 @@ async function drawOrderList() {
                         </td>
                     </tr>
                 </tbody>
-                <tbody id= "showDetail${_id}" class="showDetail" style = "display : none">
-                <tr>
-                <th>상품명</th><th>개수</th><th>가격</th></tr>
-                    ${detail}
-
+                <tbody id= "showDetail${_id}" style="visibility: collapse">
+                <tr class="showDetail">
+                    <th colspan="2">상품명</th>
+                    <th colspan="1">개수</th>
+                    <th colspan="2">가격</th>
+                </tr>
+                    ${detail}                 
                 </tbody>
                 `,
     );
@@ -119,10 +125,10 @@ async function drawOrderList() {
 }
 const showDetail = async () => {
   const showDetail = document.querySelector(`#showDetail${userId}`);
-  if (showDetail.style.display === 'none') {
-    showDetail.style.display = 'block';
+  if (showDetail.style.visibility === 'collapse') {
+    showDetail.style.visibility = 'visible';
   } else {
-    showDetail.style.display = 'none';
+    showDetail.style.visibility = 'collapse';
   }
 };
 

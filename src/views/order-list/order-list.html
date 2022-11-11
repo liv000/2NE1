@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="order_list.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet"
+    />
+    <script type="module" src="order_list.js" defer></script>
+    <script src="../navbar.js" type="module" defer></script>
+    <title>약쟁이 주문목록</title>
+</head>
+<body>
+    <header></header>
+    <main>
+        <section class="order-main">
+            <aside id="order-aside" class="box has-round">
+                <div class="order-mypage">
+                    <h2>마이페이지</h2>
+                </div>
+                <div class="order-side">
+                    <a href="/장바구니">장바구니</a><br>
+                    <a href="#">주문목록</a><br>
+                    <a href="/회원정보">회원정보</a><br>
+                    <a href="/logout">로그아웃</a>
+                </div>
+            </aside>
+            <!-- 제목 -->
+            <section class="order">
+                <section id="ordered-title" class="section">
+                    <h2 class="title is-3">주문상세정보</h2>
+                </section>
+            <!-- 주문일자 -->
+                <section id="ordered-date">
+                    <div id="ordered-date-list" class="box is-rounded">
+                        <ul class="notification is-primary">
+                            <li class="first">
+                                <dl>
+                                    <dt>주문일자 <em> | </em><strong class="date"> 2022-11-01</strong> 주문 번호<em> | </em><strong> 20221101</strong> </dt>       
+                                </dl>
+                            </li>
+                        </ul>
+                    </div> 
+                </section>
+                <!-- 주문상세 -->
+                <article id="ordered-item-list" class="section">
+                    <!-- <table is-bordered is-striped> -->
+                    <table id="order-table" class="table is-bordered is-striped">
+                        <caption>약쟁이님의 2022-11-01 주문내역</caption>
+                        <thead>
+                            <tr>
+                                <th>상품주문번호</th>
+                                <th>상품정보</th>
+                                <th>상품금액(수량)</th>
+                                <th>진행상태</th>
+                                <th>주문 취소</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div id="modal" class="modal">
+                        <div class="modal-background" id="modalBackground"></div>
+                        <div class="modal-content">
+                            <div class="box">
+                                <p class="mb-3">
+                                    주문 취소 시 복구할 수 없습니다. 정말로 취소하시겠습니까?
+                                </p>
+                                <div class="buttons">
+                                    <button
+                                        class="button mt-5"
+                                        id="deleteCompleteButton"
+                                        aria-label="close"
+                                    >
+                                        네
+                                    </button>
+                                    <button
+                                        class="button is-primary mt-5"
+                                        id="deleteCancelButton"
+                                        aria-label="close"
+                                    >
+                                        아니오
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="modal-close is-large"
+                            id="modalCloseButton"
+                            aria-label="close"
+                        ></button>
+                    </div>
+                </article>
+                    <!-- <article id="more-list-btn">
+                        <button id="more-list-button" class="button is-rounded is-primary">더보기</button>
+                    </article> -->
+            </section>
+        </section>
+        <section id="pagination_section">
+            <div id="pagination" class="pagination is-centered" role="navigation" aria-label="pagination">
+                <a class="pagination-previous">Previous</a>
+                <a class="pagination-next">Next page</a>
+                <ul class="pagination-list">
+                    <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 2">2</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 3">3</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 4">4</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+</body>
+</html>

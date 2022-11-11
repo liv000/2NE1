@@ -1,0 +1,29 @@
+@charset "UTF-8";
+/* 태그 기본값 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+main {
+  margin-top: 20px;
+}
+
+.wrapper {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+.snb {
+  flex-basis: 20%;
+}
+
+.category-form {
+  flex-basis: 60%;
+}

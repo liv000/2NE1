@@ -11,34 +11,36 @@ export class ProductModel {
     return await Product.create(data);
   }
   async findOne(id) {
-    return await Product.findOne({ _id: id });
+    return await Product.findOne({ _id: id }).populate('category');
   }
 
-  async getProductList(categoryCode) {
-    // todo 미들웨어에서 처리
-    if (categoryCode === 'all') {
-      const product = await Product.find({ status: 1 });
-      return product;
+  async getProductList(categoryId, page, perPage) {
+    if (categoryId === 'all') {
+      const [total, product] = await Promise.all([
+        Product.countDocuments({}),
+        Product.find({ status: 1 })
+          .skip(perPage * (page - 1))
+          .limit(perPage)
+          .sort({ createdAt: 1 })
+          .populate('category'),
+      ]);
+      const totalPage = Math.ceil(total / perPage);
+      return { totalPage, page, perPage, product };
     }
 
-    // todo 카테고리와 populate후, 카테고리 코드가 맞는것만 가져오기
-    const product = await Product.find({ status: 1 }).populate({
-      path: 'category',
-      match: { categoryCode },
-    });
-    return product;
+    const [total, product] = await Promise.all([
+      Product.countDocuments({}),
+      Product.find({ status: 1, category: categoryId })
+        .skip(perPage * (page - 1))
+        .limit(perPage)
+        .sort({ createdAt: 1 })
+        .populate('category'),
+    ]);
+    const totalPage = Math.ceil(total / perPage);
+    return { totalPage, page, perPage, product };
   }
 
-  async updateStock(product) {
-    const { productId, quantity, productName } = product;
-
-    const currQuantity = await this.getQuantity(productId);
-    const newQuantity = currQuantity - quantity;
-    if (newQuantity < 0) {
-      throw new Error(
-        `${productName}의 재고가 부족합니다. 현재 수량 : ${currQuantity}`,
-      );
-    }
+  async updateStock(productId, newQuantity) {
     return await Product.findOneAndUpdate(
       { _id: productId },
       { stock: newQuantity },
@@ -51,9 +53,25 @@ export class ProductModel {
   }
 
   async updateProduct(id, newInfo) {
-    const result = await Product.findOneAndUpdate({ _id: id }, newInfo);
-    // console.log(result.WriteResult); WriteResult어떻게 보는지..?
-    return result;
+    return await Product.findOneAndUpdate({ _id: id }, newInfo);
+  }
+
+  async setComments(id, author, content) {
+    return await Product.updateOne(
+      { _id: id },
+      {
+        $push: {
+          comments: {
+            content,
+            author,
+          },
+        },
+      },
+    );
+  }
+
+  async findProductsByOrderId(categoryId) {
+    return await Product.find({ category: categoryId });
   }
 }
 

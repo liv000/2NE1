@@ -187,3 +187,19 @@ button {
 .page-button:not(:first-child) {
   margin-left: 12px;
 }
+
+@media screen and (max-width: 1024px) {
+  .category-icons{
+    flex-wrap: wrap;
+  }
+  .wrapper{
+    width:100%;
+  }
+  .pagination{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    padding: 30px 0;
+  }
+}

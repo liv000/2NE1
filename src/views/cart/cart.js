@@ -13,10 +13,6 @@ const deliveryPrice = document.querySelector('#delivery-price');
 
 const cartList = JSON.parse(localStorage.getItem('products'));
 // insertTest();
-const deleteAll = () => {
-  localStorage.removeItem('products');
-  console.log('전체삭제');
-};
 insertProductElement();
 drawOrderCard();
 // 데이터를 받아 요소를 만든 후, html에 삽입
@@ -33,9 +29,15 @@ function insertProductElement() {
     </div>`,
     );
   } else {
-    deleteButton.innerHTML = `<button class = "button is-small  is-rounded mt-4" onclick='${deleteAll()}' id="deleteItem">
+    deleteButton.innerHTML = `<button class = "button is-small  is-rounded mt-4" id="deleteItem">
   전체 삭제
   </button>`;
+    document
+      .querySelector('#deleteItem')
+      .addEventListener('click', async () => {
+        console.log('전체 삭제됨');
+        localStorage.removeItem('products');
+      });
     cartList.map((item) => {
       const { productId, productName, productPrice, quantity } = item;
       productList.insertAdjacentHTML(
@@ -43,7 +45,7 @@ function insertProductElement() {
         `
       <div class="box product-item">
         <div class="description">
-        <button class = "button is-small  is-rounded ml-2 mb-2" id="deleteItem-${productId}">
+        <button class = "button is-small  is-rounded ml-2 mb-2" id="delete-Item-${productId}">
       선택 삭제
       </button>
         <h5 id="productTitle" class="ml-3">${productName}</h5>
@@ -52,7 +54,7 @@ function insertProductElement() {
             <h5 id="quantity"> 
             <button
             class="button is-small is-rounded  ml-2 mb-1"
-            id="minus--${productId}">-</button>
+            id="minus-${productId}">-</button>
             ${quantity}
             </h5>
             <button
@@ -66,8 +68,9 @@ function insertProductElement() {
       </div>
     `,
       );
+      //선택 삭제
       document
-        .querySelector(`#deleteItem-${productId}`)
+        .querySelector(`#delete-Item-${productId}`)
         .addEventListener('click', async () => {
           const products = JSON.parse(localStorage.getItem('products')) || [];
           let delIndex;
@@ -81,9 +84,18 @@ function insertProductElement() {
           products.splice(delIndex, 1);
           localStorage.setItem('products', JSON.stringify(products));
         });
-      //   document
-      //     .querySelector(`#plus-${productId}`)
-      //     .addEventListener('click', async () => {});
+      //제품 수량 증가
+      document
+        .querySelector(`#plus-${productId}`)
+        .addEventListener('click', async () => {
+          cartList.map(() => {
+            console.log(cartList);
+          });
+        });
+      //제품 수량 감소
+      document
+        .querySelector(`#minus-${productId}`)
+        .addEventListener('click', async () => {});
     });
   }
 }

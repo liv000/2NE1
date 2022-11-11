@@ -48,15 +48,15 @@
         <button class="modal-close is-large" aria-label="close"></button>
       </div>
 
-      <div class="wrapper is-flex is-flex-wrap-nowrap">
+      <div class="wrapper is-flex">
         <div class="left-container">
           <!-- 제품 이미지 -->
-          <div class="is-flex">
+          <div class="box is-flex">
             <img src="" alt="제품이미지" class="product-image" />
           </div>
 
           <!-- 구매하기 -->
-          <aside class="product-purchase mt-6">
+          <aside class="box product-purchase">
             <section>
               <p class="brand-title"></p>
               <h1 class="product-title mt-4"></h1>
@@ -83,7 +83,10 @@
 
               <!-- 구매 버튼 -->
               <div class="purchase mt-6">
-                <button class="btn-purchase">구매하기</button>
+                <button class="button is-success btn-purchase">구매하기</button>
+                <button class="button is-warning" id="cart-btn">
+                  장바구니 담기
+                </button>
               </div>
             </section>
 
@@ -97,31 +100,7 @@
                 <div class="scroll-box">
                   <p class="cart-title"></p>
 
-                  <!-- 카운트 -->
-                  <!-- <div class="cart-count">
-                    <p>수량</p>
-                    <div class="count-wrapper">
-                      <button class="btn-minus"><span>-</span></button
-                      ><span class="cnt-number">1</span
-                      ><button class="btn-plus"><span>+</span></button>
-                    </div>
-                  </div> -->
-
-                  <div>
-                    <div
-                      class="is-flex is-justify-content-space-between cart-total"
-                    >
-                      <p>제품 금액</p>
-                      <p class="cart-price"></p>
-                    </div>
-
-                    <!-- 장바구니 담기 버튼 -->
-                    <div class="cart-add">
-                      <button class="button is-warning" id="cart-btn">
-                        장바구니 담기
-                      </button>
-                    </div>
-                  </div>
+                  <div></div>
                 </div>
               </div>
             </section>
@@ -144,7 +123,7 @@
 
           <!-- contents -->
           <section class="contents">
-            <article class="product-content">
+            <article class="box product-content">
               <h2>제품설명</h2>
               <div>
                 <img src="" alt="제품상세이미지" class="product-detail-image" />
@@ -152,7 +131,7 @@
             </article>
 
             <!-- 제품후기 -->
-            <article class="review-content mt-6">
+            <article class="box review-content mt-6">
               <h2>제품후기</h2>
               <div>
                 <h3>제품후기 남기기</h3>
@@ -163,7 +142,7 @@
               </div>
 
               <!-- 후기목록 -->
-              <div class="review-list">
+              <div class="box review-list">
                 <div>
                   <h4 class="customer-name"></h4>
                   <p class="review-content"></p>
@@ -172,7 +151,7 @@
             </article>
 
             <!-- 문의 -->
-            <article class="inquiry-content mt-6">
+            <article class="box inquiry-content mt-6">
               <h2>문의</h2>
               <p>
                 결제, 정기구독, 포인트 사용방법 등 필리 스토어에 대해 궁금하신
@@ -181,7 +160,7 @@
             </article>
 
             <!-- 배송반품취소 -->
-            <article class="delivery-content mt-6">
+            <article class="box delivery-content mt-6">
               <h2>배송 / 반품 / 취소</h2>
               <div class="">
                 <p>배송 안내</p>

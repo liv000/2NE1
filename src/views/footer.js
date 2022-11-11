@@ -29,7 +29,7 @@ function drawFooter() {
                       </div>
                       <div class="last">
                           (주) 2NE1 
-                          <em>|</em>
+                           <em>|</em>
                           사업자번호: 아직 없음 
                           <em>|</em>
                           대표: 오승하 

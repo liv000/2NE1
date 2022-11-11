@@ -21,13 +21,14 @@ function drawPageButton(totalPage) {
 }
 drawPageButton(totalPage);
 
-// 페이지네이션
-pagination.addEventListener('click', (e) => {
+// 페이지버튼
+pagination.addEventListener('click', async (e) => {
   if (e.target.tagName === 'SPAN') {
     tbody.innerHTML = '';
     count = Number(e.target.textContent);
 
-    tbody.innerHTML += addAdminProductList(count);
+    tbody.innerHTML = addAdminProductList(count);
+    tbody.textContent = '';
   }
 });
 
@@ -36,20 +37,23 @@ async function addAdminProductList(page = 1) {
     `/api/product/list?page=${page}&perPage=10`,
   );
   const products = productList.product;
+  const lastIndex = Number(page * perPage);
+  const firstIndex = Number(lastIndex);
 
-  products.forEach((product) => {
+  products.forEach((product, i) => {
     // Variables
     const { _id, price, stock } = product;
     const brandTitle = product.brandInfo.title;
     const { categoryName } = product.category;
     const createdAt = product.createdAt.slice(0, 10);
     const productTitle = product.title;
+    const index = firstIndex + i - 9;
 
     //
     tbody.insertAdjacentHTML(
       'beforeend',
       drawAdminProductList(
-        idx,
+        index,
         categoryName,
         brandTitle,
         productTitle,

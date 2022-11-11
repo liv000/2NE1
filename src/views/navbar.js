@@ -13,6 +13,7 @@ async function drawNavbar() {
   // document.header.prepend(header_section);
   const isLogin = localStorage.getItem('token') ? true : false;
   const isAdmin = localStorage.getItem('admin') ? true : false;
+  console.log(isAdmin);
 
   if (isLogin) {
     header.prepend(userHeader);
@@ -30,7 +31,7 @@ header.insertAdjacentHTML(
         <a href="/">
             <img src="../drug.png" width="100" height="28">
         </a>
-        <a href="/" id="header-logo-text">약쟁이네 약팔이</a>
+        
         <a href="#" class="navbar-toogleBtn">
             <i class="fa-solid fa-bars"></i>
         </a>
@@ -111,10 +112,24 @@ header.insertAdjacentHTML(
     `,
 );
 
+const linkTag = {
+  login:
+    '<li><a href="/login" class="button" style="color: #54BAB9">Login</a></li>',
+  logout:
+    '<li><a href="/" id="logout" class="button" style="color: #54BAB9">Logout</a></li>',
+  register:
+    '<li class="register_btn"><a href="/register" class="button" style="color: #54BAB9">Register</a></li>',
+  myPage:
+    '<li><a href="/myPage" class="button" style="color: #54BAB9">myPage</a></li>',
+  admin:
+    '<li><a href="/admin" class="button" style="color: #54BAB9">AdminPage</a></li>',
+};
+
 const userHeader = () => {
   return linkTag.myPage + linkTag.login;
 };
 const AdminHeader = () => {
+  console.log('d');
   return linkTag.admin + linkTag.logout;
 };
 const nonUser = () => {

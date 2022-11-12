@@ -51,20 +51,21 @@ async function insertData() {
   const userData = await Api.get('/api/user');
 
   const { _id, fullName, phoneNumber, address, email } = userData;
-  const { postalCode, address1, address2 } = address;
+  if (address) {
+    const { postalCode, address1, address2 } = address;
+
+    postCodeInput.value = postalCode;
+
+    adrress1Input.value = address1;
+
+    adrress2Input.value = address2;
+  }
   // 나중에 사용자가 비밀번호 변경을 위해 입력했는지 확인하기 위함임.
   userData.password = '';
   userId = _id;
   fullNameInput.value = fullName;
   if (phoneNumber) {
     phoneNumberInput.value = phoneNumber;
-  }
-  if (address) {
-    postCodeInput.value = postalCode;
-
-    adrress1Input.value = address1;
-
-    adrress2Input.value = address2;
   }
   if (email) {
     emailInput.value = email;

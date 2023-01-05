@@ -1,22 +1,21 @@
-# 2NE1
-### 💊 [사이트 보러가기](http://34.230.19.119)
-  
+# ✅ 2NE1
 
-- [서비스 소개](#서비스-소개)
+<h3 align="center">💊 건강을 위한 영양제 쇼핑몰 웹 사이트, na2ra1 - 2NE1!</h3>
 
-- [기술 스택](#기술-스택)
+<div  align="center">
+  <img width="10%" alt="image" src="https://user-images.githubusercontent.com/65716445/210801893-634f7713-4d0d-443e-8dad-91b8e3bc7065.png">
+</div>
+</br>
 
-- [인프라 구조](#인프라-구조)
 
-- [제작자](#제작자)
+- **팀 명 :** 2NE1
+- **프로젝트 명 :** na2ral(약쟁이)
+- **프로젝트 기간 :** 2022.10.31 - 2022.11.11
+- **배포 링크 :** [🤝 na2ra1.com](http://34.230.19.119)
+- **데모 영상 :** [▶️ 영상 링크](https://youtu.be/vt3N1dLKh4U)
+- **API 문서 :** [💡 postman](https://documenter.getpostman.com/view/16132058/2s8YRnmXTf)
 
-- [실행 방법](#실행-방법)
-
-- [트러블 슈팅](#트러블-슈팅)
-
-  
-
-## 서비스 소개
+## 📝 서비스 소개
 
 
 - 사용자에게 영양제 정보를 제공하고, 주문할 수 있는 사이트
@@ -35,21 +34,9 @@
 5. 장바구니에서 주문을 진행하며, **주문 완료 후 조회 및 삭제**가 가능함.
 
 
-
-### 1-1. API 문서
-
-
-### https://documenter.getpostman.com/view/16132058/2s8YRnmXTf
-  
-
-### 1-2. 데모 영상
-
-  
-https://youtu.be/vt3N1dLKh4U
-
   
   
-## 기술 스택
+## 🛠 기술 스택
 
   
 ![image](https://i.ibb.co/N34mXzy/image.png)
@@ -57,7 +44,7 @@ https://youtu.be/vt3N1dLKh4U
   
 
 
-### 2-1. 프론트엔드
+### 프론트엔드
 
   
 
@@ -71,7 +58,7 @@ https://youtu.be/vt3N1dLKh4U
 
   
 
-### 2-2. 백엔드
+### 백엔드
 
   
 
@@ -83,14 +70,14 @@ https://youtu.be/vt3N1dLKh4U
 
 
   
-## 인프라 구조
+## 📉 인프라 구조
 
   
 
 ![image](https://i.ibb.co/9tGxmx0/image.png)
   
 
-### 3-1. 폴더 구조
+### 📂 폴더 구조
 
   
 
@@ -103,7 +90,7 @@ https://youtu.be/vt3N1dLKh4U
 
   
 
-## 제작자
+## 👨‍👩‍👧‍ 제작자
 
   
 
@@ -116,44 +103,7 @@ https://youtu.be/vt3N1dLKh4U
 | 지창준  | BE |
 
   
-
-## 실행 방법
-
-  
-
-1. 레포지토리를 클론하고자 하는 디렉토리에서 아래 명령어를 수행
-
-  
-
-```bash
-git clone <레포지토리 주소>
-```
-
-  
-
-2. 클론한 디렉토리에서 backend 디렉토리로 들어가 아래 명령어를 통해 backend에서 필요한 module 설치
-
-  
-
-```bash
-npm install
-```
-  
-
-3. backend에서 필요한 `.env` 설정
-
-
-4. express 앱을 실행
-
-
-```bash
-
-npm start
-
-```
-
-  
-## 트러블 슈팅 
+## **🔎 트러블 슈팅**
 
 - 데이터 크롤링을 어떻게 할 것인가 ? 
 	-  레퍼런스 사이트에서 더미 데이터를 어떻게 가져올 것인가 논의 
@@ -170,9 +120,20 @@ ___
  3.  배송지를 바꾸더라도 주문 정보에는 예전에 입력했던 배송지가 그대로 남아있어야 하기 때문이다. 
 
 
+## **🌱 Git**
 
-## 버전
+### Branch
 
-  
+- `master (main)`: 바로 product로 release(배포)할 수 있는 브랜치
+- `dev (develop)`: product로 release할 준비가 된 가장 안정적인 브랜치로 개발이 완료된 상태라면 **master** 브랜치로 merge
+- `feature`: 새로운 기능을 추가할 때 사용하는 브랜치로 **dev** 브랜치에서 분기하여 진행되며, 개발이 완료된 기능은 **dev** 브랜치로 merge
+  - **브랜치명 컨벤션** : `feat/{pageName}-{featureName}`
 
-### 1.0.0
+### Commit
+
+|  "feat: ~ "  | 새로운 기능 추가   |
+| :----------: | :----------------- |
+|  "fix: ~ "   | 수정에 대한 커밋   |
+| "bug" ~ " :  | 버그에 대한 커밋   |
+| "styled: ~ " | 스타일이나 UI 수정 |
+|  "docs: ~ "  | 문서 수정          |

@@ -27,7 +27,7 @@ async function requestEmailCode(e) {
   const email = emailInput.value;
   const emailCode = emailCodeInput.value;
   const res = await Api.post('/api/sendEmail', { email: email });
-  console.log(typeof res, res);
+  // console.log(typeof res, res);
   emailCodeResponse = res;
   // return res;
 }
@@ -39,7 +39,7 @@ async function handleSubmit(e) {
   const emailCode = emailCodeInput.value;
   const password = passwordInput.value;
   const passwordConfirm = passwordConfirmInput.value;
-  console.log(emailCodeResponse);
+  // console.log(emailCodeResponse);
   // 잘 입력했는지 확인
   const isFullNameValid = fullName.length >= 2;
   const isEmailValid = validateEmail(email);

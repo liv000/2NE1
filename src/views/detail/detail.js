@@ -74,22 +74,26 @@ comments.forEach((element) => {
 // 리뷰 등록
 // TODO 권한 없으면 alert 창 띄우기 주문한 사람만 리뷰를 작성할 수 있습니다.
 reviewBtn.addEventListener('click', async () => {
-  const postReview = await Api.post(`/api/product/${productId}/comments`, {
-    content: inputReview.value,
-  });
-  if (postReview) {
-    alert('후기가 등록되었습니다!');
-    location.reload();
+  try {
+    const postReview = await Api.post(`/api/product/${productId}/comments`, {
+      content: inputReview.value,
+    });
+    if (postReview) {
+      alert('후기가 등록되었습니다!');
+      location.reload();
+    } else {
+      alert('주문한 사람만 댓글을 달 수 있습니다.');
+    }
+  } catch (e) {
+    alert(`주문한 사람만 댓글을 달 수 있습니다.`);
+    inputReview.value = ' ';
   }
 });
 
 function drawReviewList(content) {
   const reviewTemplelate = `
   <div class="box review-list">
-    <div class="mt-5">
-      <h4 class="customer-name">${'이름'}</h4>
-      <p class="review-content">${content}</p>
-    </div>
+      <h4 class="review-content">${content}</h4>
   </div>    
   `;
 
